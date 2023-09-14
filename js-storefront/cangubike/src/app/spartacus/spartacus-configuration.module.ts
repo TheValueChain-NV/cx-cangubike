@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
 import { translationChunksConfig, translations } from "@spartacus/assets";
-import { FeaturesConfig, I18nConfig, OccConfig, provideConfig, SiteContextConfig } from "@spartacus/core";
+import { FeaturesConfig, I18nConfig, OccConfig, SiteContextConfig, provideConfig } from "@spartacus/core";
 import { defaultB2bOccConfig } from "@spartacus/setup";
 import {
-  defaultCmsContentProviders,
   IconConfig,
   IconResourceType,
+  defaultCmsContentProviders,
   layoutConfig,
   mediaConfig
 } from "@spartacus/storefront";
-import {environment} from "../../environments/environment";
-import {cangubikeLayoutConfig} from "./layout.config";
-import {cangubikeMediaConfig} from "./cangubike-media.config";
+import { cangubikeLayoutConfig } from "./layout.config";
 
 @NgModule({
   declarations: [],
@@ -20,7 +18,7 @@ import {cangubikeMediaConfig} from "./cangubike-media.config";
   providers: [provideConfig(layoutConfig),provideConfig(cangubikeLayoutConfig), provideConfig(mediaConfig), ...defaultCmsContentProviders, provideConfig(<OccConfig>{
     backend: {
       occ: {
-        baseUrl: environment.occBaseUrl,
+        //baseUrl: environment.occBaseUrl,
         endpoints: {
           product: 'products/${productCode}?fields=FULL'
         }
