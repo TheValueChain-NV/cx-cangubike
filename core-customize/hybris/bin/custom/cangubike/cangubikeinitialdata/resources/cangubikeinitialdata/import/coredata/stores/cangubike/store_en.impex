@@ -1,15 +1,13 @@
 # -----------------------------------------------------------------------
 # Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 # -----------------------------------------------------------------------
-# 
-# Import the Cangubike BaseStore
 #
-# Localization en
+# Import the BaseStore
 #
-
+$storeUid=cangubike
+# Language
 $lang=en
 
-$storeUid=cangubike
-
+# Create Base Store
 UPDATE BaseStore;uid[unique=true];name[lang=$lang]
 ;$storeUid;"Cangubike Store";

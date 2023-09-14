@@ -4,7 +4,7 @@
  For more details about configurations options that may appear in this file, see https://lucene.apache.org/solr/guide/8_8/configuring-solrconfig-xml.html.
 -->
 <config>
-	<luceneMatchVersion>8.11.1</luceneMatchVersion>
+	<luceneMatchVersion>8.11.2</luceneMatchVersion>
 
 	<lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lib" regex=".*\.jar" />
 	<lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lucene-libs" regex=".*\.jar" />
@@ -27,8 +27,6 @@
 	<indexConfig>
 		<lockType>${solr.lock.type:native}</lockType>
 	</indexConfig>
-
-	<jmx />
 
 	<updateHandler class="solr.DirectUpdateHandler2">
 		<updateLog>

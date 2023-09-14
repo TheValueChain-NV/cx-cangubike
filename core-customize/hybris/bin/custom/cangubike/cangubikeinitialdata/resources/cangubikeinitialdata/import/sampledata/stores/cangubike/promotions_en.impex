@@ -1,34 +1,25 @@
 # -----------------------------------------------------------------------
 # Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 # -----------------------------------------------------------------------
-# ImpEx for Promotions for Cangubike Store
+# ImpEx for Promotions
+# English localisation
 
 # Language
 $lang=en
 
-#3% off orders over $500
-UPDATE OrderThresholdDiscountPercentagePromotion;enabled[default=true][unique=true];code[unique=true];messageCouldHaveFired[lang=$lang];
-;;3PercentDiscountOver500;3% off orders over $500;;
+# Import config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+
+# Load the storefront context root config param
+$storefrontContextRoot=$config-storefrontContextRoot
 
 
-#Buy 2 Power Drills, Get 1 Free
-UPDATE AcceleratorProductBOGOFPromotion;enabled[default=true][unique=true];code[unique=true];messageCouldHaveFired[lang=$lang];messageFired[lang=$lang];
-;;B2GOFPowerDrills;Buy 2 Power Drills, Get 1 Free;You get 1 Power Drill free for purchasing 2 Power Drills;;
+UPDATE ProductPercentageDiscountPromotion;code[unique=true];enabled[default=true][unique=true];messageFired[lang=$lang];name[lang=$lang];
 
+UPDATE AcceleratorProductMultiBuyPromotion;code[unique=true];enabled[default=true][unique=true];messageCouldHaveFired[lang=$lang];messageFired[lang=$lang];name[lang=$lang];
 
-#Buy this great power tool package by Black & Decker for $255! Save $39!
-UPDATE ProductBundlePromotion;enabled[default=true][unique=true];code[unique=true];messageCouldHaveFired[lang=$lang];messageFired[lang=$lang];
-;;ProductBundleCangubikePackage;Buy this great power tool package by Black & Decker for {2}! Save $39!;You saved {3} by buying this great power tool package by Black & Decker for {1}!;;
+UPDATE AcceleratorProductBOGOFPromotion;code[unique=true];enabled[default=true][unique=true];messageCouldHaveFired[lang=$lang];messageFired[lang=$lang];name[lang=$lang];
 
+UPDATE ProductPerfectPartnerPromotion;code[unique=true];enabled[default=true][unique=true];messageCouldHaveFired[lang=$lang];messageFired[lang=$lang];name[lang=$lang];
 
-#10% off on Sanders
-UPDATE ProductPercentageDiscountPromotion;enabled[default=true][unique=true];code[unique=true];messageFired[lang=$lang];
-;;10DiscountSanders;10% off on Sanders;;
-
-
-#Discount on the cart using a coupon (promotion voucher)
-UPDATE PromotionVoucher;voucherCode[unique=true];description[lang=$lang];
-;SUMMER69;Get $10 discount on the cart;
-;WINTER16;Get 10% discount on the cart;
-
-
+UPDATE ProductBundlePromotion;code[unique=true];enabled[default=true][unique=true];messageCouldHaveFired[lang=$lang];messageFired[lang=$lang];name[lang=$lang];

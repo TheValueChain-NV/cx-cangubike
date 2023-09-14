@@ -1,0 +1,117 @@
+%LandingPage2Template {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 2048px;
+  margin: auto;
+  justify-content: center;
+  justify-items: center;
+
+  cx-page-slot {
+    cx-banner {
+      cx-media {
+        img {
+          display: flex;
+          height: auto;
+        }
+      }
+    }
+
+    &.Section1 {
+      max-width: 2048px;
+      margin: auto;
+      background-color: #f2f2f2;
+      @include media-breakpoint-down(md) {
+        margin-top: 0;
+      }
+    }
+
+    &.Section2A {
+      margin-inline-start: auto;
+      padding-top:20px;
+    }
+
+    &.Section2D {
+      margin-inline-end: auto;
+    }
+
+    &.Section2A,
+    &.Section2B,
+    &.Section2C,
+    &.Section2D{
+ /*     --cx-flex-basis: auto;
+      display: flex;
+      margin:0 auto;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-content: space-between;*/
+      margin: 0 auto;
+      max-width: var(--cx-page-width-max);
+     // background-color: #f2f2f2;
+     // background-color: #f2f2f2 !important;
+      /*> * {
+          --cx-flex-basis: auto;
+        }*/
+      }
+
+      @include media-breakpoint-only(xs) {
+        > * {
+          --cx-flex-basis: 100%;
+        }
+      }
+
+    }
+
+    &.Section3 {
+      max-width: var(--cx-page-width-max) !important;
+      margin: auto;
+    }
+
+    &.Section4 {
+      color: var(--cx-color, var(--cx-color-light));
+      margin-left: auto !important;
+      margin-right: auto !important;
+      margin-top: 2rem !important;
+      flex-wrap: nowrap;
+      @include media-breakpoint-down(md) {
+        flex-wrap: wrap;
+        height: auto;
+       // padding-bottom: 100px;
+        > * {
+          --cx-flex-basis: 100%;
+          border-bottom: solid 1px currentColor;
+          border-inline-end: solid 1px currentColor;
+        }
+      }
+
+      @include media-breakpoint-only(xs) {
+        > * {
+          --cx-flex-basis: 100%;
+        }
+      }
+    }
+
+  &.Section6A {
+    margin: auto;
+    max-width: 300px !important;
+  }
+    &.Section5 {
+      color: var(--cx-color, var(--cx-color-light));
+      flex-wrap: nowrap;
+      @include media-breakpoint-down(md) {
+        flex-wrap: wrap;
+        > * {
+          --cx-flex-basis: 50%;
+          border-bottom: solid 1px currentColor;
+          border-inline-end: solid 1px currentColor;
+        }
+      }
+
+      @include media-breakpoint-only(xs) {
+        > * {
+          --cx-flex-basis: 100%;
+        }
+      }
+    }
+  }
+

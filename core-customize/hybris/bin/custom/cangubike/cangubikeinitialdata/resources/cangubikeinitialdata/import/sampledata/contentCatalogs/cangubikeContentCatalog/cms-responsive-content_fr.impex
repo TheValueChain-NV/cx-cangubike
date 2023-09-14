@@ -1,0 +1,93 @@
+$contentCatalog = cangubikeContentCatalog
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]), CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$siteResource = jar:com.tvc.cangubike.initialdata.setup.InitialDataSystemSetup&/cangubikeinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$lang = fr
+UPDATE CMSLinkComponent[unique = true]; $contentCV[unique=true]; uid[unique = true]       ; linkName[lang = $lang]
+                                      ;           ; StoreFinderLink          ; Trouver un magasin
+                                      ;           ; SignOutLink              ; Se déconnecter
+                                      ;           ; HelpLink                 ; Aide
+                                      ;           ; FAQLink                  ; Foire aux questions
+                                      ;           ; CartLink                 ; Panier
+                                      ;           ; OrdersLink               ; Commandes
+                                      ;           ; OlfUserManagementLink    ; Gestion des utilisateurs
+                                      ;           ; OlfInvoiceManagementLink ; Gestion des factures
+                                      ;           ; UnitLevelOrderLink       ; Commandes société
+                                      ;           ; MyCompanyLink            ; Mon Entreprise
+                                      ;           ; SupportTicketHistoryLink ; Service Client
+                                      ;           ; OlfContactSiteLink       ; information@olf.ch
+                                      ;           ; OlfLocationLink          ; 1701 Fribourg
+
+INSERT_UPDATE Media[unique = true]; $contentCV[unique=true]; code[unique = true]           ; realfilename        ; @media[translator = de.hybris.platform.impex.jalo.media.MediaDataTranslator]; mime[default = 'image/jpeg']; folder(qualifier)[default = 'images']; altText
+                                  ;           ; olf-logo.png                  ; olf-logo.png        ; $siteResource/images/theme/olf-logo.png                                     ; image/png                   ;                                      ;
+                                  ;           ; BudgetsHomeLinkImageEn        ; budgets.svg         ; $siteResource/images/organization-home/budgets.svg                          ; svg+xml                     ;                                      ; Budgets
+                                  ;           ; CostCentersHomeLinkImageEn    ; cost-centers.svg    ; $siteResource/images/organization-home/cost-centers.svg                     ; svg+xml                     ;                                      ; Centre de coûts
+                                  ;           ; UnitsHomeLinkImageEn          ; units.svg           ; $siteResource/images/organization-home/units.svg                            ; svg+xml                     ;                                      ; Unités
+                                  ;           ; UsersHomeLinkImageEn          ; users.svg           ; $siteResource/images/organization-home/users.svg                            ; svg+xml                     ;                                      ; Utilisateurs
+                                  ;           ; UserGroupsHomeLinkImageEn     ; user-groups.svg     ; $siteResource/images/organization-home/user-groups.svg                      ; svg+xml                     ;                                      ; Groupes d'utilisateurs
+                                  ;           ; PurchaseLimitsHomeLinkImageEn ; purchase-limits.svg ; $siteResource/images/organization-home/purchase-limits.svg                  ; svg+xml                     ;                                      ; Limites d'achats
+                                  ;           ; AccountSummaryHomeLinkImageEn ; account-summary.svg ; $siteResource/images/organization-home/account-summary.svg                  ; svg+xml                     ;                                      ; Aperçu des comptes
+
+
+
+UPDATE SimpleBannerComponent; $contentCV[unique = true]; uid[unique = true]        ; media(code, $contentCV)[lang = $lang]
+                            ;                          ; SiteLogoComponent ; olf-logo.png
+
+UPDATE BannerComponent; $contentCV[unique = true]; uid[unique = true]     ; headline[lang = $lang]; content[lang = $lang]                                                                                                                                                                                                                    ; media(code, $contentCV)[lang = $lang]
+                      ;                          ; BudgetsHomeLink        ; Budgets               ; Les budgets sont affectés aux centres de coûts et définissent les limites d'achat globales.                                                                                                                                                                  ; BudgetsHomeLinkImageEn
+                      ;                          ; CostCentersHomeLink    ; Cost Centers          ; Toutes les commandes passées via le compte d'achat de votre organisation sont liées à un centre de coûts à des fins de suivi. Chaque unité peut avoir plusieurs centres de coûts.                                                                              ; CostCentersHomeLinkImageEn    ;
+                      ;                          ; UnitsHomeLink          ; Units                 ; Les unités représentent des départements, des magasins, des régions ou tout autre groupement logique que vous jugez utile. Les approbateurs sont affectés aux unités et aux utilisateurs individuels. Les unités stockent également les adresses de livraison que les acheteurs peuvent utiliser pour effectuer leurs achats. ; UnitsHomeLinkImageEn          ;
+                      ;                          ; UsersHomeLink          ; Users                 ; Les utilisateurs sont les acheteurs, les approbateurs, les gestionnaires et les administrateurs de votre organisation. Chaque utilisateur se voit attribuer un rôle lui permettant d'effectuer ou d'approuver des achats.                                                                                      ; UsersHomeLinkImageEn          ;
+                      ;                          ; UserGroupsHomeLink     ; User Groups           ; Les groupes d'utilisateurs permettent de regrouper les utilisateurs afin de leur attribuer des limites d'achat.                                                                                                                                            ; UsersHomeLinkImageEn          ;
+                      ;                          ; PurchaseLimitsHomeLink ; Purchase Limits       ; Les limites d'achat vous aident à contrôler les dépenses en définissant le montant que les acheteurs peuvent dépenser par commande ou par semaine, mois, trimestre ou année. Les limites d'achat peuvent être attribuées aux utilisateurs et aux groupes d'utilisateurs.                                                ; PurchaseLimitsHomeLinkImageEn ;
+                      ;                          ; AccountSummaryHomeLink ; Account Summaries     ; Les résumés de compte vous permettent de consulter des informations générales sur une unité, y compris les soldes et le récapitulatif chronologique des factures. Vous pouvez également parcourir la liste des documents de transaction d'une unité.                                ; AccountSummaryHomeLinkImageEn
+
+
+UPDATE CMSParagraphComponent; $contentCV[unique = true]; uid[unique = true]                     ; content[lang = $lang]
+;                          ; PageNotFoundParagraphComponent         ; "<h2>Oops!</h2><h3>Nous n'avons pas trouvé la page que vous recherchez.</h3><p>Voici quelques liens utiles:</p>"
+;                          ; NoAccountParagraphComponent            ; "<p class='cx-section-title'>Vous n'avez pas de compte?</p>"
+;                          ; DisabledRegistrationParagraphComponent ; "<p>Vous pouvez demander un login à votre chargé de clientèle. Envoyer un message à <strong>information@olf.ch</strong>.</p>"
+;                          ; EmptyCartParagraphComponent            ;
+;                          ; NoticeTextParagraph                    ; <div class="cx-notice"> Copyright © 2023 | <a href="https://www.olf.ch" target="_blank"> www.olf.ch</a> | <a href ="/terms-and-conditions">Conditions Générales </a> | <a href="/help"> Aide <a/> | Réalisation: OLF</div>
+;                          ; ContactUsParagraphComponent            ; "Contact"
+;                          ; SaleParagraphComponent                 ; "Vente"
+
+UPDATE ContentPage; $contentCV[unique = true]; uid[unique = true]            ; title[lang = $lang]
+                  ;                          ; sale                          ; Vente
+                  ;                          ; contactUs                     ; Nous contacter
+                  ;                          ; help                          ; Aide
+                  ;                          ; forgotPassword                ; Choisissez votre mot de passe
+                  ;                          ; resetPassword                 ; Choisissez votre mot de passe
+                  ;                          ; register                      ; Créer un compte
+                  ;                          ; updatePassword                ; Mise à jour du mot de passe
+                  ;                          ; update-profile                ; Mise à jour des données personnelles
+                  ;                          ; Checkout                      ; Passer à la caisse
+                  ;                          ; CheckoutPaymentType           ; Type de paiement
+                  ;                          ; CheckoutDeliveryAddress       ; Adresse de livraison
+                  ;                          ; CheckoutDeliveryMode          ; Mode de livraison
+                  ;                          ; CheckoutPaymentDetails        ; Détails du paiement
+                  ;                          ; CheckoutReviewOrder           ; Vérification de la commande
+                  ;                          ; storefinderPage               ; Trouver un magasin
+                  ;                          ; CancelOrderPage               ; Annuler la commande
+                  ;                          ; ReturnOrderPage               ; Retours
+                  ;                          ; ConfirmCancelOrderPage        ; Confirmation d'annulation de commande
+                  ;                          ; ConfirmReturnOrderPage        ; Confirmation du retour
+                  ;                          ; ReturnRequestDetailsPage      ; Détails de demande de retour
+                  ;                          ; replenishmentConfirmationPage ; Confirmation de commande de réapprovisionnement
+                  ;                          ; quickOrderPage                ; Commande rapide
+                  ;                          ; order-approval-details        ; Approbation de commande
+                  ;                          ; order-approval-dashboard      ; Tableau de bord d'approbation des commandes
+                  ;                          ; MyCompany                     ; Mon entreprise
+                  ;                          ; ManageBudgets                 ; Budgets
+                  ;                          ; ManageCostCenters             ; Centres de coûts
+                  ;                          ; ManageUnits                   ; Unités
+                  ;                          ; ManagePermissions             ; Limites d'achat
+                  ;                          ; ManageUserGroups              ; Groupes d'utilisateurs
+                  ;                          ; ManageUsers                   ; Utilisateurs
+                  ;                          ; ManageAccountSummary          ; Synthèse des comptes
+                  ;                          ; UnitLevelOrderPage            ; Historique des commandes au niveau de l'unité
+                  ;                          ; UnitLevelOrderDetailsPage     ; Détails de la commande au niveau de l'unité
+                  ;                          ; AccountSummaryDetails         ; Détails du résumé du compte
+                  ;                          ; support-tickets               ; Service clientèlee
+                  ;                          ; support-ticket-details        ; Service clientèle
+
+

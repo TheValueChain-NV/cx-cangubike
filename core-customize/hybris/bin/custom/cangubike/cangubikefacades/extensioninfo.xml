@@ -16,8 +16,8 @@
         
         <requires-extension name="cangubikecore"/>
                 		
-        
-        <coremodule generated="true" manager="de.hybris.platform.jalo.extension.GenericManager" packageroot="be.canguru.cangubike.facades"/>
+        <requires-extension name="commercewebservices"/>
+        <coremodule generated="true" manager="de.hybris.platform.jalo.extension.GenericManager" packageroot="com.tvc.cangubike.facades"/>
                 		
         
         		

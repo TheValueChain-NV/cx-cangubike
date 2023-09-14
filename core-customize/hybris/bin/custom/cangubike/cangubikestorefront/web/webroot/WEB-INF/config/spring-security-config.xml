@@ -15,13 +15,13 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/util
 		http://www.springframework.org/schema/util/spring-util.xsd">
-		
+
 	<context:annotation-config/>
 
 	<security:http pattern="/_ui/**" security="none" />
 
 	<!--Security config for checkout - it has its own login page-->
-	<security:http pattern="/checkout/**">
+	<security:http pattern="/checkout/**" request-matcher="mvc">
         <security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS" />
 		<security:access-denied-handler error-page="/login"/>
 		<security:session-management session-authentication-strategy-ref="fixation" invalid-session-url="/login" />
@@ -33,7 +33,7 @@
 				login-page="/login/checkout"
 				authentication-failure-handler-ref="loginCheckoutAuthenticationFailureHandler"
 				authentication-success-handler-ref="loginCheckoutGuidAuthenticationSuccessHandler"
-				username-parameter="j_username" 
+				username-parameter="j_username"
 				password-parameter="j_password"
 				login-processing-url="/checkout/j_spring_security_check"
 				 />
@@ -47,7 +47,7 @@
 		</security:port-mappings>
 
 		<security:request-cache ref="httpSessionRequestCache" />
-		
+
 		<security:headers>
 			<security:frame-options disabled="true"/>
 		</security:headers>
@@ -55,7 +55,7 @@
 	</security:http>
 
 	<!-- Ignores url(s) that match paths specified in the set -->
-	<bean id="excludeUrlRequestMatcher" class="be.canguru.cangubike.storefront.security.ExcludeUrlRequestMatcher">
+	<bean id="excludeUrlRequestMatcher" class="com.tvc.cangubike.storefront.security.ExcludeUrlRequestMatcher">
 		<property name="excludeUrlSet" ref="excludeUrlSet"/>
 		<property name="pathMatcher" ref="defaultPathMatcher"/>
 	</bean>
@@ -68,12 +68,12 @@
 	<bean id="antPathMatcher" class="org.springframework.util.AntPathMatcher" />
 
 	<!-- Default security config -->
-	<security:http request-matcher-ref="excludeUrlRequestMatcher">
+	<security:http request-matcher-ref="excludeUrlRequestMatcher" request-matcher="mvc">
 		<security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS" />
 		<security:access-denied-handler error-page="/login"/>
 		<security:session-management session-authentication-strategy-ref="fixation" session-authentication-error-url="/login" />
 		<security:csrf token-repository-ref="csrfTokenRepository" request-matcher-ref="csrfProtectionMatcher" />
-		<security:custom-filter before="CSRF_FILTER" ref="logoutFilter" />
+		<security:custom-filter after="CSRF_FILTER" ref="logoutFilter" />
 
 		<!-- RememberMe -->
 		<security:remember-me key="cangubikestorefront" services-ref="rememberMeServices" />
@@ -92,8 +92,8 @@
 				login-page="/login"
 				authentication-failure-handler-ref="loginAuthenticationFailureHandler"
 				authentication-success-handler-ref="loginGuidAuthenticationSuccessHandler"
-				username-parameter="j_username" 
-				password-parameter="j_password" 
+				username-parameter="j_username"
+				password-parameter="j_password"
 				login-processing-url="/j_spring_security_check"
 				  />
 
@@ -106,7 +106,7 @@
 		</security:port-mappings>
 
 		<security:request-cache ref="httpSessionRequestCache" />
-		
+
 		<security:headers>
 			<security:frame-options disabled="true"/>
 		</security:headers>
@@ -117,20 +117,20 @@
 		<security:authentication-provider ref="acceleratorAuthenticationProvider" />
 	</security:authentication-manager>
 
-	<bean id="acceleratorAuthenticationProvider" parent="abstractAcceleratorAuthenticationProvider" 
-			class="be.canguru.cangubike.storefront.security.AcceleratorAuthenticationProvider">
+	<bean id="acceleratorAuthenticationProvider" parent="abstractAcceleratorAuthenticationProvider"
+			class="com.tvc.cangubike.storefront.security.AcceleratorAuthenticationProvider">
 		<property name="adminGroup" value="ROLE_ADMINGROUP"/>
 	</bean>
 
 	<bean id="coreUserDetailsService" class="de.hybris.platform.spring.security.CoreUserDetailsService"  />
 
-	<bean id="guidCookieStrategy" class="be.canguru.cangubike.storefront.security.impl.DefaultGUIDCookieStrategy"
+	<bean id="guidCookieStrategy" class="com.tvc.cangubike.storefront.security.impl.DefaultGUIDCookieStrategy"
 	      >
 		<property name="cookieGenerator" ref="guidCookieGenerator" />
 	</bean>
-	
+
 	<alias name="defaultGuestCheckoutCartCleanStrategy" alias="guestCheckoutCartCleanStrategy"/>
-	<bean id="defaultGuestCheckoutCartCleanStrategy" class="be.canguru.cangubike.storefront.security.impl.DefaultGuestCheckoutCartCleanStrategy">
+	<bean id="defaultGuestCheckoutCartCleanStrategy" class="com.tvc.cangubike.storefront.security.impl.DefaultGuestCheckoutCartCleanStrategy">
 		<property name="skipPatterns">
 			<list>
 				<value>#{configurationService.configuration.getProperty('cangubikestorefront.checkout.url.pattern')}</value>
@@ -144,27 +144,27 @@
 	</bean>
 
 	<alias name="defaultGuidCookieGenerator" alias="guidCookieGenerator"/>
-	<bean id="defaultGuidCookieGenerator" class="be.canguru.cangubike.storefront.security.cookie.EnhancedCookieGenerator" >
+	<bean id="defaultGuidCookieGenerator" class="com.tvc.cangubike.storefront.security.cookie.EnhancedCookieGenerator" >
 		<property name="cookieSecure" value="true" />
 		<property name="cookieName" value="acceleratorSecureGUID" />
 		<property name="httpOnly" value="true"/>
 	</bean>
 
     <alias name="defaultAutoLoginStrategy" alias="autoLoginStrategy"/>
-    <bean id="defaultAutoLoginStrategy" class="be.canguru.cangubike.storefront.security.impl.DefaultAutoLoginStrategy" >
+    <bean id="defaultAutoLoginStrategy" class="com.tvc.cangubike.storefront.security.impl.DefaultAutoLoginStrategy" >
 		<property name="authenticationManager" ref="authenticationManager" />
 		<property name="customerFacade" ref="customerFacade" />
 		<property name="guidCookieStrategy" ref="guidCookieStrategy"/>
 		<property name="rememberMeServices" ref="rememberMeServices"/>
 	</bean>
 
-	<bean id="httpSessionRequestCache" class="be.canguru.cangubike.storefront.security.impl.WebHttpSessionRequestCache">
+	<bean id="httpSessionRequestCache" class="com.tvc.cangubike.storefront.security.impl.WebHttpSessionRequestCache">
         <property name="requestMatcher" ref="excludeRedirectUrlRequestMatcher" />
 		<property name="sessionService" ref="sessionService"/>
 	</bean>
 
 	<!-- Ignores url(s) that match paths specified in the set -->
-	<bean id="excludeRedirectUrlRequestMatcher" class="be.canguru.cangubike.storefront.security.ExcludeUrlRequestMatcher">
+	<bean id="excludeRedirectUrlRequestMatcher" class="com.tvc.cangubike.storefront.security.ExcludeUrlRequestMatcher">
 	<property name="excludeUrlSet">
 		<set>
 			<value>/guest/*</value>
@@ -179,7 +179,7 @@
 
 	<!-- Login Success Handlers -->
 
-	<bean id="loginGuidAuthenticationSuccessHandler" class="be.canguru.cangubike.storefront.security.GUIDAuthenticationSuccessHandler" >
+	<bean id="loginGuidAuthenticationSuccessHandler" class="com.tvc.cangubike.storefront.security.GUIDAuthenticationSuccessHandler" >
 		<property name="authenticationSuccessHandler" ref="loginAuthenticationSuccessHandler" />
 		<property name="guidCookieStrategy" ref="guidCookieStrategy" />
 	</bean>
@@ -211,7 +211,7 @@
 		</property>
 	</bean>
 
-	<bean id="loginCheckoutGuidAuthenticationSuccessHandler" class="be.canguru.cangubike.storefront.security.GUIDAuthenticationSuccessHandler" >
+	<bean id="loginCheckoutGuidAuthenticationSuccessHandler" class="com.tvc.cangubike.storefront.security.GUIDAuthenticationSuccessHandler" >
 		<property name="authenticationSuccessHandler" ref="loginCheckoutAuthenticationSuccessHandler" />
 		<property name="guidCookieStrategy" ref="guidCookieStrategy" />
 	</bean>
@@ -243,17 +243,17 @@
 	</bean>
 
 	<alias name="defaultCommerceRedirectStrategy" alias="commerceRedirectStrategy"/>
-	<bean name="defaultCommerceRedirectStrategy" class="be.canguru.cangubike.storefront.security.impl.DefaultCommerceRedirectStrategy" parent="redirectStrategy">
+	<bean name="defaultCommerceRedirectStrategy" class="com.tvc.cangubike.storefront.security.impl.DefaultCommerceRedirectStrategy" parent="redirectStrategy">
 		<property name="checkoutFlowFacade" ref="checkoutFlowFacade"/>
 		<property name="expressTargetUrl" value="/checkout/multi/express"/>
    </bean>
 
-	<bean id="loginAuthenticationFailureHandler" class="be.canguru.cangubike.storefront.security.LoginAuthenticationFailureHandler" >
+	<bean id="loginAuthenticationFailureHandler" class="com.tvc.cangubike.storefront.security.LoginAuthenticationFailureHandler" >
         <property name="bruteForceAttackCounter" ref="bruteForceAttackCounter" />
 		<property name="defaultFailureUrl" value="/login?error=true"/>
 	</bean>
 
-	<bean id="loginCheckoutAuthenticationFailureHandler" class="be.canguru.cangubike.storefront.security.LoginAuthenticationFailureHandler" >
+	<bean id="loginCheckoutAuthenticationFailureHandler" class="com.tvc.cangubike.storefront.security.LoginAuthenticationFailureHandler" >
         <property name="bruteForceAttackCounter" ref="bruteForceAttackCounter" />
 		<property name="defaultFailureUrl" value="/login/checkout?error=true"/>
 	</bean>
@@ -275,7 +275,7 @@
 		<property name="restrictedPages" ref="logoutRestrictedPages"/>
 		<property name="sessionService" ref="sessionService"/>
 	</bean>
-	
+
      <bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
  		<constructor-arg name="logoutSuccessHandler" ref="logoutSuccessHandler" />
  		<constructor-arg name="handlers">
@@ -284,7 +284,13 @@
  				<ref bean="rememberMeServices" />
  			</list>
  		</constructor-arg>
- 	</bean>
+		 <property name="logoutRequestMatcher" ref="logoutRequestMatcher"/>
+	 </bean>
+
+	<bean name="logoutRequestMatcher" class="org.springframework.security.web.util.matcher.AntPathRequestMatcher">
+		<constructor-arg name="pattern" value="/logout"/>
+		<constructor-arg name="httpMethod" value="POST"/>
+	</bean>
 
 	<!-- Remember Me -->
 
@@ -293,9 +299,9 @@
 		<constructor-arg name="authenticationManager" ref="authenticationManager"/>
 	</bean>
 
-	
+
 	<alias name="defaultRememberMeServices" alias="rememberMeServices"/>
-	<bean id="defaultRememberMeServices" class="be.canguru.cangubike.storefront.security.AcceleratorRememberMeServices" >
+	<bean id="defaultRememberMeServices" class="com.tvc.cangubike.storefront.security.AcceleratorRememberMeServices" >
 		<constructor-arg name="key" value="cangubikestorefront" />
 		<constructor-arg name="userDetailsService" ref="originalUidUserDetailsService" />
 		<property name="cookieName" value="cangubikestorefrontRememberMe" />
@@ -313,17 +319,17 @@
 	<bean id="rememberMeAuthenticationProvider" class="org.springframework.security.authentication.RememberMeAuthenticationProvider" >
 		<constructor-arg name="key" value="cangubikestorefront"/>
 	</bean>
-	
+
 	<!-- CSRF -->
 	<bean id="csrfTokenRepository" class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository">
     	<property name="headerName" value="CSRFToken" />
     	<property name="parameterName" value="CSRFToken" />
 	</bean>
-	
+
 	<util:list id="csrfAllowedUrlPatternsList" />
-	
+
 	<alias name="defaultCsrfProtectionMatcher" alias="csrfProtectionMatcher"/>
-	<bean id="defaultCsrfProtectionMatcher" class="be.canguru.cangubike.storefront.security.CsrfProtectionMatcher">
+	<bean id="defaultCsrfProtectionMatcher" class="com.tvc.cangubike.storefront.security.CsrfProtectionMatcher">
 		<property name="csrfAllowedUrlPatterns" ref="csrfAllowedUrlPatternsList"/>
 	</bean>
 

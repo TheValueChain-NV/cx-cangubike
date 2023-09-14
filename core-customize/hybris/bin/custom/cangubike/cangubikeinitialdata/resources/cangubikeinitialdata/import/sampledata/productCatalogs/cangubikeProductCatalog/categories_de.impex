@@ -1,35 +1,51 @@
 # -----------------------------------------------------------------------
 # Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 # -----------------------------------------------------------------------
-# ImpEx for Importing Categories into Cangubike Store
-
+# ImpEx for Importing Categories
 
 # Macros / Replacement Parameter definitions
-$productCatalog=cangubikeProductCatalog
-$productCatalogName=Cangubike Product Catalog
-$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$productCatalog = cangubikeProductCatalog
+$productCatalogName = Cangubike Product Catalog
 
-$lang=de
+$catalogVersion = catalogversion(catalog(id[default=$productCatalog]), version[default='Staged'])[unique=true, default=$productCatalog:Staged]
 
-UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang];description[lang=$lang]
- ;1;;Katalog öffnen;;
- ;106;;Komponenten;;
- ;1354;;Handsägen;;
- ;1355;;Werkzeuge;;
- ;1356;;Hämmer;;
- ;1358;;Mess- und Planwerkzeuge;;
- ;1359;;Zangen;;
- ;1360;;Bohrmaschinen;;
- ;1386;;Etikettierpistolen;Etikettierpistolen;
- ;1505;;Kabelzangen/Kabelschneider/Abisolierzangen;;
- ;1593;;Schraubendreher;;
- ;1595;;Winkelschleifer;;
- ;1596;;Bandschleifmaschine;;
- ;1597;;Stanzwerkzeuge oder Nagelsets;;
- ;1598;;Abisolierwerkzeuge;;
- ;1631;;Kreissägen;;
- ;1641;;Steckschlüssel;;
- ;1710;;Stichsägen;;
- ;1711;;Bohrhämmer;;
- ;1731;;Universalschneider;;
- ;830;;Kabel für Computer und Peripheriegeräte;;
+
+# Language
+$lang = de
+
+
+# Create Categories
+UPDATE Category; code[unique = true]; $catalogVersion; name[lang = $lang]
+               ; catalog            ;                ; Katalog
+# level 1
+               ; ebikes             ;                ; E-Bikes
+               ; bikes              ;                ; Fahrräder
+               ; parts              ;                ; Teile
+               ; accessories        ;                ; Zubehör
+               ; clothing           ;                ; Bekleidung
+# level 2 ebikes -->
+               ; e_mountainbikes     ;                ; E-Mountainbikes
+               ; e_citybikes        ;                ; E-Bikes City
+               ; e_cargobikes       ;                ; E-Lastenfahrräder
+               ; e_gravelbikes      ;                ; E-Gravelbikes
+               ; e_roadbikes        ;                ; E-Bikes Rennrad
+# bikes -->
+               ; mountainbikes      ;                ; Mountainbikes
+               ; citybikes          ;                ; Cityräder
+               ; gravelbikes        ;                ; Gravelbikes
+               ; roadbikes          ;                ; Rennräder
+# parts -->
+               ; pedals             ;                ; Pedale
+               ; saddles            ;                ; Fahrradsättel
+               ; brakes             ;                ; Fahrradschaltung
+               ; wheels             ;                ; Laufräder
+# accessories -->
+               ; baskets_and_bags   ;                ; Fahrradtaschen & Körbe
+               ; lights             ;                ; Beleuchtung
+               ; bells              ;                ; Klingeln
+               ; pumps              ;                ; Pumpen
+# clothing -->
+               ; shorts             ;                ; Fahrradhosen
+               ; jerseys            ;                ; Radtrikots
+               ; shoes              ;                ; Schuhe
+               ; helmets            ;                ; Fahrradhelme

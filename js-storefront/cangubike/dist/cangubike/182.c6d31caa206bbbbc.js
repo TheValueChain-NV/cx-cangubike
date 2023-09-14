@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangubike=self.webpackChunkcangubike||[]).push([[182],{3182:(t,d,o)=>{o.r(d),o.d(d,{OrderModule:()=>a});var e=o(4650),n=o(5745),_=o(2732),u=o(679);let a=(()=>{class r{}return r.\u0275fac=function(s){return new(s||r)},r.\u0275mod=e.oAB({type:r}),r.\u0275inj=e.cJS({imports:[_.t1,u.FV,n.FR]}),r})()}}]);

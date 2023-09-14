@@ -1,44 +1,43 @@
 # -----------------------------------------------------------------------
 # Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 # -----------------------------------------------------------------------
-$facetSearchConfigName=cangubikeIndex
-$contentCatalogName=cangubikeContentCatalog
-$indexedType=cangubikeProductType
-$productCatalog=cangubikeProductCatalog
-$productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+# ImpEx for SOLR Configuration
 
-#
-# Localization de
-#
+# Macros / Replacement Parameter definitions
+$indexedType=__INDEXED_TYPE__
+$facetSearchConfigName=__FACET_SEARCH_CONFIG_NAME__
+$contentCatalogName=__CONTENT_CATALOG_NAME__
+
+$solrIndexedType=solrIndexedType(identifier[default=$indexedType])[unique=true]
+$contentCatalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalogName]),CatalogVersion.version[default=Staged])[default=$contentCatalogName:Staged]
+$productCatalog=__PRODUCT_CATALOG_NAME__
+$productCatalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$productCatalog]),CatalogVersion.version[default=Staged])[default=$productCatalog:Staged]
+
+# Language
 $lang=de
 
-UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$indexedType];name[unique=true];displayName[lang=$lang]
- ;;Colour of product, 1766;"Farbe"
+UPDATE SolrIndexedProperty;name[unique=true];$solrIndexedType;displayName[lang=$lang]
 
 # Redirect page URL (Must use INSERT_UPDATE here)
-INSERT_UPDATE SolrURIRedirect;url[unique=true];&redirectRefID
-;"/cart";$contentCatalogName-redirectRefID-cart
-;"http://www.hybris.com/multichannel-accelerator";$contentCatalogName-redirectRefID-accelerator
+UPDATE SolrURIRedirect;url[unique=true];&redirectRefID
+
+UPDATE SolrPageRedirect;redirectItem(uid,$contentCatalogVersion)[unique=true];&redirectRefID
+
+UPDATE SolrProductRedirect;redirectItem(code,$productCatalogVersion)[unique=true];&redirectRefID
+
+# Category Redirect (Must use INSERT_UPDATE here)
+INSERT_UPDATE SolrCategoryRedirect;redirectItem(code,$productCatalogVersion)[unique=true];&redirectRefID
 
 # Synonyms (Must use INSERT_UPDATE here)
 INSERT_UPDATE SolrSynonymConfig;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang];synonymFrom[unique=true];synonymTo
 
-# Category Redirect (Must use INSERT_UPDATE here)
-INSERT_UPDATE SolrCategoryRedirect;redirectItem(code,$productCatalogVersion)[unique=true];&redirectRefID
-;1360;$productCatalog-redirectRefID-drill
-;1595;$productCatalog-redirectRefID-grinder
+# Keyword Redirects (Must use INSERT_UPDATE here)
+INSERT_UPDATE SolrFacetSearchKeywordRedirect;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang];keyword[unique=true];matchType(code)[unique=true];redirect(&redirectRefID);ignoreCase[default=true]
 
 # Keyword Redirects (Must use INSERT_UPDATE here)
 INSERT_UPDATE SolrFacetSearchKeywordRedirect;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang];keyword[unique=true];matchType(code)[unique=true];redirect(&redirectRefID);ignoreCase[default=true]
- ;;;"drill";EXACT;$productCatalog-redirectRefID-drill;
- ;;;"grinder";EXACT;$productCatalog-redirectRefID-grinder;
 
-# Keyword Redirects (Must use INSERT_UPDATE here)
 INSERT_UPDATE SolrFacetSearchKeywordRedirect;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang];keyword[unique=true];matchType(code)[unique=true];redirect(&redirectRefID);ignoreCase[default=true]
- ;;;"accelerator";EXACT;$contentCatalogName-redirectRefID-accelerator;
- ;;;"hymacc";EXACT;$contentCatalogName-redirectRefID-accelerator;
 
-# Keyword Redirects (Must use INSERT_UPDATE here)
+# Starts With Keyword Redirects (Must use INSERT_UPDATE here)
 INSERT_UPDATE SolrFacetSearchKeywordRedirect;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true,default=$lang];keyword[unique=true];matchType(code)[unique=true];redirect(&redirectRefID);ignoreCase[default=true]
- ;;;"basket";EXACT;$contentCatalogName-redirectRefID-cart;
- ;;;"cart";EXACT;$contentCatalogName-redirectRefID-cart;

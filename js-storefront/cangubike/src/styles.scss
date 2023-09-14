@@ -1,4 +1,355 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Rubik:100,300,400,500,700,900&display=swap&subset=latin-ext");
+$font-family-base: "Rubik", sans-serif;
+$skipComponentStyles: (header, cx-mini-cart);
+@import 'styles-config';
+@import '@spartacus/styles/index';
+@import 'styles/index';
+//@import './styles/components/Landing-page-2.scss';
+//@import './styles/components/header.scss';
 
-$styleVersion: 4.3;
-@import '~@spartacus/styles/index';
+:root {
+ // --cx-color-secondary: #f1f2f3;
+  //--cx-color-secondary: #43464e;
+  --cx-color-secondary:#3a3965;//linear-gradient(90deg, rgba(134,76,184,1) 43%, rgba(178,31,61,1) 77%, rgba(178,31,61,1) 81%);
+  --cx-color-dark: #43464e;
+  --cx-color-light: #737680;
+  --cx-color-primary: #43464e;
+  --cx-color-primary-accent:#3a3965;//#b12041;
+  --cx-color-white: #ffffff;
+  --cx-color-transparent: transparent;
+  --cx-grid-item-box-shadow-color: rgba(168, 172, 176, 0.19);
+  --ssf-light-primary: #f1f2f3;
+  --ssf-dark-primary: #1d1f22;
+  --ssf-gray-primary: #a3a5ad;
+  --ssf-primary-font-family: 'Rubik-light', sans-serif;
+  --ssf-secondary-font-family: 'Roboto', sans-serif;
+  --ssf-font-size-mobile: #{calculateRem(14px)};
+  --ssf-font-size-desktop: #{calculateRem(16px)};
+  --cx-text-transform: none;
+}
+.Section5 {
+  height: 50px !important;
+  width: 100px;
+}
+cx-video {
+  video {
+    display: inherit;
+    height: 50% !important;
+    width: 100%;
+    position: relative;
+    z-index: 0;
+  }
+  a {
+    @include media-breakpoint-down(sm) {
+      font-size: 3vw;
+    }
+    @include type('3');
+    position: absolute;
+    top: 2.5rem;
+    left: 2.5rem;
+    z-index: 1;
+    padding: 0.5rem;
+    margin-inline-end: var(--cx-margin-right, 2.5rem);
+    color: var(--cx-color-text);
+    background-color: rgba(150, 150, 150, 0.8);
+    border-radius: 0.2rem;
+    font-weight: var(--cx-font-weight-bold);
+  }
+  .video-container {
+    max-height: 30px !important;
+    position: relative;
+  }
+}
+
+// limits the number of top level navigation nodes
+/*
+cx-navigation-ui > nav:nth-of-type(n + 4) {
+  display: none;
+}
+
+// header section styles
+header {
+  cx-page-layout cx-page-slot {
+    flex: none;
+  }
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  max-width: var(--cx-page-width-max);
+  .SiteLogin {
+    & > * {
+      flex: none;
+    }
+  }
+}
+
+// TopHeaderSection styles
+.top-header-background {
+  background: var(--cx-color-secondary);
+}
+
+.TopHeaderSection {
+  align-items: center;
+  display: flex;
+  font-size: 0.875rem;
+  justify-content: space-between;
+  margin: auto;
+  max-width: var(--cx-page-width-max);
+
+  .SiteLinks {
+    font-weight: 300;
+    justify-content: start;
+    --cx-margin: 0.5rem 8px;
+
+    & > * {
+      flex: none;
+    }
+    // a trick to display only last site link on mobile
+    @media (max-width: 768px) {
+      cx-link {
+        display: none;
+      }
+      cx-link:last-of-type {
+        display: block;
+      }
+    }
+  }
+
+  .SiteContext {
+    justify-content: end;
+    & > * {
+      flex: none;
+    }
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+}
+
+// navigation component styles
+cx-navigation-ui.flyout {
+  background-color: var(--cx-color-white);
+  a {
+    white-space: nowrap;
+  }
+  a,
+  span {
+    font-weight: 200;
+  }
+}
+
+// generic link component styles
+cx-generic-link {
+  a {
+    text-decoration: underline;
+  }
+}
+//cx-category-navigation cx-navigation-ui > nav > ul > li > cx-generic-link {
+//  font-weight: 300 !important;
+//}
+
+// site context selector component styles
+cx-site-context-selector {
+  color: var(--cx-color-secondary);
+  margin-top: 0;
+  margin-bottom: 0;
+  select {
+    background: none;
+  }
+}
+
+// mini cart component styles
+// remove default component styles first: `$skipComponentStyles: (cx-mini-cart);`
+cx-mini-cart {
+  margin-right: 1rem;
+  position: relative;
+  a {
+    color: initial;
+  }
+  .total {
+    display: none;
+  }
+  .count {
+    padding: 0 0.25rem;
+    position: absolute;
+    top: -0.5rem;
+  }
+}
+
+// searchbox component styles
+cx-searchbox {
+  border-bottom: 2px solid var(--cx-color-primary);
+  color: var(--cx-color-primary);
+  margin-bottom: 0.25rem;
+  label {
+    padding: unset;
+    width: unset;
+    div.search-icon {
+      align-self: center;
+      flex-basis: unset;
+      padding: unset;
+    }
+    input {
+      height: unset;
+    }
+  }
+  & > * {
+    background-color: unset;
+  }
+}
+//.SiteLogo {
+//  height:30px;
+//  width:30px;
+//}
+
+header .SiteLinks {
+  --cx-display: inline-block;
+  color: var(--cx-color-white);
+}
+
+cx-site-context-selector {
+  label span {
+    display: none;
+  }
+  select {
+    color: var(--cx-color-white);
+    background-color: var(--cx-color-secondary);
+    font-size: 0.875rem;
+    font-weight: 300;
+  }
+  cx-icon {
+    color: var(--cx-color-white);
+  }
+}
+
+
+  cx-scroll-to-top button {
+    background: var(--cx-color-secondary) !important;
+  }
+
+  cx-scroll-to-top button:hover {
+    background-color: var(--cx-color-secondary) !important;
+  }
+
+header .NavigationBar a, header .NavigationBar h5 {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  margin: 0 10px !important;
+  padding: 0 !important;
+}
+*/
+header {
+  cx-page-layout cx-page-slot {
+    flex: none;
+  }
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  max-width: var(--cx-page-width-max);
+  .SiteLogin {
+    & > * {
+      flex: none;
+    }
+  }
+}
+// TopHeaderSection styles
+.top-header-background {
+  background-color: var(--cx-color-secondary);
+}
+.TopHeaderSection {
+  align-items: center;
+  display: flex;
+  font-size: 0.875rem;
+  justify-content: space-between;
+  margin: auto;
+  max-width: var(--cx-page-width-max);
+
+  .SiteLinks {
+    font-weight: 300;
+    justify-content: start;
+    --cx-margin: 0.5rem 8px;
+
+    & > * {
+      flex: none;
+    }
+    // a trick to display only last site link on mobile
+    @media (max-width: 768px) {
+      cx-link {
+        display: none;
+      }
+      cx-link:last-of-type {
+        display: block;
+      }
+    }
+  }
+
+  .SiteContext {
+    justify-content: end;
+    & > * {
+      flex: none;
+    }
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+}
+header .SiteLinks {
+  --cx-display: inline-block;
+  color: var(--cx-color-white);
+}
+
+//.SiteLogin {
+//  margin-top: 2px;
+//  margin-right: -20px;
+//  margin-left: 40px;
+//}
+.icons {
+  display: flex;
+  justify-content: space-between;
+}
+app-cangubike-footer {
+  background-color: var(--cx-color-secondary);
+  min-height: 300px;
+  padding-top: 50px;
+
+  cx-icon {
+    font-size: xx-large;
+  }
+}
+
+.video-teaser {
+  max-height: 50px;
+}
+
+
+
+.view-modes-label,
+.items-found-label,
+.items-found-total,
+.sort-by-label {
+  font-size: calculateRem(12px) !important;
+  color: var(--ssf-gray-primary) !important;
+  font-weight: 300 !important;
+  font-family: var(--ssf-secondary-font-family) !important;
+
+  @include tablet-and-up {
+    font-size: var(--ssf-font-size-mobile) !important;
+  }
+
+  .sort-by-label {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+  }
+}
+

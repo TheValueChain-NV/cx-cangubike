@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcangubike=self.webpackChunkcangubike||[]).push([[925],{4925:(a,o,n)=>{n.r(o),n.d(o,{S4omModule:()=>d});var u=n(4650);let d=(()=>{class e{}return e.\u0275fac=function(l){return new(l||e)},e.\u0275mod=u.oAB({type:e}),e.\u0275inj=u.cJS({}),e})()}}]);

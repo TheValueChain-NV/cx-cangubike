@@ -12,9 +12,11 @@
                 		
         
         <requires-extension name="acceleratorcms"/>
-                		
-        
-        <coremodule generated="true" manager="be.canguru.cangubike.core.jalo.CangubikeCoreManager" packageroot="be.canguru.cangubike.core"/>
+        <requires-extension name="azurecloudhotfolder"/>
+        <requires-extension name="cloudhotfolder"/>
+
+
+        <coremodule generated="true" manager="com.tvc.cangubike.core.jalo.CangubikeCoreManager" packageroot="com.tvc.cangubike.core"/>
                 		
         
         		

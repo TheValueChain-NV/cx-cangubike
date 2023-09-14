@@ -15,7 +15,7 @@
 		
 	<context:annotation-config/>
 
-	<context:component-scan  base-package="be.canguru.cangubike.storefront.controllers.pages.checkout" scope-resolver="de.hybris.platform.spring.IgnoreTenantScopeMetadataResolver" />
+	<context:component-scan  base-package="com.tvc.cangubike.storefront.controllers.pages.checkout" scope-resolver="de.hybris.platform.spring.IgnoreTenantScopeMetadataResolver" />
 	
 	<!-- Checkout Steps -->
 
@@ -298,18 +298,18 @@
 		<property name="checkoutFacade" ref="checkoutFacade"/>
 	</bean>
 
-	<bean id="defaultMultiStepCheckoutValidator" class="be.canguru.cangubike.storefront.checkout.steps.validation.impl.DefaultMultiStepCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
-	<bean id="deliveryAddressCheckoutValidator" class="be.canguru.cangubike.storefront.checkout.steps.validation.impl.DefaultDeliveryAddressCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
-	<bean id="deliveryMethodCheckoutValidator" class="be.canguru.cangubike.storefront.checkout.steps.validation.impl.DefaultDeliveryMethodCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
-	<bean id="defaultPaymentMethodCheckoutValidator" class="be.canguru.cangubike.storefront.checkout.steps.validation.impl.DefaultPaymentCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
-	<bean id="defaultPickupCheckoutValidator" class="be.canguru.cangubike.storefront.checkout.steps.validation.impl.DefaultPickupCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
-	<bean id="defaultSummaryCheckoutValidator" class="be.canguru.cangubike.storefront.checkout.steps.validation.impl.DefaultSummaryCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
+	<bean id="defaultMultiStepCheckoutValidator" class="com.tvc.cangubike.storefront.checkout.steps.validation.impl.DefaultMultiStepCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
+	<bean id="deliveryAddressCheckoutValidator" class="com.tvc.cangubike.storefront.checkout.steps.validation.impl.DefaultDeliveryAddressCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
+	<bean id="deliveryMethodCheckoutValidator" class="com.tvc.cangubike.storefront.checkout.steps.validation.impl.DefaultDeliveryMethodCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
+	<bean id="defaultPaymentMethodCheckoutValidator" class="com.tvc.cangubike.storefront.checkout.steps.validation.impl.DefaultPaymentCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
+	<bean id="defaultPickupCheckoutValidator" class="com.tvc.cangubike.storefront.checkout.steps.validation.impl.DefaultPickupCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
+	<bean id="defaultSummaryCheckoutValidator" class="com.tvc.cangubike.storefront.checkout.steps.validation.impl.DefaultSummaryCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
 
-	<bean id="defaultResponsiveMultiStepCheckoutValidator" class="be.canguru.cangubike.storefront.checkout.steps.validation.impl.ResponsiveMultiStepCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
-	<bean id="defaultResponsiveDeliveryAddressCheckoutValidator" class="be.canguru.cangubike.storefront.checkout.steps.validation.impl.ResponsiveDeliveryAddressCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
-	<bean id="defaultResponsiveDeliveryMethodCheckoutValidator" class="be.canguru.cangubike.storefront.checkout.steps.validation.impl.ResponsiveDeliveryMethodCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
-	<bean id="defaultResponsivePaymentMethodCheckoutValidator" class="be.canguru.cangubike.storefront.checkout.steps.validation.impl.ResponsivePaymentCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
-	<bean id="defaultResponsiveSummaryCheckoutValidator" class="be.canguru.cangubike.storefront.checkout.steps.validation.impl.ResponsiveSummaryCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
+	<bean id="defaultResponsiveMultiStepCheckoutValidator" class="com.tvc.cangubike.storefront.checkout.steps.validation.impl.ResponsiveMultiStepCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
+	<bean id="defaultResponsiveDeliveryAddressCheckoutValidator" class="com.tvc.cangubike.storefront.checkout.steps.validation.impl.ResponsiveDeliveryAddressCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
+	<bean id="defaultResponsiveDeliveryMethodCheckoutValidator" class="com.tvc.cangubike.storefront.checkout.steps.validation.impl.ResponsiveDeliveryMethodCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
+	<bean id="defaultResponsivePaymentMethodCheckoutValidator" class="com.tvc.cangubike.storefront.checkout.steps.validation.impl.ResponsivePaymentCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
+	<bean id="defaultResponsiveSummaryCheckoutValidator" class="com.tvc.cangubike.storefront.checkout.steps.validation.impl.ResponsiveSummaryCheckoutStepValidator" parent="abstractCheckoutStepValidator" />
 	
 	<!--Validation-->
 

@@ -64,13 +64,13 @@
     	
     <property location="${ext.cangubikestorefront.path}/web/webroot/WEB-INF/lib/lessc-rhino-1.7.3.js" name="tool.lessc"/>
     	
-    <property location="${ext.cangubikestorefront.path}/web/webroot/WEB-INF/lib/rhino-1.7.7.jar" name="tool.rhino"/>
+    <property location="${ext.cangubikestorefront.path}/web/webroot/WEB-INF/lib/rhino-1.7.14.jar" name="tool.rhino"/>
     	
     <property location="${ext.cangubikestorefront.path}" name="ext.cangubikestorefront.mapperToPath"/>
     	
     <property name="cangubikestorefront.wro.addons.template.path" value="${ext.cangubikestorefront.path}/wro_addons_template.xml"/>
     	
-    <property name="cangubikestorefront.wro.addons.dest.path" value="${ext.cangubikestorefront.path}/resources/wro_addons.xml"/>
+    <property name="cangubikestorefront.wro.addons.dest.path" value="${ext.cangubikestorefront.path}/web/webroot/WEB-INF/classes/wro_addons.xml"/>
     	
     <property name="cangubikestorefront.wro.group.node" value="&lt;groups xmlns=&quot;http://www.isdc.ro/wro&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.isdc.ro/wro wro.xsd&quot;&gt;"/>
     	
@@ -385,6 +385,8 @@
                 <arg path="${tool.less}"/>
                 				
                 <arg path="${tool.lessc}"/>
+                				
+                <arg value="--no-js"/>
                 				
                 <srcfile/>
                 				
@@ -1068,7 +1070,7 @@
         		
         <patternset refid="extension.binary.filter"/>
         		
-        <exclude name="resources/wro_addons.xml"/>
+        <exclude name="web/webroot/WEB-INF/classes/wro_addons.xml"/>
         	
     </patternset>
     	
@@ -1076,7 +1078,7 @@
         		
         <patternset refid="extension.source.filter"/>
         		
-        <exclude name="resources/wro_addons.xml"/>
+        <exclude name="web/webroot/WEB-INF/classes/wro_addons.xml"/>
         	
     </patternset>
     	
@@ -1084,7 +1086,7 @@
         		
         <patternset refid="extension.production.filter"/>
         		
-        <exclude name="resources/wro_addons.xml"/>
+        <exclude name="web/webroot/WEB-INF/classes/wro_addons.xml"/>
         	
     </patternset>
     	
@@ -1092,7 +1094,7 @@
         		
         <patternset refid="extension.source.filter"/>
         		
-        <exclude name="resources/wro_addons.xml"/>
+        <exclude name="web/webroot/WEB-INF/classes/wro_addons.xml"/>
         	
     </patternset>
     	

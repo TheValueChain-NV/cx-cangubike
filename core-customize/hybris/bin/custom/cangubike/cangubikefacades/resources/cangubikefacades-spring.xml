@@ -10,38 +10,12 @@
 		http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 		
-	<context:annotation-config/>
+	<context:annotation-config/> 
 
-	<bean id="cangubikeCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
-		<property name="categorySource" ref="cangubikeCategorySource"/>
-	</bean>
-	<bean id="cangubikeBrandCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
-		<property name="categorySource" ref="cangubikeBrandCategorySource"/>
-	</bean>
-	<bean id="cangubikeVariantCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
-		<property name="categorySource" ref="cangubikeVariantCategorySource"/>
-	</bean>
-
-	<bean id="cangubikeCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
-		<property name="categorySource" ref="cangubikeCategorySource"/>
-	</bean>
-
-	<bean id="cangubikeBrandCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
-		<property name="categorySource" ref="cangubikeBrandCategorySource"/>
-	</bean>
-
-	<bean id="cangubikeCategorySource" parent="defaultCategorySource">
-		<property name="rootCategory" value="1"/> <!-- '1' is the root icecat category -->
-	</bean>
-	<bean id="cangubikeVariantCategorySource" parent="variantCategorySource"/>
-
-	<bean id="cangubikeBrandCategorySource" parent="defaultCategorySource">
-		<property name="rootCategory" value="brands"/> <!-- 'brands' is the root of the brands hierarchy -->
-	</bean>
-
+	<import resource="cangubikefacades-populators-spring.xml"/>
 
 	<alias alias="simpleSuggestionFacade" name="defaultSimpleSuggestionFacade"/>
-	<bean id="defaultSimpleSuggestionFacade" class="be.canguru.cangubike.facades.suggestion.impl.DefaultSimpleSuggestionFacade" >
+	<bean id="defaultSimpleSuggestionFacade" class="com.tvc.cangubike.facades.suggestion.impl.DefaultSimpleSuggestionFacade" >
 		<property name="simpleSuggestionService" ref="simpleSuggestionService"/>
 		<property name="userService" ref="userService"/>
 		<property name="categoryService" ref="categoryService"/>
@@ -69,7 +43,7 @@
 	</bean>
 
 	<alias name="defaultAcceleratorVariantOptionDataPopulator" alias="acceleratorVariantOptionDataPopulator"/>
-	<bean id="defaultAcceleratorVariantOptionDataPopulator"  class="be.canguru.cangubike.facades.populators.AcceleratorVariantOptionDataPopulator"
+	<bean id="defaultAcceleratorVariantOptionDataPopulator"  class="com.tvc.cangubike.facades.populators.AcceleratorVariantOptionDataPopulator"
 	      parent="variantOptionDataPopulator" >
 		<property name="mediaService" ref="mediaService"/>
 		<property name="mediaContainerService" ref="mediaContainerService"/>
@@ -85,7 +59,7 @@
 
 	<alias name="acceleratorGenderConverter" alias="genderConverter"/> 
 	<bean id="acceleratorGenderConverter" parent="abstractPopulatingConverter">
-		<property name="targetClass" value="be.canguru.cangubike.facades.product.data.GenderData"/>
+		<property name="targetClass" value="com.tvc.cangubike.facades.product.data.GenderData"/>
 			<property name="populators">
 				<list>
 					<ref bean="genderDataPopulator"/>
@@ -94,11 +68,11 @@
 	</bean>
 
 	<alias name="defaultGenderDataPopulator" alias="genderDataPopulator"/>
-	<bean id="defaultGenderDataPopulator" class="be.canguru.cangubike.facades.populators.GenderDataPopulator" >
+	<bean id="defaultGenderDataPopulator" class="com.tvc.cangubike.facades.populators.GenderDataPopulator" >
 		<property name="typeService" ref="typeService"/>
 	</bean>
 
-	<bean id="apparelProductPopulator" class="be.canguru.cangubike.facades.populators.ApparelProductPopulator" >
+	<bean id="apparelProductPopulator" class="com.tvc.cangubike.facades.populators.ApparelProductPopulator" >
 		<property name="genderConverter" ref="genderConverter"/>
 	</bean>
 
@@ -148,66 +122,81 @@
 		</property>
 	</bean>
 
-	<bean id="customerEmailContext" class="be.canguru.cangubike.facades.process.email.context.CustomerEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="customerEmailContext" class="com.tvc.cangubike.facades.process.email.context.CustomerEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="customerConverter" ref="customerConverter"/>
 	</bean>
 
-	<bean id="forgottenPasswordEmailContext" class="be.canguru.cangubike.facades.process.email.context.ForgottenPasswordEmailContext" parent="customerEmailContext" scope="prototype" >
+	<bean id="forgottenPasswordEmailContext" class="com.tvc.cangubike.facades.process.email.context.ForgottenPasswordEmailContext" parent="customerEmailContext" scope="prototype" >
 		<property name="customerConverter" ref="customerConverter"/>
 	</bean>
 
-	<bean id="orderNotificationEmailContext" class="be.canguru.cangubike.facades.process.email.context.OrderNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="orderNotificationEmailContext" class="com.tvc.cangubike.facades.process.email.context.OrderNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="orderConverter" ref="orderConverter"/>
 	</bean>
 
-	<bean id="quoteNotificationEmailContext" class="be.canguru.cangubike.facades.process.email.context.QuoteNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="quoteNotificationEmailContext" class="com.tvc.cangubike.facades.process.email.context.QuoteNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="quoteService" ref="quoteService"/>
 		<property name="quoteConverter" ref="quoteConverter"/>
 	</bean>
 	
-	<bean id="deliverySentEmailContext" class="be.canguru.cangubike.facades.process.email.context.DeliverySentEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="deliverySentEmailContext" class="com.tvc.cangubike.facades.process.email.context.DeliverySentEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="consignmentConverter" ref="consignmentConverter"/>
 	</bean>
 	
-	<bean id="readyForPickupEmailContext" class="be.canguru.cangubike.facades.process.email.context.ReadyForPickupEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="readyForPickupEmailContext" class="com.tvc.cangubike.facades.process.email.context.ReadyForPickupEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="consignmentConverter" ref="consignmentConverter"/>
 	</bean>
 	
-	<bean id="orderCancelledEmailContext" class="be.canguru.cangubike.facades.process.email.context.OrderCancelledEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="orderCancelledEmailContext" class="com.tvc.cangubike.facades.process.email.context.OrderCancelledEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="orderConverter" ref="orderConverter"/>
 	</bean>
 	
-	<bean id="orderRefundEmailContext" class="be.canguru.cangubike.facades.process.email.context.OrderRefundEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="orderRefundEmailContext" class="com.tvc.cangubike.facades.process.email.context.OrderRefundEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="orderConverter" ref="orderConverter"/>
 	</bean>
-	<bean id="consignmentCollectionReminderEmailContext" class="be.canguru.cangubike.facades.process.email.context.ConsignmentCollectionReminderEmailContext" parent="abstractEmailContext" scope="prototype">
+	<bean id="consignmentCollectionReminderEmailContext" class="com.tvc.cangubike.facades.process.email.context.ConsignmentCollectionReminderEmailContext" parent="abstractEmailContext" scope="prototype">
         <property name="consignmentConverter" ref="consignmentConverter"/>
         <property name="formatFactory" ref="formatFactory"/>
         <property name="customerServiceUncollectedConsignmentStrategy" ref="customerServiceUncollectedConsignmentStrategy" />
         <property name="orderConverter" ref="orderConverter"/>
     </bean>
 
-	<bean id="orderPartiallyModifiedEmailContext" class="be.canguru.cangubike.facades.process.email.context.OrderPartiallyModifiedEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="orderPartiallyModifiedEmailContext" class="com.tvc.cangubike.facades.process.email.context.OrderPartiallyModifiedEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="orderConverter" ref="orderConverter"/>
 		<property name="orderEntryConverter" ref="orderEntryConverter"/>
 		<property name="priceDataFactory" ref="priceDataFactory"/>		
 	</bean>
 
-	<bean id="orderPartiallyCanceledEmailContext" class="be.canguru.cangubike.facades.process.email.context.OrderPartiallyCanceledEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
+	<bean id="orderPartiallyCanceledEmailContext" class="com.tvc.cangubike.facades.process.email.context.OrderPartiallyCanceledEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
 	</bean>
 
-	<bean id="orderPartiallyRefundedEmailContext" class="be.canguru.cangubike.facades.process.email.context.OrderPartiallyRefundedEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
+	<bean id="orderPartiallyRefundedEmailContext" class="com.tvc.cangubike.facades.process.email.context.OrderPartiallyRefundedEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
 	</bean>
 
-	<bean id="notPickedUpConsignmentCanceledEmailContext" class="be.canguru.cangubike.facades.process.email.context.NotPickedUpConsignmentCanceledEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="notPickedUpConsignmentCanceledEmailContext" class="com.tvc.cangubike.facades.process.email.context.NotPickedUpConsignmentCanceledEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="consignmentConverter" ref="consignmentConverter"/>
 		<property name="priceDataFactory" ref="priceDataFactory"/>
 	</bean>
 
 	<alias name="yacceleratorSearchPagePointOfServiceDistancePopulator" alias="searchPagePointOfServiceDistancePopulator" />
-	<bean id="yacceleratorSearchPagePointOfServiceDistancePopulator" class="be.canguru.cangubike.facades.storefinder.populators.SearchPagePointOfServiceDistancePopulator" >
+	<bean id="yacceleratorSearchPagePointOfServiceDistancePopulator" class="com.tvc.cangubike.facades.storefinder.populators.SearchPagePointOfServiceDistancePopulator" >
 		<property name="pointOfServiceDistanceConverter" ref="pointOfServiceDistanceConverter"/>
 	</bean>
 
-	<bean id="genderData" class="be.canguru.cangubike.facades.product.data.GenderData" scope="prototype"/>
+	<bean id="genderData" class="com.tvc.cangubike.facades.product.data.GenderData" scope="prototype"/>
+
+	<bean parent="fieldSetLevelMapping" id="cangubikeProductWsDTOFieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO"/>
+		<property name="levelMapping">
+			<map>
+				<entry key="FULL" value="brake,frame,saddle,model_year"/>
+			</map>
+		</property>
+	</bean>
+	<alias name="cangubikeDefaultProductFacade" alias="cwsProductFacade"/>
+	<bean id="cangubikeDefaultProductFacade" parent="defaultProductFacade">
+		<property name="productConfiguredPopulator" ref="cangubikeProductConfiguredPopulator"/>
+		<property name="productConverter" ref="cwsProductConverter"/>
+	</bean>
 </beans>

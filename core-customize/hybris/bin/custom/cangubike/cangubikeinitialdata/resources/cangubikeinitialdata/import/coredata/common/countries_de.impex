@@ -259,3 +259,51 @@ UPDATE Country;isocode[unique=true];name[lang=$lang]
  ;ZA;"Südafrika"
  ;ZM;"Sambia"
  ;ZW;"Simbabwe"
+
+#
+# ISO 3166-2:CH
+#
+UPDATE Region;country(isocode);isocode[unique=true];isocodeShort;name[lang=$lang]
+;CH;CH-ZH;ZH;"Zürich"
+;CH;CH-BE;BE;"Bern"
+;CH;CH-LU;LU;"Luzern"
+;CH;CH-UR;UR;"Uri"
+;CH;CH-SZ;SZ;"Schwyz"
+;CH;CH-OW;OW;"Obwalden"
+;CH;CH-NW;NW;"Nidwalden"
+;CH;CH-GL;GL;"Glarus"
+;CH;CH-ZG;ZG;"Zug"
+;CH;CH-FR;FR;"Freiburg"
+;CH;CH-SO;SO;"Solothurn"
+;CH;CH-BS;BS;"Basel-Stadt"
+;CH;CH-BL;BL;"Basel-Landschaft"
+;CH;CH-SH;SH;"Schaffhausen"
+;CH;CH-AR;AR;"AppenzellAusserrhoden"
+;CH;CH-AI;AI;"AppenzellInnerrhoden"
+;CH;CH-SG;SG;"St.Gallen"
+;CH;CH-GR;GR;"Graubünden"
+;CH;CH-AG;AG;"Aargau"
+;CH;CH-TG;TG;"Thurgau"
+;CH;CH-TI;TI;"Tessin"
+;CH;CH-VD;VD;"Waadt"
+;CH;CH-VS;VS;"Wallis"
+;CH;CH-NE;NE;"Neuenburg"
+;CH;CH-GE;GE;"Genf"
+;CH;CH-JU;JU;"Jura"
+
+#
+# ISO 3166-2:FR
+#
+;FR;FR-ARA;ARA;"Auvergne-Rhône-Alpes"
+;FR;FR-BFC;BFC;"Bourgogne-Franche-Comté"
+;FR;FR-BRE;BRE;"Bretagne"
+;FR;FR-CVL;CVL;"Centre-Val de Loire"
+;FR;FR-20R;20R;"Corse"
+;FR;FR-GES;GES;"Grand-Est"
+;FR;FR-HDF;HDF;"Hauts-de-France"
+;FR;FR-IDF;IDF;"Île-de-France"
+;FR;FR-NOR;NOR;"Normandie"
+;FR;FR-NAQ;NAQ;"Nouvelle-Aquitaine"
+;FR;FR-OCC;OCC;"Occitanie"
+;FR;FR-PDL;PDL;"Pays-de-la-Loire"
+;FR;FR-PAC;PAC;"Provence-Alpes-Côte-d’Azur"

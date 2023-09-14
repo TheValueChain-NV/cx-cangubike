@@ -1,17 +1,13 @@
 # -----------------------------------------------------------------------
 # Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 # -----------------------------------------------------------------------
-# 
+#
 # Import the Product Catalog and Classification Catalog
 #
-# Localization en
-#
-
+$productCatalog=cangubikeProductCatalog
+# Language
 $lang=en
 
-$productCatalog=cangubikeProductCatalog
-$classificationCatalog=CangubikeClassification
-
+# Create Catalog
 UPDATE Catalog;id[unique=true];name[lang=$lang]
-;$classificationCatalog;"Cangubike Classification";
-;$productCatalog;"Cangubike Product Catalog";
+;cangubikeProductCatalog=Cangubike Product Catalog

@@ -14,17 +14,16 @@
      <context:annotation-config/>
 
 	<!-- Spring Integration -->
-	<import resource="classpath:/cangubikecore/integration/hot-folder-store-electronics-spring.xml"/>
-	<import resource="classpath:/cangubikecore/integration/hot-folder-store-apparel-spring.xml"/>
 	<import resource="classpath:/cangubikecore/integration/hot-folder-common-spring.xml"/>
+	<import	resource="classpath:/cangubikecore/integration/hotfolder-cangubike-spring.xml"/>
 
 	<!-- SystemSetup for the CangubikeCore -->
-	<bean id="acceleratorCoreSystemSetup" class="be.canguru.cangubike.core.setup.CoreSystemSetup"
+	<bean id="acceleratorCoreSystemSetup" class="com.tvc.cangubike.core.setup.CoreSystemSetup"
 	       parent="abstractCoreSystemSetup"/>
 
 	<!-- Solr field value providers -->
 
-	<bean id="volumeAwareProductPriceValueProvider" class="be.canguru.cangubike.core.search.solrfacetsearch.provider.impl.VolumeAwareProductPriceValueProvider"  parent="abstractPropertyFieldValueProvider">
+	<bean id="volumeAwareProductPriceValueProvider" class="com.tvc.cangubike.core.search.solrfacetsearch.provider.impl.VolumeAwareProductPriceValueProvider"  parent="abstractPropertyFieldValueProvider">
         <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
         <property name="priceService" ref="priceService"/>
         <property name="commonI18NService" ref="commonI18NService"/>
@@ -34,16 +33,16 @@
         <property name="catalogVersionService" ref="catalogVersionService"/>
     </bean>
 
-    <bean id="volumePriceComparator" class="be.canguru.cangubike.core.comparators.VolumeAwarePriceInformationComparator" scope="singleton"/>
+    <bean id="volumePriceComparator" class="com.tvc.cangubike.core.comparators.VolumeAwarePriceInformationComparator" scope="singleton"/>
 
-    <bean id="productVolumePricesProvider" class="be.canguru.cangubike.core.search.solrfacetsearch.provider.impl.ProductVolumePricesProvider"  parent="abstractPropertyFieldValueProvider">
+    <bean id="productVolumePricesProvider" class="com.tvc.cangubike.core.search.solrfacetsearch.provider.impl.ProductVolumePricesProvider"  parent="abstractPropertyFieldValueProvider">
         <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
         <property name="priceService" ref="priceService"/>
     </bean>
 
 
 	<bean id="electronicsCategorySource" parent="abstractCategorySource">
-		<property name="rootCategory" value="1"/>
+		<property name="rootCategory" value="catalog"/>
 		<!-- '1' is the root icecat category -->
 	</bean>
 	<bean id="electronicsBrandCategorySource" parent="abstractCategorySource">
@@ -148,13 +147,13 @@
 	</bean>
 
 	<bean id="colorFacetValueProvider"
-	      class="be.canguru.cangubike.core.search.solrfacetsearch.provider.impl.ColorFacetValueProvider"
+	      class="com.tvc.cangubike.core.search.solrfacetsearch.provider.impl.ColorFacetValueProvider"
 	       parent="abstractPropertyFieldValueProvider">
 		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
 	</bean>
 
 	<bean id="colorFacetDisplayNameProvider"
-	      class="be.canguru.cangubike.core.search.solrfacetsearch.provider.impl.ColorFacetDisplayNameProvider"
+	      class="com.tvc.cangubike.core.search.solrfacetsearch.provider.impl.ColorFacetDisplayNameProvider"
 	      >
 		<property name="enumerationService" ref="enumerationService"/>
 		<property name="i18nService" ref="i18nService"/>
@@ -162,91 +161,128 @@
 	</bean>
 
 	<bean id="apparelPointOfServiceFacetDisplayNameProvider"
-	      class="be.canguru.cangubike.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
+	      class="com.tvc.cangubike.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
 	      >
 		<property name="pointOfServiceService" ref="pointOfServiceService"/>
 	</bean>
 
 	<bean id="electronicsPointOfServiceFacetDisplayNameProvider"
-	      class="be.canguru.cangubike.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
+	      class="com.tvc.cangubike.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
 	      >
 		<property name="pointOfServiceService" ref="pointOfServiceService"/>
 	</bean>
 
 	<bean id="genderValueProvider"
-	      class="be.canguru.cangubike.core.search.solrfacetsearch.provider.impl.GenderValueProvider"
+	      class="com.tvc.cangubike.core.search.solrfacetsearch.provider.impl.GenderValueProvider"
 	       parent="abstractPropertyFieldValueProvider">
 		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
 	</bean>
 
 	<bean id="genderFacetDisplayNameProvider"
-	      class="be.canguru.cangubike.core.search.solrfacetsearch.provider.impl.GenderFacetDisplayNameProvider"
+	      class="com.tvc.cangubike.core.search.solrfacetsearch.provider.impl.GenderFacetDisplayNameProvider"
 	      >
 		<property name="enumerationService" ref="enumerationService"/>
 		<property name="i18nService" ref="i18nService"/>
 		<property name="commonI18NService" ref="commonI18NService"/>
 	</bean>
 
+	<!-- Solr field value providers TEMPORARY FOR NOW SO DO NOT NEED TO DEPEND ON yb2bacceleratorcore -->
+
+	<bean id="cangubikeCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+		<property name="categorySource" ref="cangubikeCategorySource"/>
+	</bean>
+	<bean id="cangubikeBestsellerCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+		<property name="categorySource" ref="cangubikeBestsellerCategorySource"/>
+	</bean>
+	<bean id="cangubikeBrandCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+		<property name="categorySource" ref="cangubikeBrandCategorySource"/>
+	</bean>
+	<bean id="cangubikeVariantCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+		<property name="categorySource" ref="cangubikeVariantCategorySource"/>
+	</bean>
+
+	<bean id="cangubikeCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+		<property name="categorySource" ref="cangubikeCategorySource"/>
+	</bean>
+	<bean id="cangubikeBestsellerCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+		<property name="categorySource" ref="cangubikeBestsellerCategorySource"/>
+	</bean>
+	<bean id="cangubikeBrandCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+		<property name="categorySource" ref="cangubikeBrandCategorySource"/>
+	</bean>
+
+	<bean id="cangubikeCategorySource" parent="defaultCategorySource">
+		<property name="rootCategory" value="catalog"/>
+	</bean>
+	<bean id="cangubikeBestsellerCategorySource"
+			  class="com.tvc.cangubike.core.search.solrfacetsearch.provider.impl.FilterRootCategorySource"
+		  parent="defaultCategorySource">
+		<property name="rootCategory" value="bestsellers"/>
+	</bean>
+	<bean id="cangubikeBrandCategorySource" parent="defaultCategorySource">
+		<property name="rootCategory" value="brands"/>
+	</bean>
+	<bean id="cangubikeVariantCategorySource" parent="variantCategorySource"/>
 	<!--
 		Event listeners are singletons, therefore the dependency for a bean in tenant-scope
 		must be configured with a lookup method.
 	-->
 	<bean id="orderCancelledEventListener"
-	      class="be.canguru.cangubike.core.event.OrderCancelledEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="com.tvc.cangubike.core.event.OrderCancelledEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="orderRefundEventListener"
-	      class="be.canguru.cangubike.core.event.OrderRefundEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="com.tvc.cangubike.core.event.OrderRefundEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="customerRegistrationEventListener"
-	      class="be.canguru.cangubike.core.event.RegistrationEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="com.tvc.cangubike.core.event.RegistrationEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="forgottenPasswordEventListener"
-	      class="be.canguru.cangubike.core.event.ForgottenPasswordEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="com.tvc.cangubike.core.event.ForgottenPasswordEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
-	<bean id="submitOrderEventListener" class="be.canguru.cangubike.core.event.SubmitOrderEventListener" parent="abstractAcceleratorSiteEventListener">
+	<bean id="submitOrderEventListener" class="com.tvc.cangubike.core.event.SubmitOrderEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="businessProcessService" ref="businessProcessService"/>
 		<property name="modelService" ref="modelService"/>
 		<property name="baseStoreService" ref="baseStoreService"/>
 	</bean>
 	<bean id="orderConfirmationEventListener"
-	      class="be.canguru.cangubike.core.event.OrderConfirmationEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="com.tvc.cangubike.core.event.OrderConfirmationEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="sendDeliveryMessageEventListener"
-	      class="be.canguru.cangubike.core.event.SendDeliveryMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="com.tvc.cangubike.core.event.SendDeliveryMessageEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="sendReadyForPickupMessageEventListener"
-	      class="be.canguru.cangubike.core.event.SendReadyForPickupMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="com.tvc.cangubike.core.event.SendReadyForPickupMessageEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="sendOrderPartiallyCanceledMessageEventListener"
-	      class="be.canguru.cangubike.core.event.SendOrderPartiallyCanceledMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="com.tvc.cangubike.core.event.SendOrderPartiallyCanceledMessageEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="sendOrderPartiallyRefundedMessageEventListener"
-	      class="be.canguru.cangubike.core.event.SendOrderPartiallyRefundedMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="com.tvc.cangubike.core.event.SendOrderPartiallyRefundedMessageEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="sendNotPickedUpConsignmentCanceledMessageEventListener"
-	      class="be.canguru.cangubike.core.event.SendNotPickedUpConsignmentCanceledMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="com.tvc.cangubike.core.event.SendNotPickedUpConsignmentCanceledMessageEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
-	<bean id="orderCompletedEventListener" class="be.canguru.cangubike.core.event.OrderCompletedEventListener" parent="abstractAcceleratorSiteEventListener">
+	<bean id="orderCompletedEventListener" class="com.tvc.cangubike.core.event.OrderCompletedEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
@@ -359,7 +395,7 @@
 	</bean>
 
     <bean id="markQuoteNotificationAsSent"
-          class="be.canguru.cangubike.core.actions.quote.MarkQuoteNotificationAsSentAction"
+          class="com.tvc.cangubike.core.actions.quote.MarkQuoteNotificationAsSentAction"
           parent="abstractAction" abstract="true">
         <property name="quoteService" ref="quoteService"/>
     </bean>
@@ -367,12 +403,12 @@
 	<!-- Simple Suggestion Service -->
 	<alias alias="simpleSuggestionService" name="defaultSimpleSuggestionService"/>
 	<bean id="defaultSimpleSuggestionService"
-	      class="be.canguru.cangubike.core.suggestion.impl.DefaultSimpleSuggestionService" >
+	      class="com.tvc.cangubike.core.suggestion.impl.DefaultSimpleSuggestionService" >
 		<property name="simpleSuggestionDao" ref="simpleSuggestionDao"/>
 	</bean>
 	<alias alias="simpleSuggestionDao" name="defaultSimpleSuggestionDao"/>
 	<bean id="defaultSimpleSuggestionDao"
-	      class="be.canguru.cangubike.core.suggestion.dao.impl.DefaultSimpleSuggestionDao"
+	      class="com.tvc.cangubike.core.suggestion.dao.impl.DefaultSimpleSuggestionDao"
 	      parent="abstractItemDao" >
 		<property name="flexibleSearchService" ref="flexibleSearchService"/>
 	</bean>
@@ -389,7 +425,7 @@
 	</bean>
 
 	<bean id="apparelSizeProductReferenceTargetStrategy"
-	      class="be.canguru.cangubike.core.strategies.impl.ApparelSizeProductReferenceTargetStrategy">
+	      class="com.tvc.cangubike.core.strategies.impl.ApparelSizeProductReferenceTargetStrategy">
 		<property name="commerceCategoryService" ref="commerceCategoryService"/>
 		<property name="rootCategoryCode" value="categories"/>
 	</bean>
@@ -397,43 +433,43 @@
 	<!-- Sales quote process actions -->
 
 	<!-- quote-->
-	<bean id="quoteBuyerSubmitEventListener" class="be.canguru.cangubike.core.event.QuoteBuyerSubmitEventListener"
+	<bean id="quoteBuyerSubmitEventListener" class="com.tvc.cangubike.core.event.QuoteBuyerSubmitEventListener"
 		  parent="abstractEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 
-	<bean id="quoteSalesRepSubmitEventListener" class="be.canguru.cangubike.core.event.QuoteSalesRepSubmitEventListener"
+	<bean id="quoteSalesRepSubmitEventListener" class="com.tvc.cangubike.core.event.QuoteSalesRepSubmitEventListener"
 		  parent="abstractEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 
-	<bean id="quoteSellerApprovalSubmitEventListener" class="be.canguru.cangubike.core.event.QuoteSellerApprovalSubmitEventListener"
+	<bean id="quoteSellerApprovalSubmitEventListener" class="com.tvc.cangubike.core.event.QuoteSellerApprovalSubmitEventListener"
 		  parent="abstractEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 
-	<bean id="quoteBuyerOrderPlacedEventListener" class="be.canguru.cangubike.core.event.QuoteBuyerOrderPlacedEventListener"
+	<bean id="quoteBuyerOrderPlacedEventListener" class="com.tvc.cangubike.core.event.QuoteBuyerOrderPlacedEventListener"
 		  parent="abstractEventListener">
 		<property name="commerceQuoteService" ref="commerceQuoteService"/>
 		<property name="modelService" ref="modelService"/>
 	</bean>
 
-	<bean id="quoteToExpireSoonEventListener" class="be.canguru.cangubike.core.event.QuoteToExpireSoonEventListener"
+	<bean id="quoteToExpireSoonEventListener" class="com.tvc.cangubike.core.event.QuoteToExpireSoonEventListener"
 		  parent="abstractEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	
-	<bean id="quoteExpiredEventListener" class="be.canguru.cangubike.core.event.QuoteExpiredEventListener"
+	<bean id="quoteExpiredEventListener" class="com.tvc.cangubike.core.event.QuoteExpiredEventListener"
 		  parent="abstractEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 
-	<bean id="quoteCancelEventListener" class="be.canguru.cangubike.core.event.QuoteCancelEventListener"
+	<bean id="quoteCancelEventListener" class="com.tvc.cangubike.core.event.QuoteCancelEventListener"
 		  parent="abstractEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
@@ -472,7 +508,7 @@
 
 	<!-- Quotes email notification jobs -->
 	<bean id="quoteToExpireSoonJobPerformable"
-		  class="be.canguru.cangubike.core.job.QuoteToExpireSoonJobPerformable"
+		  class="com.tvc.cangubike.core.job.QuoteToExpireSoonJobPerformable"
 		  parent="abstractJobPerformable">
 		<property name="supportedQuoteStatuses">
 			<set value-type="de.hybris.platform.core.enums.QuoteState">
@@ -486,7 +522,7 @@
 	</bean>
 	
 	<bean id="quoteExpiredJobPerformable"
-		  class="be.canguru.cangubike.core.job.QuoteExpiredJobPerformable"
+		  class="com.tvc.cangubike.core.job.QuoteExpiredJobPerformable"
 		  parent="abstractJobPerformable">
 		<property name="supportedQuoteStatuses">
 			<set value-type="de.hybris.platform.core.enums.QuoteState">
@@ -509,7 +545,7 @@
 	
 	<!-- Customer cleanup -->
 	<alias name="defaultCustomerCleanupRelatedObjectsAction" alias="customerCleanupRelatedObjectsAction"/>
-	<bean id="defaultCustomerCleanupRelatedObjectsAction" class="be.canguru.cangubike.core.retention.impl.DefaultCustomerCleanupRelatedObjectsAction" parent="abstractExtensibleRemoveCleanupAction">
+	<bean id="defaultCustomerCleanupRelatedObjectsAction" class="com.tvc.cangubike.core.retention.impl.DefaultCustomerCleanupRelatedObjectsAction" parent="abstractExtensibleRemoveCleanupAction">
 		<property name="itemCleanupHooks" ref="customerCleanupHooks"/>
 	</bean>
 	
@@ -534,7 +570,7 @@
 
 	<!-- CsTicket Stagnation action -->
 	<alias name="defaultCSTicketStagnationAction" alias="csTicketStagnationAction"/>
-	<bean id="defaultCSTicketStagnationAction" class="be.canguru.cangubike.core.retention.impl.DefaultCSTicketStagnationAction" parent="abstractExtensibleRemoveCleanupAction">
+	<bean id="defaultCSTicketStagnationAction" class="com.tvc.cangubike.core.retention.impl.DefaultCSTicketStagnationAction" parent="abstractExtensibleRemoveCleanupAction">
 		<property name="itemCleanupHooks" ref="csTicketRetentionHooks"/>
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>

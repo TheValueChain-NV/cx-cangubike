@@ -2,10 +2,10 @@
 # Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 # -----------------------------------------------------------------------
 #
-# Import the Cangubike Content Catalog
+# Import the Content Catalog
 #
 $contentCatalog=cangubikeContentCatalog
-$languages=ja,en,de,zh
+$languages=en,de,fr
 
 # Content catalog for CMS contents
 INSERT_UPDATE ContentCatalog;id[unique=true]

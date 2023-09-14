@@ -1,0 +1,117 @@
+@import '@spartacus/styles/scss/cxbase/variables';
+@import 'media';
+$mobile-screen: 576px;
+$tablet-screen: 768px;
+$laptop-screen: 992px;
+$desktop-screen: 1200px;
+
+@mixin small-mobile {
+  @media (max-width: #{$mobile-screen - 1px}) {
+    @content;
+  }
+}
+
+@mixin mobile-and-up {
+  @media (min-width: #{$mobile-screen}) {
+    @content;
+  }
+}
+
+@mixin tablet-and-up {
+  @media (min-width: #{$tablet-screen}) {
+    @content;
+  }
+}
+
+@mixin laptop-and-up {
+  @media (min-width: #{$laptop-screen}) {
+    @content;
+  }
+}
+
+@mixin desktop-and-up {
+  @media (min-width: #{$desktop-screen}) {
+    @content;
+  }
+}
+
+
+
+// .footer {
+//   background-color: #BF2433;
+// }
+$primary-font-family:Rubik-light;
+.footer-container {
+  position: relative;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: auto;
+  white-space: nowrap;
+  overflow: hidden;
+
+  @include tablet-and-up {
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-around;
+    max-width: 1140px;
+  }
+
+  .btn-commande-rapide {
+    color: var(--cx-color-secondary);
+    background-color: #FFFFFF;
+    padding-right: 0px;
+    border: solid 1px;
+    border-color: #FFFFFF;
+    font-size: 18px;
+    height: 52.59px;
+    padding-right: 15px;
+    white-space: nowrap;
+    margin-top: 10px;
+  }
+
+  .socials {
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-around;
+
+    a {
+      color: #FFFFFF;
+    }
+  }
+
+  .footer-column-title {
+    font-family: $primary-font-family;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24.2px;
+    padding: 25px 0;
+    text-transform: uppercase;
+  }
+
+  .footer-menu-item {
+    font-family: $primary-font-family;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    padding: 6px 0;
+
+    a {
+      // color: var(--cx-color-dark);
+      text-decoration: none;
+      color: #FFFFFF;
+
+      &:hover {
+        color: var(--cx-color-primary) !important;
+      }
+    }
+  }
+
+
+  li {
+    list-style-type: none;
+  }
+
+  --cx-color-visual-focus: var(--cx-color-secondary);
+}

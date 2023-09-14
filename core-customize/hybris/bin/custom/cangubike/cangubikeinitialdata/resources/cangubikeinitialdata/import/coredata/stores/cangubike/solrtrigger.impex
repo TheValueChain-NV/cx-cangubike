@@ -2,13 +2,13 @@
 # Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 # -----------------------------------------------------------------------
 #
-# Import the Solr CronJob Trigger configuration for the Cangubike Product Catalog
+# Import the Solr CronJob Trigger configuration for the Product Catalog
 #
-
+$facetSearchConfigName =cangubikeIndex
 INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 
 # Run the full-cangubikeIndex-cronJob at 3:05 AM every day
-;full-cangubikeIndex-cronJob;0;5;3;-1;-1;-1;false;false;-1
+; full-$facetSearchConfigName-cronJob     ; 0      ; 5      ; 3    ; -1  ; -1    ; -1   ; false    ; true   ; -1
 
 # Run the update-cangubikeIndex-cronJob every 1 minutes
-;update-cangubikeIndex-cronJob;0;1;-1;-1;-1;-1;true;false;-1
+; update-$facetSearchConfigName-cronJob   ; 0      ; 1      ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1

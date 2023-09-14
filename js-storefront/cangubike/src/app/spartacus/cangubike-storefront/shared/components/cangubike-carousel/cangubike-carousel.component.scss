@@ -1,0 +1,43 @@
+.card-title {
+  color: var(--cx-color-primary);
+  font-family: Rubik-light, sans-serif;
+
+}
+.card-text {
+  color:#43464e;
+  text-transform: lowercase;
+  font-family: Rubik-light, sans-serif;
+}
+.list-inline-item {
+  color: #ffd700
+}
+.price {
+  color: #9B1B30;
+}
+.btn-pink {
+  background-color: #fcb2b2 !important;
+}
+.card {
+  //background-color: #f9f9f9;
+  border-radius:20px;
+  //margin-left: 30px;
+  //margin-right: 30px;
+
+
+}
+.carousel-slide {
+  margin-right: auto;
+}
+.card-img-top {
+  margin-top: 16px;
+  margin-right: 3px;
+  box-sizing: border-box;
+  border-bottom: #dddddd 0.5px solid;
+}
+
+.frame-icon cx-icon svg, .cx-icon svg {
+  fill:#000000 !important;
+  height: 36px;
+  width: 36px;
+
+}

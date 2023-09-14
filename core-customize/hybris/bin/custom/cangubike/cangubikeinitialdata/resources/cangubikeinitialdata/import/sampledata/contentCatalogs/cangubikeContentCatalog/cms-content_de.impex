@@ -6,7 +6,7 @@
 $contentCatalog=cangubikeContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 $picture=media(code, $contentCV);
-$siteResource=jar:be.canguru.cangubike.initialdata.constants.CangubikeInitialDataConstants&/cangubikeinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$siteResource=jar:com.tvc.cangubike.initialdata.setup.InitialDataSystemSetup&/cangubikeinitialdata/import/sampledata/contentCatalogs/$contentCatalog
 $medias=medias(code, $contentCV);
 $mediaContainer=media(qualifier, $contentCV)[lang=$lang];
 
@@ -16,51 +16,55 @@ $lang=de
 
 # Site Logo Component
 UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
-;;SiteLogoComponent;/images/theme/logo_hybris_b2b_responsive.svg
+;;SiteLogoComponent;/images/theme/canguru-new.png
 
 # CMS Link Components
 UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
-;;AboutSAPCommerceLink;"About SAP Commerce Cloud"
 ;;AddressBookLink;"Adressbuch"
-;;AgileCommerceBlogLink;"Agile Commerce Blog"
 ;;ApprovalDashboardLink;"Genehmigungsdashboard"
-;;ContactUsLink;"Kontakt"
-;;DocumentationLink;"Dokumentation"
 ;;FAQLink;"FAQ"
-;;FacebookLink;"Facebook"
-;;FootwearMensCategoryLink;"Herren"
-;;FootwearWomensCategoryLink;"Damen"
 ;;HomepageNavLink;"Startseite"
-;;ImportSavedCartLink;"Gespeicherten Warenkorb importieren"
-;;LinkedInLink;"Linked In"
-;;MyQuotesLink;"Meine Angebote"
 ;;MyReplenishmentOrdersLink;"Meine Nachbestellungen"
-;;OrderFormsLink;"Bestellformulare"
 ;;OrderHistoryLink;"Bestellverlauf"
 ;;PaymentDetailsLink;"Zahlungsdetails"
 ;;PersonalDetailsLink;"Persönliche Details"
 ;;QuickOrderLink;"Schnellbestellung"
-;;SafetyCategoryLink;"Sicherheit"
 ;;SavedCartsLink;"Gespeicherte Warenkörbe"
-;;TwitterLink;"Twitter"
 ;;UpdateEmailLink;"E-Mail"
 ;;UpdatePasswordLink;"Kennwort"
-;;VisitSAPLink;"Visit SAP"
 
 # CMS Link Components
 UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=de]
- ;;AngleGrindersCategoryLink;"Winkelschleifer"
- ;;HandSawsCategoryLink;"Handsägen"
- ;;HandToolsCategoryLink;"Handwerkzeuge"
- ;;JigsawsCategoryLink;"Stichsägen"
- ;;MeasuringLayoutToolsCategoryLink;"Mess- und Planwerkzeuge"
- ;;NutDriversCategoryLink;"Steckschlüssel"
- ;;PowerDrillsCategoryLink;"Bohrmaschinen"
- ;;PunchesCategoryLink;"Stanzwerkzeuge"
- ;;RotaryHammersCategoryLink;"Bohrhämmer"
- ;;SandersCategoryLink;"Schleifmaschinen"
- ;;ScrewdriversCategoryLink;"Schraubendreher"
- ;;StrippingToolsCategoryLink;"Abisolierwerkzeuge"
+;;MountainsEBikeCategoryLink;"Elektrisches Mountainbike"
+;;CityEBikesNavNodeCategoryLink;"Elektrisches Citybike"
+;;GravelEBikesCategoryLink;"Elektrisches Schotterfahrrad"
+;;CargoEBikesCategoryLink;"Elektrisches Lastenfahrrad"
+;;RoadEbikesCategoryLink;"Elektrisches Rennrad"
+;;MountainBikesNavNodeCategoryLink;"Mountainbike"
+;;CityBikesNavNodeCategoryLink;"Citybike"
+;;GravelBikesNavNodeCategoryLink;"E-Gravelbikes"
+;;RoadBikesNavNodeCategoryLink;"Rennrad"
+;;PedalsNavNodeCategoryLink;"Pedale"
+;;SaddlesNavNodeCategoryLink;"Sättel"
+;;BrakesNavNodeCategoryLink;"Bremsen"
+;;WheelsNavNodeCategoryLink;"Räder"
+;;BasketsNavNodeCategoryLinks;"Körbe"
+;;LightsNavNodeCategoryLink;"Beleuchtung"
+;;BellsNavNodeCategoryLinks;"Glocken"
+;;PumpsNavNodeCategoryLinks;"Pumps"
+;;ShortsNavNodeCategoryLink;"Kurze Hose"
+;;JerseysNavNodeCategoryLink;"Trikots"
+;;ShoesNavNodeCategoryLink;"Schuhe"
+;;HelmetsNavNodeCategoryLink;"Helme"
+;;AboutUsLink;"Über uns"
+;;OurBrandsLink;"Unsere Marken"
+;;CareersLink;"Karriere"
+;;ReparationLink;"Wiedergutmachungen"
+;;LeasingLink;"Fahrradleasing"
+;;ContactUsLink;"Kontaktiere uns"
+;;TermsLink;"Geschäftsbedingungen"
+;;CookiesLink;"Cookie-Richtlinie"
+
 
 # Lightbox Banner for Mini Cart (banner is not localizable so we must create a separate banner per language)
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];&imageRef;folder(qualifier)[default='images'];altText
@@ -85,8 +89,8 @@ UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];notice
 ;;FooterNavigationComponent;"Copyright © {0} SAP SE or an SAP affiliate company. All rights reserved."
 
 # CMS Paragraph Component (Contact information)
-UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
-;;QuickOrderInfoParagraphComponent;"Sie können nachfolgend bis zu 25 gültige SKUs hinzufügen und diese dem Warenkob hinzufügen. Sobald Produkte dem Warenkorb hinzugefügt werden, wird der Bestand reserviert."
+#UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+#;;QuickOrderInfoParagraphComponent;"Sie können nachfolgend bis zu 25 gültige SKUs hinzufügen und diese dem Warenkob hinzufügen. Sobald Produkte dem Warenkorb hinzugefügt werden, wird der Bestand reserviert."
 
 # CMS ProductReferences Components
 UPDATE ProductReferencesComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
@@ -105,25 +109,49 @@ UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
 
 # CMS Navigation Nodes
 UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
-;;FollowUsNavNode;"Folgen Sie uns"
 ;;MyAccountNavNode;"Mein Konto"
 ;;CangubikeNavNode;"Cangubike-Website"
-;;SAPCommerceNavNode;"SAP Commerce Cloud"
-;;SAPCustomerExperienceNavNode;"SAP Customer Experience"
 ;;SiteRootNode;"SiteRoot"
 
 # CMS Navigation Nodes
-UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=de]
- ;;AngleGrindersNavNode;"Winkelschleifer"
- ;;FootwearLinksNavNode;"Schuhe"
- ;;HandToolsLinksNavNode;"Handwerkzeuge"
- ;;HandToolsNavNode;"Handwerkzeuge"
- ;;MeasuringLayoutToolsNavNode;"Mess- und Planwerkzeuge"
- ;;PowerDrillsNavNode;"Bohrmaschinen"
- ;;SafetyNavNode;"Sicherheit"
- ;;SandersNavNode;"Schleifmaschinen"
- ;;ScrewdriversNavNode;"Schraubendreher"
-
+UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+;;EBikesNavNode;"Elektrofahrräder"
+;;BikesNavNode;"Fahrräder"
+;;PartsNavNode;"Fahrradteile"
+;;AccessoriesNavNode;"Fahrradzubehör"
+;;ClothingNavNode;"Bekleidung"
+;;MountainEBikesNavNode;"Elektrische Mountainbikes"
+;;CityEBikesNavNode;"Elektrische Citybikes"
+;;GravelEBikesNavNode;"Elektrisches Schotterfahrrad"
+;;CargoEBikesNavNode;"Elektrisches Lastenfahrrad"
+;;RoadEBikesNavNode;"Elektrisches Rennrad"
+;;MountainBikesNavNode;"Mountainbikes"
+;;CityBikesNavNode;"Citybikes"
+;;GravelBikesNavNode;"Schotterfahrrad"
+;;RoadBikesNavNode;"Rennrad"
+;;PedalsNavNode;"Pedale"
+;;SaddlesNavNode;"Sättel"
+;;BrakesNavNode;"Bremsen"
+;;WheelsNavNode;"Räder"
+;;BasketsNavNode;"Körbe"
+;;LightsNavNode;"Beleuchtung"
+;;BellsNavNode;"Glocken"
+;;PumpsNavNode;"Pumps"
+;;ShortsNavNode;"Kurze Hose"
+;;JerseysNavNode;"Trikots"
+;;ShoesNavNode;"Schuhe"
+;;HelmetsNavNode;"Helme"
+;;CompanyNavNode;"Company"
+;;ServicesNavNode;"Dienstleistungen"
+;;LinksNavNode;"Links"
+;;SocialMediaNavNode;"Sozialen Medien"
+;;AboutUsNavNode;;"Über uns"
+;;OurBrandsNavNode;"Unsere Marken"
+;;CareersNavNode;"Karriere"
+;;ReparationNavNode;"Wiedergutmachungen"
+;;BikeLeasingNavNode;"Fahrradleasing"
+;;TermsNavNode;"Geschäftsbedingungen"
+;;CookiesPolicyNavNode;"Cookie-Richtlinie"
 # Cangubike FAQ Page
 
 # CMS Paragraph Component (Contact information)
@@ -133,9 +161,9 @@ UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[la
 
 # Cangubike Order Expired Page
 
-UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=de];
-;;orderExpiredMenuParagraph;;
-;;orderExpiredTextParagraph;"<div class='cms-content order-expired'><div class='information_message neutral'><span class='single'></span><p>Diese Seite ist abgelaufen.</p></div><h2>Sehr geehrte Kundin/Sehr geehrter Kunde,</h2><p>Bestellstatus für Gastnutzer werden nur 3 Monate ab Bestellung aufbewahrt.<br>Falls Sie keine Lieferung erhalten haben oder eine Anfrage haben, wenden Sie sich bitte an unseren Kundenservice.</p><h3>Halten Sie bitte Folgendes bereit:</h3><ul class='bullet-list'><li>Ihren Namen</li><li>Bestellnummer (Ihre Bestellnummer finden Sie in der Bestätigungs-E-Mail, die kurz nach Ihrer Bestellung versendet wurde.)</li><li>Lieferadresse oder Ort der Verkaufsstelle zur Abholung</li></ul><p>Unsere Kundenservice-Mitarbeiter teilen Ihnen gerne Ihren Bestellstatus mit.</p><p class='cms-content-emphasized-big'>Vielen Dank für Ihren Einkauf im hybrisstore.</p></div>";
+#UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=de];
+#;;orderExpiredMenuParagraph;;
+#;;orderExpiredTextParagraph;"<div class='cms-content order-expired'><div class='information_message neutral'><span class='single'></span><p>Diese Seite ist abgelaufen.</p></div><h2>Sehr geehrte Kundin/Sehr geehrter Kunde,</h2><p>Bestellstatus für Gastnutzer werden nur 3 Monate ab Bestellung aufbewahrt.<br>Falls Sie keine Lieferung erhalten haben oder eine Anfrage haben, wenden Sie sich bitte an unseren Kundenservice.</p><h3>Halten Sie bitte Folgendes bereit:</h3><ul class='bullet-list'><li>Ihren Namen</li><li>Bestellnummer (Ihre Bestellnummer finden Sie in der Bestätigungs-E-Mail, die kurz nach Ihrer Bestellung versendet wurde.)</li><li>Lieferadresse oder Ort der Verkaufsstelle zur Abholung</li></ul><p>Unsere Kundenservice-Mitarbeiter teilen Ihnen gerne Ihren Bestellstatus mit.</p><p class='cms-content-emphasized-big'>Vielen Dank für Ihren Einkauf im hybrisstore.</p></div>";
 
 # Cangubike Terms and Conditions Page
 
@@ -147,9 +175,9 @@ UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[la
 # Cangubike Homepage
 
 UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];title[lang=de]
- ;;CangubikeHomepageNewProductCarouselComponent;"WHAT'S NEW"
- ;;CangubikeHomepageProductCarouselComponent;"IHR EINKAUFSKORB"
- ;;PremiumbuyersgroupHomepageProductCarouselComponent;"Beliebteste Produkte"
+;;CangubikeHomepageNewProductCarouselComponent;"WHAT'S NEW"
+;;CangubikeHomepageProductCarouselComponent;"IHR EINKAUFSKORB"
+;;PremiumbuyersgroupHomepageProductCarouselComponent;"Beliebteste Produkte"
 
 INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];realfilename;altText;mime[default='image/jpeg'];$contentCV[unique=true];folder(qualifier)[default=images];
 ;widescreen;Cangubike_1400x480_BigSplash_DE_01_1400W.jpg;$siteResource/images/banners/homepage/responsive/Cangubike_1400x480_BigSplash_DE_01_1400W.jpg;Cangubike_1400x480_BigSplash_DE_01_1400W.jpg;"Die leistungsstärksten Werkzeuge in dieser Preisklasse";
@@ -263,11 +291,11 @@ INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=d
 ;desktop;Cangubike_960x275_ErrorPage_DE_960W.svg;$siteResource/images/banners/site/Cangubike_1400x401_ErrorPage_DE_1400W.svg;Cangubike_1400x401_ErrorPage_DE_1400W.svg;"Seite nicht gefunden";
 
 INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
-;cangubike-errorpage-pagenotfound-de;Cangubike_480x170_ErrorPage_DE_480W.svg,Cangubike_770x221_ErrorPage_DE_770W.svg,Cangubike_960x275_ErrorPage_DE_960W.svg,Cangubike_1400x401_ErrorPage_DE_1400W.svg
+;Cangubike-errorpage-pagenotfound-de;Cangubike_480x170_ErrorPage_DE_480W.svg,Cangubike_770x221_ErrorPage_DE_770W.svg,Cangubike_960x275_ErrorPage_DE_960W.svg,Cangubike_1400x401_ErrorPage_DE_1400W.svg
 
 INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;$mediaContainer
-;;CangubiketronicsErrorpageBannerComponent;Cangubiketronics Error Page Banner Component;CangubiketronicsErrorpageBannerComponent;cangubike-errorpage-pagenotfound-de
+;;CangubiketronicsErrorpageBannerComponent;Cangubiketronics Error Page Banner Component;CangubiketronicsErrorpageBannerComponent;Cangubike-errorpage-pagenotfound-de
 
 # CMS Link Components
 UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=de]
- ;;RegisterLink;"Registrieren"
+;;RegisterLink;"Registrieren"

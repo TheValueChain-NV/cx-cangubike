@@ -1,0 +1,34 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+#
+# Import CMS content for the site
+#
+
+$contentCatalog=cangubikeContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+# Language
+$lang=fr
+
+# Content Pages
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+ ;;account;"Mon compte"
+ ;;add-edit-address;"Ajouter/Modifier l'adresse"
+ ;;address-book;"Carnet d'adresses"
+ ;;cartPage;"Votre Panier"
+ ;;checkout-login;"Passer à la caisse"
+ ;;faq;"Questions fréquemment posées"
+ ;;homepage;"Page d'accueil"
+ ;;login;"Se connecter"
+ ;;multiStepCheckoutSummaryPage;"Paiement"
+ ;;notFound;"Non trouvé"
+ ;;order;"Détails de la commande"
+ ;;orderConfirmationPage;"Confirmation de commande"
+ ;;orders;"Historique des commandes"
+ ;;payment-details;"Détails de paiement"
+ ;;profile;"Profil"
+ ;;searchEmpty;"Aucun résultat"
+ ;;storefinderPage;"Trouver un magasin"
+ ;;termsAndConditions;"Conditions générales"
+ ;;updatePassword;"Mettre à jour le mot de passe oublié"

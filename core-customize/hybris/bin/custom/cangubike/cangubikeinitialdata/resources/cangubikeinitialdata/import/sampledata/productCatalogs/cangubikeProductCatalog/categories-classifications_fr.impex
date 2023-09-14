@@ -1,0 +1,39 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Category Classifications
+
+# Macros / Replacement Parameter definitions
+$productCatalog = cangubikeProductCatalog
+$productCatalogName = Cangubike Product Catalog
+$classificationCatalog = CangubikeClassification
+
+$classCatalogVersion = catalogversion(catalog(id[default='$classificationCatalog']), version[default='1.0'])[unique=true, default='$classificationCatalog:1.0']
+$classSystemVersion = systemVersion(catalog(id[default='$classificationCatalog']), version[default='1.0'])[unique=true]
+
+# Language
+$lang = fr
+
+# Insert Classifications
+UPDATE ClassificationClass; code[unique = true]; $classCatalogVersion; name[lang = $lang]
+                          ; motor              ;                     ; Moteur
+                          ; battery            ;                     ; Batterie
+                          ; fork               ;                     ; Fourche
+                          ; rims               ;                     ; Jantes
+# Create Categories
+UPDATE ClassificationAttribute; code[unique = true]; $classSystemVersion; name[lang = $lang]
+                              ; motor_brand        ;                    ; Marque
+                              ; motor_model        ;                    ; Modèle
+                              ; motor_type         ;                    ; Type
+                              ; performance        ;                    ; Performance
+                              ; battery_model      ;                    ; Modèle
+                              ; battery_type       ;                    ; Type
+                              ; energy_storage     ;                    ; Puissance
+                              ; mounting           ;                    ; Montage batterie
+                              ; energy_supply_type ;                    ; Alimentation
+                              ; fork_system        ;                    ; Construction
+                              ; fork_brand         ;                    ; Marque
+                              ; fork_type          ;                    ; Construction
+                              ; rims_model         ;                    ; Modèle
+                              ; rims_material      ;                    ; Matériaux
+                              ; rims_system        ;                    ; Construction

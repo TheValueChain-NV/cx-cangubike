@@ -1,0 +1,58 @@
+cx-navigation-ui.accNavComponent {
+  nav {
+    ul {
+      li{
+        button{
+        /*  opacity: 0;
+          margin-left:-80px;
+          margin-top: -25px;
+          overflow: hidden;
+          padding: 0;
+          position: relative;*/
+
+          height: 40px;
+          margin: 0;
+          opacity: 0;
+          overflow: hidden;
+          padding: 0;
+          position: relative;
+          bottom: -7px;
+          width: 40px;
+          //font-weight: 100;
+        }
+      }
+    }
+  }
+}
+cx-navigation-ui.flyout {
+  background-color: var(--cx-color-white);
+  a {
+    white-space: nowrap;
+  }
+  nav {
+    ul {
+      li{
+        button{
+          font-weight: 100;
+        }
+      }
+    }
+  }
+}
+cx-icon.account {
+  cursor: pointer;
+ /* display: block;
+  margin-top: 8px;
+  margin-right: -30px;*/
+}
+
+.header-links {
+  position: absolute;
+}
+
+cx-login {
+  position: relative;
+}
+
+
+
