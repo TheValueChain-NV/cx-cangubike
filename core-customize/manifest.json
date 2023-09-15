@@ -154,10 +154,6 @@
 					"value": ""
 				},
 				{
-					"key": "xss.filter.header.X-Frame-Options",
-					"value": ""
-				},
-				{
 					"key": "smartedit.sso.enabled",
 					"value": "true"
 				},

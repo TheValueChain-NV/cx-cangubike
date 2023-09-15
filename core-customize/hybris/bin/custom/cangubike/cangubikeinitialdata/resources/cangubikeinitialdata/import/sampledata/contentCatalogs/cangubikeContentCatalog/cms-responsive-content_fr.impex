@@ -47,7 +47,7 @@ UPDATE CMSParagraphComponent; $contentCV[unique = true]; uid[unique = true]     
 ;                          ; NoAccountParagraphComponent            ; "<p class='cx-section-title'>Vous n'avez pas de compte?</p>"
 ;                          ; DisabledRegistrationParagraphComponent ; "<p>Vous pouvez demander un login à votre chargé de clientèle. Envoyer un message à <strong>information@olf.ch</strong>.</p>"
 ;                          ; EmptyCartParagraphComponent            ;
-;                          ; NoticeTextParagraph                    ; <div class="cx-notice"> Copyright © 2023 | <a href="https://www.olf.ch" target="_blank"> www.olf.ch</a> | <a href ="/terms-and-conditions">Conditions Générales </a> | <a href="/help"> Aide <a/> | Réalisation: OLF</div>
+;                          ; NoticeTextParagraph                    ; <div class="cx-notice"> Copyright © 2023  <a class="cx-notice-a" href="cangurusolutions.be" target="_blank"> www.cangurusolutions.be</a>  <a class="cx-notice-a" href ="/terms-and-conditions"> Conditions Générales </a>  <a class="cx-notice-a" href="/help"> Aide </a> Réalisé par: Canguru </div>
 ;                          ; ContactUsParagraphComponent            ; "Contact"
 ;                          ; SaleParagraphComponent                 ; "Vente"
 
