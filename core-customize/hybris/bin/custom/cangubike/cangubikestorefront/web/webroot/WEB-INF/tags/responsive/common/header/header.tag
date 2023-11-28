@@ -73,9 +73,12 @@
 								<li class="liOffcanvas">
 									<ycommerce:testId code="header_signOut">
 										<c:url value="/logout" var="logoutUrl"/>
-										<a href="${fn:escapeXml(logoutUrl)}">
-											<spring:theme code="header.link.logout" />
-										</a>
+										<form id="logoutForm" action="${logoutUrl}" method="post">
+                                            <button type="submit" class="btn" style="color:#154259;font-weight:400;display:block;background-color:inherit">
+                                                <spring:theme code="header.link.logout" />
+                                        	</button>
+                                            <sec:csrfInput />
+                                        </form>
 									</ycommerce:testId>
 								</li>
 							</sec:authorize>

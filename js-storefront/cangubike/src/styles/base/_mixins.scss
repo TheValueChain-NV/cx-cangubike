@@ -1,0 +1,10 @@
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
+
+@mixin box-shadow($h-shadow, $v-shadow, $blur, $spread, $color, $set: '') {
+  -webkit-box-shadow: $h-shadow $v-shadow $blur $spread $color unquote($set);
+  -moz-box-shadow: $h-shadow $v-shadow $blur $spread $color unquote($set);
+  box-shadow: $h-shadow $v-shadow $blur $spread $color unquote($set);
+}

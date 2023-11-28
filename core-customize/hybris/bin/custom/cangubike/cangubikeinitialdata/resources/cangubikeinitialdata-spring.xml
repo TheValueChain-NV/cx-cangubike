@@ -15,15 +15,12 @@
 	<!-- System Setup -->
 
 	<bean id="yAcceleratorInitialDataSystemSetup"
-	      class="be.canguru.cangubike.initialdata.setup.InitialDataSystemSetup"
+	      class="com.tvc.cangubike.initialdata.setup.InitialDataSystemSetup"
 	      parent="abstractCoreSystemSetup">
-		<constructor-arg name="coreDataImportService" ref="coreDataImportService"/>
-		<constructor-arg name="sampleDataImportService" ref="cangubikeSampleDataImportService"/>
+		<property name="coreDataImportService" ref="cangubikeCoreDataImportService"/>
+		<property name="sampleDataImportService" ref="cangubikeSampleDataImportService"/>
 	</bean>
+	<bean id="cangubikeSampleDataImportService" class="com.tvc.cangubike.initialdata.services.impl.CangubikeSampleDataImportService" parent="sampleDataImportService"/>
 
-	<bean name="cangubikeSampleDataImportService" class="be.canguru.cangubike.initialdata.services.impl.CangubikeSampleDataImportService"
-		  parent="sampleDataImportService">
-
-	</bean>
-
+	<bean id="cangubikeCoreDataImportService" class="com.tvc.cangubike.initialdata.services.impl.CangubikeCoreDataImportService" parent="coreDataImportService"/>
 </beans>

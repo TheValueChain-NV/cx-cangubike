@@ -1,0 +1,30 @@
+
+cx-mini-cart {
+  border-left: 1px solid var(--cx-color-primary);
+  margin-right: -1rem;
+  position: relative;
+  box-sizing: border-box;
+  a {
+    color: var(--cx-color-primary) !important;
+    background:var(--cx-color-transparent) !important;
+    text-decoration: none;
+  }
+
+  .total {
+    display: compact;
+  }
+
+  .count {
+    padding: 0 0.20rem;
+    position: absolute;
+    top: -0.1rem;
+    right: 1.5rem;
+    background-color: var(--cx-color-secondary);
+    border-radius: 50%;
+    font-size: 12px !important;
+    font-weight: normal !important;
+    color: var(--cx-color-white) !important;
+
+  }
+}
+

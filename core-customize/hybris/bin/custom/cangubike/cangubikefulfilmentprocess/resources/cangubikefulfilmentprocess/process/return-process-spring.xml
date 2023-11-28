@@ -14,26 +14,26 @@
 
     <!-- Return Process Actions -->
 
-    <bean id="initialReturnAction" class="be.canguru.cangubike.fulfilmentprocess.actions.returns.InitialReturnAction" parent="abstractAction"/>
+    <bean id="initialReturnAction" class="com.tvc.cangubike.fulfilmentprocess.actions.returns.InitialReturnAction" parent="abstractAction"/>
 
-    <bean id="captureRefundAction" class="be.canguru.cangubike.fulfilmentprocess.actions.returns.CaptureRefundAction" parent="abstractAction"/>
+    <bean id="captureRefundAction" class="com.tvc.cangubike.fulfilmentprocess.actions.returns.CaptureRefundAction" parent="abstractAction"/>
 
-    <bean id="successCaptureAction" class="be.canguru.cangubike.fulfilmentprocess.actions.returns.SuccessCaptureAction" parent="abstractAction"/>
+    <bean id="successCaptureAction" class="com.tvc.cangubike.fulfilmentprocess.actions.returns.SuccessCaptureAction" parent="abstractAction"/>
 
-    <bean id="approveReturnAction" class="be.canguru.cangubike.fulfilmentprocess.actions.returns.ApproveReturnAction" parent="abstractAction"/>
+    <bean id="approveReturnAction" class="com.tvc.cangubike.fulfilmentprocess.actions.returns.ApproveReturnAction" parent="abstractAction"/>
 
-    <bean id="cancelReturnAction" class="be.canguru.cangubike.fulfilmentprocess.actions.returns.CancelReturnAction" parent="abstractAction"/>
+    <bean id="cancelReturnAction" class="com.tvc.cangubike.fulfilmentprocess.actions.returns.CancelReturnAction" parent="abstractAction"/>
 
-    <bean id="printReturnLabelAction" class="be.canguru.cangubike.fulfilmentprocess.actions.returns.PrintReturnLabelAction" parent="abstractAction"/>
+    <bean id="printReturnLabelAction" class="com.tvc.cangubike.fulfilmentprocess.actions.returns.PrintReturnLabelAction" parent="abstractAction"/>
 
-    <bean id="printPackingLabelAction" class="be.canguru.cangubike.fulfilmentprocess.actions.returns.PrintPackingLabelAction" parent="abstractAction"/>
+    <bean id="printPackingLabelAction" class="com.tvc.cangubike.fulfilmentprocess.actions.returns.PrintPackingLabelAction" parent="abstractAction"/>
 
-    <bean id="acceptGoodsAction" class="be.canguru.cangubike.fulfilmentprocess.actions.returns.AcceptGoodsAction" parent="abstractAction"/>
+    <bean id="acceptGoodsAction" class="com.tvc.cangubike.fulfilmentprocess.actions.returns.AcceptGoodsAction" parent="abstractAction"/>
 
-    <bean id="taxReverseAction" class="be.canguru.cangubike.fulfilmentprocess.actions.returns.TaxReverseAction" parent="abstractAction"/>
+    <bean id="taxReverseAction" class="com.tvc.cangubike.fulfilmentprocess.actions.returns.TaxReverseAction" parent="abstractAction"/>
 
-    <bean id="successTaxReverseAction" class="be.canguru.cangubike.fulfilmentprocess.actions.returns.SuccessTaxReverseAction" parent="abstractAction"/>
+    <bean id="successTaxReverseAction" class="com.tvc.cangubike.fulfilmentprocess.actions.returns.SuccessTaxReverseAction" parent="abstractAction"/>
 
-    <bean id="inventoryUpdateAction" class="be.canguru.cangubike.fulfilmentprocess.actions.returns.InventoryUpdateAction" parent="abstractAction"/>
+    <bean id="inventoryUpdateAction" class="com.tvc.cangubike.fulfilmentprocess.actions.returns.InventoryUpdateAction" parent="abstractAction"/>
 
 </beans>

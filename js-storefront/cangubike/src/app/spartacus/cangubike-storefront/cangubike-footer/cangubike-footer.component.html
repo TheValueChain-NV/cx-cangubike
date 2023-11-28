@@ -1,0 +1,27 @@
+<div *ngIf="node$ | async as node" class="container-fluid footer-container">
+  <div *ngFor="let column of node.children" class="col footer-column">
+    <ul>
+      <li class="footer-column-title">
+        {{ column.title }}
+      </li>
+      <li *ngIf="isSocialMediaNode(column)">
+        <span>
+          <div class="row socials">
+              <div class="column"><a href="{{facebookUrl}}" target="_blank"><cx-icon type="FB"></cx-icon></a></div>
+              <div class="column"><a href="{{linkedinUrl}}" target="_blank"><cx-icon type="LINKEDIN"></cx-icon></a></div>
+              <div class="column"><a href="{{instagramUrl}}" target="_blank"><cx-icon type="INSTAGRAM"></cx-icon></a></div>
+              <div class="column"><a href="{{tiktokUrl}}" target="_blank"><cx-icon type="YOUTUBE"></cx-icon></a></div>
+            </div>
+        </span>
+      </li>
+      <div *ngIf="!isSocialMediaNode(column)">
+        <li *ngFor="let item of column.children" class="footer-menu-item">
+          <a [href]="item.url" [target]="item.target">
+            {{ item.title }}
+          </a>
+        </li>
+      </div>
+    </ul>
+  </div>
+</div>
+

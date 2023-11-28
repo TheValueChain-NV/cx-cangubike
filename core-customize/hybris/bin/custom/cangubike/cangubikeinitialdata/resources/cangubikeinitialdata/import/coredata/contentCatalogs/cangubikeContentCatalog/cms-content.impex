@@ -2,12 +2,12 @@
 # Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 # -----------------------------------------------------------------------
 #
-# Import the CMS content for the Cangubike site
+# Import the CMS content for the site
 #
 $contentCatalog=cangubikeContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 
-# Import modulegen config properties into impex macros
+# Import config properties into impex macros
 UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
 $jarResourceCms=$config-jarResourceCmsValue
 
@@ -76,7 +76,7 @@ UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[tr
 # Create ContentSlotNames
 # Each PageTemplate has a number of ContentSlotNames, with a list of valid components for the slot.
 # There are a standard set of slots and a number of specific slots for each template.
-# Standard slots are SiteLogo, HeaderLinks, MiniCart and NavigationBar (that all appear in the Header), and the Footer. 
+# Standard slots are SiteLogo, HeaderLinks, MiniCart and NavigationBar (that all appear in the Header), and the Footer.
 
 # Error Page Template
 INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];validComponentTypes(code);compTypeGroup(code)
@@ -105,8 +105,6 @@ INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=
 ;Section2;;;wide
 ;Section3;;;wide
 ;Section4;;;wide
-;VariantSelector;;ProductVariantSelectorComponent;narrow
-;AddToCart;;ProductAddToCartComponent;narrow
 ;CrossSelling;;ProductReferencesComponent;narrow
 ;UpSelling;;ProductReferencesComponent;narrow
 ;Footer;;;footer
@@ -263,10 +261,18 @@ INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=
 ;Section1;;;wide
 ;Section2A;;;narrow
 ;Section2B;;;narrow
-;Section2C;;;wide
+;Section2C;;;narrow
+;Section2D;;;narrow
 ;Section3;;;wide
 ;Section4;;;narrow
 ;Section5;;;wide
+;Section6A;;;wide
+;Section6B;;;wide
+;Section7A;;;wide
+;Section7B;;;wide
+;Section8;;;narrow
+;Section9;;;wide
+;Section10;;;narrow
 ;Footer;;;footer
 ;TopHeaderSlot;;;wide
 ;BottomHeaderSlot;;;wide
@@ -518,8 +524,6 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
 ;;FooterSlot;Footer;true
 ;;HeaderLinksSlot;Header links;true
 ;;SearchBoxSlot;Search Box;true
-;;VariantSelectorSlot;Variant Selector;true
-;;AddToCartSlot;Add To Cart;true
 ;;UpSellingSlot;Up Selling;true
 ;;CrossSellingSlot;Cross Selling;true
 ;;TopHeaderSlot;Top Header;true
@@ -548,8 +552,6 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;Footer-ProductDetails;Footer;;FooterSlot;true
 ;;HeaderLinks-ProductDetails;HeaderLinks;;HeaderLinksSlot;true
 ;;SearchBox-ProductDetails;SearchBox;;SearchBoxSlot;true
-;;VariantSelector-ProductDetails;VariantSelector;;VariantSelectorSlot;true
-;;AddToCart-ProductDetails;AddToCart;;AddToCartSlot;true
 ;;UpSelling-ProductDetails;UpSelling;;UpSellingSlot;true
 ;;CrossSelling-ProductDetails;CrossSelling;;CrossSellingSlot;true
 ;;TopHeaderSlot-ProductDetails;TopHeaderSlot;;TopHeaderSlot;true
@@ -680,7 +682,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage5Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;SiteLogo-LandingPage5;SiteLogo;;SiteLogoSlot;true
-;;HomepageLink-LandingPage5;HomepageNavLink;;HomepageNavLinkSlot;true 
+;;HomepageLink-LandingPage5;HomepageNavLink;;HomepageNavLinkSlot;true
 ;;NavigationBar-LandingPage5;NavigationBar;;NavigationBarSlot;true
 ;;MiniCart-LandingPage5;MiniCart;;MiniCartSlot;true
 ;;Footer-LandingPage5;Footer;;FooterSlot;true
@@ -908,7 +910,6 @@ INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTe
 ;;account;Account Page;AccountPageTemplate;account
 ;;profile;Profile Page;AccountPageTemplate;profile
 ;;address-book;Address Book Page;AccountPageTemplate;address-book
-;;add-edit-address;Add Edit Address Page;AccountPageTemplate;add-edit-address
 ;;payment-details;Payment Details Page;AccountPageTemplate;payment-details
 ;;quote-detail;My Quote Details;AccountPageTemplate;quote-detail
 ;;my-quotes;My Quotes Page;AccountPageTemplate;my-quotes
@@ -917,6 +918,7 @@ INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTe
 ;;my-replenishment-details;My Replenishemnt Details Page;AccountPageTemplate;my-replenishment-details
 ;;order;Order Details Page;AccountPageTemplate;order
 ;;orders;Order History Page;AccountPageTemplate;orders
+;;unitLevelOrders;Unit-Level Order History Page;AccountPageTemplate;unitLevelOrders
 ;;order-approval-dashboard;Order Approval Dashboard Page;AccountPageTemplate;order-approval-dashboard
 ;;order-approval-details;Order Approval Details Page;AccountPageTemplate;order-approval-details
 ;;saved-carts;Saved Carts Page;AccountPageTemplate;saved-carts
@@ -959,7 +961,7 @@ INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterT
 # "FrontendTemplateName" is used to define the JSP that should be used to render the page for pages with multiple possible layouts.
 # "RestrictedPageTypes" is used to restrict templates to page types
 INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true];velocityTemplate
-                          ;;SecureCustomerPortalTemplate;Secure Customer Portal Page Template Template;;ContentPage;;"
+;;SecureCustomerPortalTemplate;Secure Customer Portal Page Template Template;;ContentPage;;"
 <div>
    <table width='100%' cellspacing='0' style='margin:0;padding:0;table-layout:fixed;border:1px solid #1E4EBF;'>
       <col style='width: 25%;'/>
@@ -1010,26 +1012,80 @@ INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;fronten
 # Standard slots are SiteLogo, HeaderLinks, MiniCart and NavigationBar (that all appear in the Header), and the Footer.
 # Main Page Template
 INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SecureCustomerPortalTemplate'];validComponentTypes(code);compTypeGroup(code)
-                             ;SiteLogo;;;logo
-                             ;TopContent;;;wide
-                             ;SideContent;;;wide
-                             ;TopHeaderSlot;;;wide
-                             ;Footer;;;footer
+;SiteLogo;;;logo
+;TopContent;;;wide
+;SideContent;;;wide
+;TopHeaderSlot;;;wide
+;Footer;;;footer
 
 # Bind Content Slots to Page Template
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SecureCustomerPortalTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
-                                    ;;SiteLogo-SecureCustomerPortal;SiteLogo;;SiteLogoSlot;true
-                                    ;;Footer-SecureCustomerPortal;Footer;;FooterSlot;true
-                                    ;;SideContent-SecureCustomerPortal;SideContent;;SideContentSlot;true
-                                    ;;TopHeaderSlot-SecureCustomerPortal;TopHeaderSlot;;TopHeaderSlot;true
+;;SiteLogo-SecureCustomerPortal;SiteLogo;;SiteLogoSlot;true
+;;Footer-SecureCustomerPortal;Footer;;FooterSlot;true
+;;SideContent-SecureCustomerPortal;SideContent;;SideContentSlot;true
+;;TopHeaderSlot-SecureCustomerPortal;TopHeaderSlot;;TopHeaderSlot;true
 
 # New content slots
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
-                         ;;SideContent-SecureCustomerPortalSecuredLoginPage;SideContent Slot for SecureCustomerPortalSecuredLoginPage;true;
-                         ;;TopContent-SecureCustomerPortalSecuredLoginPage;TopContent Slot for SecureCustomerPortalSecuredLoginPage;true;
-                         ;;SideContent-SecureCustomerPortalSecuredResetPasswordPage;SideContent Slot for SecureCustomerPortalSecuredResetPasswordPage;true;
-                         ;;TopContent-SecureCustomerPortalSecuredResetPasswordPage;TopContent Slot for SecureCustomerPortalSecuredResetPasswordPage;true;
-                         ;;SideContent-SecureCustomerPortalSecuredRegisterPage;SideContent Slot for SecureCustomerPortalSecuredRegisterPage;true;
-                         ;;TopContent-SecureCustomerPortalSecuredRegisterPage;TopContent Slot for SecureCustomerPortalSecuredRegisterPage;true;
-                         ;;SideContent-SecureCustomerPortalRegisterPage;SideContent Slot for SecureCustomerPortalRegisterPage;true;
-                         ;;TopContent-SecureCustomerPortalRegisterPage;TopContent Slot for SecureCustomerPortalRegisterPage;true;
+;;SideContent-SecureCustomerPortalSecuredLoginPage;SideContent Slot for SecureCustomerPortalSecuredLoginPage;true;
+;;TopContent-SecureCustomerPortalSecuredLoginPage;TopContent Slot for SecureCustomerPortalSecuredLoginPage;true;
+;;SideContent-SecureCustomerPortalSecuredResetPasswordPage;SideContent Slot for SecureCustomerPortalSecuredResetPasswordPage;true;
+;;TopContent-SecureCustomerPortalSecuredResetPasswordPage;TopContent Slot for SecureCustomerPortalSecuredResetPasswordPage;true;
+;;SideContent-SecureCustomerPortalSecuredRegisterPage;SideContent Slot for SecureCustomerPortalSecuredRegisterPage;true;
+;;TopContent-SecureCustomerPortalSecuredRegisterPage;TopContent Slot for SecureCustomerPortalSecuredRegisterPage;true;
+;;SideContent-SecureCustomerPortalRegisterPage;SideContent Slot for SecureCustomerPortalRegisterPage;true;
+;;TopContent-SecureCustomerPortalRegisterPage;TopContent Slot for SecureCustomerPortalRegisterPage;true;
+
+
+# Create PageTemplates
+# These define the layout for pages
+# "FrontendTemplateName" is used to define the JSP that should be used to render the page for pages with multiple possible layouts.
+# "RestrictedPageTypes" is used to restrict templates to page types
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
+;;CompanyPageTemplate;Company Page Template;account/accountLayoutPage;ContentPage;false;
+
+# Add Velocity templates that are in the CMS Cockpit. These give a better layout for editing pages
+# The FileLoaderValueTranslator loads a File into a String property. The templates could also be inserted in-line in this file.
+UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;CompanyPageTemplate 		;$jarResourceCms/structure-view/structure_accountPageTemplate.vm
+
+
+# Company Page Template
+# Template used for all of the Company pages
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CompanyPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;TopContent;;;wide
+;SideContent;;;narrow
+;BodyContent;;;wide
+;BottomContent;;;wide
+;Footer;;;footer
+;TopHeaderSlot;;;wide
+;BottomHeaderSlot;;;wide
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CompanyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-CompanyPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-CompanyPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-CompanyPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-CompanyPage;SearchBox;;SearchBoxSlot;true
+;;NavigationBar-CompanyPage;NavigationBar;;NavigationBarSlot;true
+;;MiniCart-CompanyPage;MiniCart;;MiniCartSlot;true
+;;Footer-CompanyPage;Footer;;FooterSlot;true
+;;TopHeaderSlot-CompanyPage;TopHeaderSlot;;TopHeaderSlot;true
+;;BottomHeaderSlot-CompanyPage;BottomHeaderSlot;;BottomHeaderSlot;true
+
+
+# Functional Content Pages
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];previewImage(code, $contentCV)[default='ContentPageModel__function_preview']
+;;my-company-login;My Company Login Page;LoginPageTemplate;my-company-login
+;;my-company;My Company Page;CompanyPageTemplate;my-company
+;;organizationManagement;Organization Management Page;CompanyPageTemplate;organizationManagement
+;;manageUnits;Manage Units Page;CompanyPageTemplate;manageUnits
+;;manageUsergroups;Manage Usergroup Page;CompanyPageTemplate;manageUsergroups
+;;manageUnitApprovers;Manage Units Approvers Page;CompanyPageTemplate;manageUnitApprovers
+
+

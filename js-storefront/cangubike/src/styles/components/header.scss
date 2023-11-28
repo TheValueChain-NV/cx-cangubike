@@ -1,0 +1,131 @@
+
+// header section styles
+header {
+  cx-page-layout cx-page-slot {
+    flex: none;
+  }
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  max-width: var(--cx-page-width-max);
+  .SiteLogin {
+    & > * {
+      flex: none;
+    }
+  }
+}
+
+// TopHeaderSection styles
+.top-header-background {
+  background-color: var(--cx-color-secondary);
+}
+
+.TopHeaderSection {
+  align-items: center;
+  display: flex;
+  font-size: 0.875rem;
+  justify-content: space-between;
+  margin: auto;
+  max-width: var(--cx-page-width-max);
+
+  .SiteLinks {
+    justify-content: start;
+    --cx-margin: 0.5rem 8px;
+
+    & > * {
+      flex: none;
+    }
+    // a trick to display only last site link on mobile
+    @media (max-width: 768px) {
+      cx-link {
+        display: none;
+      }
+      cx-link:last-of-type {
+        display: block;
+      }
+    }
+  }
+
+  .SiteContext {
+    justify-content: end;
+    & > * {
+      flex: none;
+    }
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+}
+
+// navigation component styles
+cx-navigation-ui.flyout {
+  a,
+  span {
+    font-weight: 400;
+  }
+}
+
+// generic link component styles
+cx-generic-link {
+  a {
+    text-decoration: underline;
+  }
+}
+
+// site context selector component styles
+cx-site-context-selector {
+  color: var(--cx-color-primary);
+  margin-top: 0;
+  margin-bottom: 0;
+  select {
+    background: none;
+  }
+}
+
+// mini cart component styles
+// remove default component styles first: `$skipComponentStyles: (cx-mini-cart);`
+cx-mini-cart {
+  margin-right: 1rem;
+  position: relative;
+  a {
+    color: initial;
+  }
+  .total {
+    display: none;
+  }
+  .count {
+    padding: 0 0.25rem;
+    position: absolute;
+    top: -0.5rem;
+  }
+}
+
+// searchbox component styles
+cx-searchbox {
+  border-bottom: 2px solid var(--cx-color-primary);
+  color: var(--cx-color-primary);
+  margin-bottom: 0.25rem;
+  label {
+    padding: unset;
+    width: unset;
+    div.search-icon {
+      align-self: center;
+      flex-basis: unset;
+      padding: unset;
+    }
+    input {
+      height: unset;
+    }
+  }
+  & > * {
+    background-color: unset;
+  }
+}
+.SiteLogo {
+  height:20px;
+  width:20px;
+}

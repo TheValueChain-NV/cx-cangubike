@@ -12,24 +12,24 @@
            
     <context:annotation-config/> 
 
-	<bean id="test.checkOrderAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.CheckOrder"  parent="abstractAction"/>
-	<bean id="test.cancelWholeOrderAuthorizationAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.CancelWholeOrderAuthorization"  parent="abstractAction"/>
-	<bean id="test.sendOrderPlacedNotificationAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.SendOrderPlacedNotification"  parent="abstractAction"/>
-	<bean id="test.takePaymentAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.TakePayment"  parent="abstractAction"/>
-	<bean id="test.sendPaymentFailedNotificationAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.SendPaymentFailedNotification"  parent="abstractAction"/>
-	<bean id="test.checkTransactionReviewStatusAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.CheckTransactionReviewStatus"  parent="abstractAction"/>
-	<bean id="test.fraudCheckOrderAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.FraudCheckOrder"  parent="abstractAction"/>
-	<bean id="test.prepareOrderForManualCheckAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.PrepareOrderForManualCheck"  parent="abstractAction"/>
-	<bean id="test.sendFraudErrorNotificationAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.SendFraudErrorNotification"  parent="abstractAction"/>
-	<bean id="test.checkAuthorizeOrderPaymentAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.CheckAuthorizeOrderPayment"  parent="abstractAction"/>
-	<bean id="test.sendAuthorizationFailedNotificationAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.SendAuthorizationFailedNotification"  parent="abstractAction"/>
-	<bean id="test.reserveOrderAmountAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.ReserveOrderAmount"  parent="abstractAction"/>
-	<bean id="test.fraudCheckOrderInternalAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.FraudCheckOrderInternal"  parent="abstractAction"/>
-	<bean id="test.orderManualCheckedAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.OrderManualChecked"  parent="abstractAction"/>
-	<bean id="test.splitOrderAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.SplitOrder"  parent="abstractAction"/>
-	<bean id="test.subprocessesCompletedAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.SubprocessesCompleted"  parent="abstractAction"/>
-	<bean id="test.sendOrderCompletedNotificationAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.SendOrderCompletedNotification"  parent="abstractAction"/>
-	<bean id="test.scheduleForCleanUpAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.ScheduleForCleanUp"  parent="abstractAction"/>
-	<bean id="test.notifyCustomerAboutFraudAction" class="be.canguru.cangubike.fulfilmentprocess.test.actions.NotifyCustomerAboutFraud"  parent="abstractAction"/>
+	<bean id="test.checkOrderAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.CheckOrder"  parent="abstractAction"/>
+	<bean id="test.cancelWholeOrderAuthorizationAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.CancelWholeOrderAuthorization"  parent="abstractAction"/>
+	<bean id="test.sendOrderPlacedNotificationAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.SendOrderPlacedNotification"  parent="abstractAction"/>
+	<bean id="test.takePaymentAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.TakePayment"  parent="abstractAction"/>
+	<bean id="test.sendPaymentFailedNotificationAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.SendPaymentFailedNotification"  parent="abstractAction"/>
+	<bean id="test.checkTransactionReviewStatusAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.CheckTransactionReviewStatus"  parent="abstractAction"/>
+	<bean id="test.fraudCheckOrderAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.FraudCheckOrder"  parent="abstractAction"/>
+	<bean id="test.prepareOrderForManualCheckAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.PrepareOrderForManualCheck"  parent="abstractAction"/>
+	<bean id="test.sendFraudErrorNotificationAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.SendFraudErrorNotification"  parent="abstractAction"/>
+	<bean id="test.checkAuthorizeOrderPaymentAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.CheckAuthorizeOrderPayment"  parent="abstractAction"/>
+	<bean id="test.sendAuthorizationFailedNotificationAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.SendAuthorizationFailedNotification"  parent="abstractAction"/>
+	<bean id="test.reserveOrderAmountAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.ReserveOrderAmount"  parent="abstractAction"/>
+	<bean id="test.fraudCheckOrderInternalAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.FraudCheckOrderInternal"  parent="abstractAction"/>
+	<bean id="test.orderManualCheckedAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.OrderManualChecked"  parent="abstractAction"/>
+	<bean id="test.splitOrderAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.SplitOrder"  parent="abstractAction"/>
+	<bean id="test.subprocessesCompletedAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.SubprocessesCompleted"  parent="abstractAction"/>
+	<bean id="test.sendOrderCompletedNotificationAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.SendOrderCompletedNotification"  parent="abstractAction"/>
+	<bean id="test.scheduleForCleanUpAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.ScheduleForCleanUp"  parent="abstractAction"/>
+	<bean id="test.notifyCustomerAboutFraudAction" class="com.tvc.cangubike.fulfilmentprocess.test.actions.NotifyCustomerAboutFraud"  parent="abstractAction"/>
 
 </beans>

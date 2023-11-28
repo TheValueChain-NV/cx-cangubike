@@ -1,21 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CmsConfig, I18nConfig, provideConfig } from "@spartacus/core";
 import { configuratorTranslationChunksConfig, configuratorTranslations } from "@spartacus/product-configurator/common/assets";
-import { CpqConfiguratorRootModule, PRODUCT_CONFIGURATOR_RULEBASED_FEATURE, RulebasedConfiguratorRootModule } from "@spartacus/product-configurator/rulebased/root";
-import { PRODUCT_CONFIGURATOR_TEXTFIELD_FEATURE, TextfieldConfiguratorRootModule } from "@spartacus/product-configurator/textfield/root";
+import { PRODUCT_CONFIGURATOR_RULEBASED_FEATURE, RulebasedConfiguratorRootModule } from "@spartacus/product-configurator/rulebased/root";
 
 @NgModule({
   declarations: [],
   imports: [
-    RulebasedConfiguratorRootModule,
-    CpqConfiguratorRootModule,
-    TextfieldConfiguratorRootModule
+    RulebasedConfiguratorRootModule
   ],
   providers: [provideConfig(<CmsConfig>{
     featureModules: {
       [PRODUCT_CONFIGURATOR_RULEBASED_FEATURE]: {
         module: () =>
-          import('@spartacus/product-configurator/rulebased/cpq').then((m) => m.RulebasedCpqConfiguratorModule),
+          import('@spartacus/product-configurator/rulebased').then((m) => m.RulebasedConfiguratorModule),
       },
     }
   }),
@@ -24,22 +21,6 @@ import { PRODUCT_CONFIGURATOR_TEXTFIELD_FEATURE, TextfieldConfiguratorRootModule
       resources: configuratorTranslations,
       chunks: configuratorTranslationChunksConfig,
     },
-  }),
-  provideConfig(<CmsConfig>{
-    featureModules: {
-      [PRODUCT_CONFIGURATOR_TEXTFIELD_FEATURE]: {
-        module: () =>
-          import('@spartacus/product-configurator/textfield').then((m) => m.TextfieldConfiguratorModule),
-      },
-    }
-  }),
-  provideConfig(<CmsConfig>{
-    featureModules: {
-      [PRODUCT_CONFIGURATOR_RULEBASED_FEATURE]: {
-        module: () =>
-          import('@spartacus/product-configurator/rulebased').then((m) => m.RulebasedConfiguratorModule),
-      },
-    }
   })
   ]
 })

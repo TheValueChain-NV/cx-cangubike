@@ -6,61 +6,65 @@
 $contentCatalog=cangubikeContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 $picture=media(code, $contentCV);
-$siteResource=jar:be.canguru.cangubike.initialdata.constants.CangubikeInitialDataConstants&/cangubikeinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$siteResource=jar:com.tvc.cangubike.initialdata.setup.InitialDataSystemSetup&/cangubikeinitialdata/import/sampledata/contentCatalogs/$contentCatalog
 $medias=medias(code, $contentCV);
 $mediaContainer=media(qualifier, $contentCV)[lang=$lang];
-
 
 # Language
 $lang=en
 
 # Site Logo Component
 UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
-;;SiteLogoComponent;/images/theme/logo_hybris_b2b_responsive.svg
+;;SiteLogoComponent;/images/theme/canguru-new.png
 
 # CMS Link Components
 UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
-;;AboutSAPCommerceLink;"About SAP Commerce Cloud"
 ;;AddressBookLink;"Address Book"
-;;AgileCommerceBlogLink;"Agile Commerce Blog"
 ;;ApprovalDashboardLink;"Approval Dashboard"
-;;ContactUsLink;"Contact Us"
-;;DocumentationLink;"Documentation"
 ;;FAQLink;"FAQ"
-;;FacebookLink;"Facebook"
-;;FootwearMensCategoryLink;"Men's"
-;;FootwearWomensCategoryLink;"Women's"
 ;;HomepageNavLink;"Home"
-;;ImportSavedCartLink;"Import Saved Cart"
-;;LinkedInLink;"Linked In"
-;;MyQuotesLink;"Quotes"
 ;;MyReplenishmentOrdersLink;"Replenishment Orders"
-;;OrderFormsLink;"Order Forms"
 ;;OrderHistoryLink;"Order History"
 ;;PaymentDetailsLink;"Payment Details"
 ;;PersonalDetailsLink;"Personal Details"
 ;;QuickOrderLink;"Quick Order"
-;;SafetyCategoryLink;"Safety"
 ;;SavedCartsLink;"Saved Carts"
-;;TwitterLink;"Twitter"
 ;;UpdateEmailLink;"Email Address"
 ;;UpdatePasswordLink;"Password"
-;;VisitSAPLink;"Visit SAP"
+
 
 # CMS Link Components
-UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
- ;;AngleGrindersCategoryLink;"Angle Grinders"
- ;;HandSawsCategoryLink;"Hand Saws"
- ;;HandToolsCategoryLink;"Hand Tools"
- ;;JigsawsCategoryLink;"Jigsaws"
- ;;MeasuringLayoutToolsCategoryLink;"Measuring & Layout Tools"
- ;;NutDriversCategoryLink;"Nut Drivers"
- ;;PowerDrillsCategoryLink;"Power Drills"
- ;;PunchesCategoryLink;"Punches"
- ;;RotaryHammersCategoryLink;"Rotary Hammers"
- ;;SandersCategoryLink;"Sanders"
- ;;ScrewdriversCategoryLink;"Screwdrivers"
- ;;StrippingToolsCategoryLink;"Stripping Tools"
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=de]
+;;MountainsEBikeCategoryLink;"Mountain E-Bikes"
+;;CityEBikesNavNodeCategoryLink;"E-Citybikes"
+;;GravelEBikesCategoryLink;"Gravel E-Bikes"
+;;CargoEBikesCategoryLink;"Cargo E-Bikes"
+;;RoadEbikesCategoryLink;"Road E-Bikes"
+;;MountainBikesNavNodeCategoryLink;"Mountainbike"
+;;CityBikesNavNodeCategoryLink;"Citybike"
+;;GravelBikesNavNodeCategoryLink;"Gravel Bikes"
+;;RoadBikesNavNodeCategoryLink;"Road Bikes"
+;;PedalsNavNodeCategoryLink;"Pedals"
+;;SaddlesNavNodeCategoryLink;"Saddles"
+;;BrakesNavNodeCategoryLink;"Brakes"
+;;WheelsNavNodeCategoryLink;"Wheels"
+;;BasketsNavNodeCategoryLinks;"Baskets and bags"
+;;LightsNavNodeCategoryLink;"Lights"
+;;BellsNavNodeCategoryLinks;"Bells"
+;;PumpsNavNodeCategoryLinks;"Pumps"
+;;ShortsNavNodeCategoryLink;"Shorts"
+;;JerseysNavNodeCategoryLink;"Jerseys"
+;;ShoesNavNodeCategoryLink;"Shoes"
+;;HelmetsNavNodeCategoryLink;"Helmets"
+;;AboutUsLink;"About us"
+;;OurBrandsLink;"Our brands"
+;;CareersLink;"Careers"
+;;ReparationLink;"Reparations"
+;;LeasingLink;"Bike leasing"
+;;ContactUsLink;"Contact us"
+;;TermsLink;"Terms and conditions"
+;;CookiesLink;"Cookies policy"
+
 
 # Lightbox Banner for Mini Cart (banner is not localizable so we must create a separate banner per language)
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];&imageRef;folder(qualifier)[default='images'];altText
@@ -78,18 +82,14 @@ UPDATE CMSTabParagraphComponent;$contentCV[unique=true];uid[unique=true];title[l
 ;;deliveryTab;Delivery;"<div class=""tab-delivery"">Lorem ipsum dolor sit amet, dolor sed, ut nam ut. Senectus mauris egestas a massa, enim placeat wisi congue purus fermentum. Ut aptent mauris dapibus congue in sit. Sed dolor varius amet feugiat volutpat dignissim, pede a rhoncus sodales aliquam adipiscing, dapibus massa fusce. Dui egestas ornare urna nibh facilisi, cras posuere. Lorem aliquam accumsan eleifend sem libero lorem, aliquam sequi sed urna nec. Eget dolor quisque dolor, amet suspendisse ullamcorper minus elit lectus nunc, est mattis dui id eu et facilisis, conubia sit tristique. Ac fusce gravida condimentum iaculis neque, a platea curabitur accumsan porttitor vel justo. Amet potenti ac, eget amet ducimus sit nulla, ac porttitor rhoncus, justo proin tortor integer turpis nulla vitae. Egestas mollis litora nunc platea dui, eu semper mauris diam, erat quam, porta maecenas fusce libero non aliquet. Amet tellus taciti ligula sed sollicitudin, nonummy cursus enim, hendrerit nec, sed lacus sed at sit quis, semper a arcu mollis sapien nec pretium. Ante mauris eros nec, nonummy mauris, nulla lacinia vel. Volutpat luctus velit eu.</div>"
 
 # JSP include components
-UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];title[lang=en]
-;;ProductDetailsTabComponent;Product Details
-;;ProductReviewsTabComponent;Reviews
-;;ProductSpecsTabComponent;Specs
 
 # CMS Footer Component
 UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];notice[lang=en][translator=de.hybris.platform.acceleratorservices.dataimport.batch.converter.CopyrightTranslator,dateFormat=yyyy]
 ;;FooterNavigationComponent;"Copyright © {0} SAP SE or an SAP affiliate company. All rights reserved."
 
 # CMS Paragraph Component (Contact information)
-UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
-;;QuickOrderInfoParagraphComponent;"You can add up to 25 valid SKUs below and add to cart. Stock is reserved once products are added to cart."
+#UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+#;;QuickOrderInfoParagraphComponent;"You can add up to 25 valid SKUs below and add to cart. Stock is reserved once products are added to cart."
 
 # CMS ProductReferences Components
 UPDATE ProductReferencesComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
@@ -108,24 +108,51 @@ UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
 
 # CMS Navigation Nodes
 UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
-;;FollowUsNavNode;"Follow Us"
 ;;MyAccountNavNode;"My Account"
 ;;CangubikeNavNode;"Cangubike Site"
-;;SAPCommerceNavNode;"SAP Commerce Cloud"
-;;SAPCustomerExperienceNavNode;"SAP Customer Experience"
 ;;SiteRootNode;"SiteRoot"
 
 # CMS Navigation Nodes
-UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=en]
- ;;AngleGrindersNavNode;"Angle Grinders"
- ;;FootwearLinksNavNode;"Footwear"
- ;;HandToolsLinksNavNode;"Hand Tools"
- ;;HandToolsNavNode;"Hand Tools"
- ;;MeasuringLayoutToolsNavNode;"Measuring & Layout Tools"
- ;;PowerDrillsNavNode;"Power Drills"
- ;;SafetyNavNode;"Safety"
- ;;SandersNavNode;"Sanders"
- ;;ScrewdriversNavNode;"Screwdrivers"
+UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+;;EBikesNavNode;"E-Bikes"
+;;BikesNavNode;"Bikes"
+;;PartsNavNode;"Parts"
+;;AccessoriesNavNode;"Accessories"
+;;ClothingNavNode;"Clothing"
+;;MountainEBikesNavNode;"Mountain E-Bikes"
+;;CityEBikesNavNode;"E-Citybikes"
+;;GravelEBikesNavNode;"Gravel E-Bikes"
+;;CargoEBikesNavNode;"Cargo E-Bikes"
+;;RoadEBikesNavNode;"Road E-Bikes"
+;;MountainBikesNavNode;"Mountainbikes"
+;;CityBikesNavNode;"Citybikes"
+;;GravelBikesNavNode;"Gravel Bikes"
+;;RoadBikesNavNode;"Road Bikes"
+;;PedalsNavNode;"Pedals"
+;;SaddlesNavNode;"Sadlles"
+;;BrakesNavNode;"Brakes"
+;;WheelsNavNode;"Wheels"
+;;BasketsNavNode;"Baskets"
+;;LightsNavNode;"Lights"
+;;BellsNavNode;"Bells"
+;;PumpsNavNode;"Pumps"
+;;ShortsNavNode;"Shorts"
+;;JerseysNavNode;"Jerseys"
+;;ShoesNavNode;"Shoes"
+;;HelmetsNavNode;"Helmets"
+;;CompanyNavNode;"Company"
+;;ServicesNavNode;"Services"
+;;LinksNavNode;"Links"
+;;SocialMediaNavNode;"Social Media"
+;;AboutUsNavNode;;"About us"
+;;OurBrandsNavNode;"Our brands"
+;;CareersNavNode;"Careers"
+;;ReparationNavNode;"Reparations"
+;;BikeLeasingNavNode;"Bike Leasing"
+;;TermsNavNode;"Terms and conditions"
+;;CookiesPolicyNavNode;"Cookies Policy"
+# Cangubike FAQ Page
+
 
 # Cangubike FAQ Page
 
@@ -136,10 +163,9 @@ UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[la
 
 # Cangubike Order Expired Page
 
-UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=en];
-;;orderExpiredMenuParagraph;;
-;;orderExpiredTextParagraph;"<div class='cms-content order-expired'><div class='information_message neutral'><span class='single'></span><p>This page has expired.</p></div><h2>Dear Customer,</h2><p>Order Status for guest users are only kept for 3 months following the date the order was placed.<br>If you have not received your delivery or have other inquiries, please contact our Customer Service Dept.</p><h3>Be prepared with:</h3><ul class='bullet-list'><li>Your Name</li><li>Order Number (Your Order Number can be found on the confirmation email sent shortly after your order was placed.)</li><li>Order Delivery Address or Pick Up in Store Location</li></ul><p>Our Customer Service professionals will be happy to update you on the status of your order.</p><p class='cms-content-emphasized-big'>Thank you for shopping at hybrisstore.</p></div>";
-
+#UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=en];
+#;;orderExpiredMenuParagraph;;
+#;;orderExpiredTextParagraph;"<div class='cms-content order-expired'><div class='information_message neutral'><span class='single'></span><p>This page has expired.</p></div><h2>Dear Customer,</h2><p>Order Status for guest users are only kept for 3 months following the date the order was placed.<br>If you have not received your delivery or have other inquiries, please contact our Customer Service Dept.</p><h3>Be prepared with:</h3><ul class='bullet-list'><li>Your Name</li><li>Order Number (Your Order Number can be found on the confirmation email sent shortly after your order was placed.)</li><li>Order Delivery Address or Pick Up in Store Location</li></ul><p>Our Customer Service professionals will be happy to update you on the status of your order.</p><p class='cms-content-emphasized-big'>Thank you for shopping at hybrisstore.</p></div>";
 # Cangubike Terms and Conditions Page
 
 # CMS Paragraph Component (Contact information)
@@ -150,9 +176,9 @@ UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[la
 # Cangubike Homepage
 
 UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];title[lang=en]
- ;;CangubikeHomepageNewProductCarouselComponent;"WHAT'S NEW"
- ;;CangubikeHomepageProductCarouselComponent;"Our Bestselling Products"
- ;;PremiumbuyersgroupHomepageProductCarouselComponent;"Our Bestselling Products"
+;;CangubikeHomepageNewProductCarouselComponent;"WHAT'S NEW"
+;;CangubikeHomepageProductCarouselComponent;"Our Bestselling Products"
+;;PremiumbuyersgroupHomepageProductCarouselComponent;"Our Bestselling Products"
 
 INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];realfilename;altText;mime[default='image/jpeg'];$contentCV[unique=true];folder(qualifier)[default=images];
 ;widescreen;Cangubike_1400x480_BigSplash_EN_01_1400W.jpg;$siteResource/images/banners/homepage/responsive/Cangubike_1400x480_BigSplash_EN_01_1400W.jpg;Cangubike_1400x480_BigSplash_EN_01_1400W.jpg;"The Most Powerful Tools in their Price Range";
@@ -273,4 +299,4 @@ INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique
 
 # CMS Link Components
 UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
- ;;RegisterLink;"Register"
+;;RegisterLink;"Register"

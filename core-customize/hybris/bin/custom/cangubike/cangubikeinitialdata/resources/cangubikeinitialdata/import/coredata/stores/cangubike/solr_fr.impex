@@ -1,0 +1,31 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# Import the Solr configuration for the Powertools store
+#
+# Localization en
+#
+$lang=fr
+
+$indexedType=cangubikeProductType
+
+UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$indexedType];name[unique=true];displayName[lang=$lang]
+;;allPromotions;Promotion;
+;;brand;Marque;
+;;category;Catégorie;
+;;code;Code;
+;;description;Description;
+;;manufacturerName;Nom du Fabricant;
+;;name;Nom;
+;;price;Prix;
+;;summary;Résumé;
+
+
+# Define the available sorts
+UPDATE SolrSort;indexedType(identifier)[unique=true,default=$indexedType];code[unique=true];name[lang=$lang]
+;;name-asc;Nom (croissant);
+;;name-desc;Nom (décroissant);
+;;price-asc;Prix (bas-haut);
+;;price-desc;Prix (haut-bas);
+;;relevance;Pertinence;
+;;topRated;Les mieux notés;

@@ -8,9 +8,6 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
-        },
-        "@schematics/angular:application": {
-          "strict": true
         }
       },
       "root": "",
@@ -20,38 +17,40 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cangubike/browser",
+            "outputPath": "dist/cangubike",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@spartacus/smartedit/assets",
-                "output": "assets/"
-              }
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss",
               "src/styles/spartacus/user.scss",
-              "src/styles/spartacus/storefinder.scss",
-              "src/styles/spartacus/product-configurator.scss",
-              "src/styles/spartacus/product.scss",
-              "src/styles/spartacus/organization.scss",
-              "src/styles/spartacus/epd-visualization.scss",
-              "src/styles/spartacus/checkout.scss",
-              "src/styles/spartacus/order.scss",
               "src/styles/spartacus/cart.scss",
-              "src/styles/spartacus/asm.scss"
+              "src/styles/spartacus/order.scss",
+              "src/styles/spartacus/checkout.scss",
+              "src/styles/spartacus/organization.scss",
+              "src/styles/spartacus/product-configurator.scss",
+              "src/styles/spartacus/storefinder.scss",
+              "src/styles/spartacus/product.scss",
+              "src/styles/spartacus/pickup-in-store.scss"
+
             ],
             "scripts": [],
-            "serviceWorker": true,
-            "ngswConfigPath": "ngsw-config.json"
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules/",
+                "src/styles",
+                "src/styles/base",
+                "src/styles/components"
+              ]
+            }
           },
           "configurations": {
             "production": {
@@ -65,12 +64,6 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -107,15 +100,15 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest",
               {
                 "glob": "**/*",
                 "input": "./node_modules/@spartacus/smartedit/assets",
@@ -125,80 +118,24 @@
             "styles": [
               "src/styles.scss",
               "src/styles/spartacus/user.scss",
-              "src/styles/spartacus/storefinder.scss",
-              "src/styles/spartacus/product-configurator.scss",
-              "src/styles/spartacus/product.scss",
-              "src/styles/spartacus/organization.scss",
-              "src/styles/spartacus/epd-visualization.scss",
-              "src/styles/spartacus/checkout.scss",
-              "src/styles/spartacus/order.scss",
               "src/styles/spartacus/cart.scss",
-              "src/styles/spartacus/asm.scss"
+              "src/styles/spartacus/order.scss",
+              "src/styles/spartacus/checkout.scss",
+              "src/styles/spartacus/organization.scss",
+              "src/styles/spartacus/product-configurator.scss",
+              "src/styles/spartacus/storefinder.scss",
+              "src/styles/spartacus/product.scss",
+              "src/styles/spartacus/pickup-in-store.scss"
             ],
-            "scripts": []
-          }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/cangubike/server",
-            "main": "server.ts",
-            "tsConfig": "tsconfig.server.json",
-            "inlineStyleLanguage": "scss"
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules/"
               ]
-            },
-            "development": {
-              "optimization": false,
-              "sourceMap": true,
-              "extractLicenses": false
             }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
-          "configurations": {
-            "development": {
-              "browserTarget": "cangubike:build:development",
-              "serverTarget": "cangubike:server:development"
-            },
-            "production": {
-              "browserTarget": "cangubike:build:production",
-              "serverTarget": "cangubike:server:production"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "prerender": {
-          "builder": "@nguniversal/builders:prerender",
-          "options": {
-            "routes": [
-              "/"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "cangubike:build:production",
-              "serverTarget": "cangubike:server:production"
-            },
-            "development": {
-              "browserTarget": "spartacusstore:build:development",
-              "serverTarget": "spartacusstore:server:development"
-            }
-          },
-          "defaultConfiguration": "production"
+          }
         }
       }
     }
-  },
-  "defaultProject": "cangubike"
+  }
 }

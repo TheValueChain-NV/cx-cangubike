@@ -3,13 +3,29 @@
  Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 -->
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
-
+	
 	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
-		<property name="genders" type="java.util.List&lt;be.canguru.cangubike.facades.product.data.GenderData>"/>
+		<property name="genders" type="java.util.List&lt;com.tvc.cangubike.facades.product.data.GenderData>"/>
+		<property name="brake" type="String"/>
+		<property name="frame" type="String"/>
+		<property name="saddle" type="String"/>
+		<property name="model_year" type="String"/>
 	</bean>
 
-	<bean class="be.canguru.cangubike.facades.product.data.GenderData">
+	<bean class="com.tvc.cangubike.facades.product.data.GenderData">
 		<property name="code" type="String"/>
 		<property name="name" type="String"/>
 	</bean>
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO">
+		<property name="brake" type="String"/>
+		<property name="frame" type="String"/>
+		<property name="saddle" type="String"/>
+		<property name="model_year" type="String"/>
+	</bean>
+	<enum class="de.hybris.platform.commercefacades.product.ProductOption">
+		<value>BRAKE</value>
+		<value>FRAME</value>
+		<value>SADDLE</value>
+		<value>MODEL_YEAR</value>
+	</enum>
 </beans>

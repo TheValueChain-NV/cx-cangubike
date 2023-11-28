@@ -1,0 +1,150 @@
+<!--<div *ngIf="component.data$ | async as data" class="card" style="width: 18rem;">
+  <div class="card-img-top">
+    <cx-media [container]="getImage(data.media)"></cx-media>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{data?.title}}</h5>
+    <div class="card-text" [innerHTML]="data.content">
+    </div>
+
+  </div>
+</div> -->
+<!--<div class="container cx-card-container" *ngIf="component.data$ | async as data">
+  <section class="mx-auto my-5 cat-section">
+
+    <div class="cx-card rounded">
+      <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+        <h5 class="card-header font-weight-bold"><a>{{data.title}}</a></h5>
+        <div class="img-fluid">
+          <cx-media [container]="getImage(data.media)"></cx-media>
+        </div>
+      </div>
+      <div class="card-body cx-card-body">
+        <p class="card-text cx-card-paragraph-text" [innerHTML]="data.content"></p>
+        <hr class="my-4" />
+        <a href="{{data.url}}" class="btn btn-primary">Discover more</a>
+      </div>
+    </div>
+
+  </section>
+</div>-->
+<!--<div class="container" *ngIf="component.data$ | async as data">-->
+<!--  <div class="card">-->
+<!--    <div class="card__image-container">-->
+<!--      <cx-media [container]="getImage(data.media)" class="card__image"></cx-media>-->
+<!--    </div>-->
+
+<!--    <svg class="card__svg" viewBox="0 0 800 500">-->
+
+<!--      <path d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#333"/>-->
+<!--      <path class="card__line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" stroke-width="3" fill="transparent"/>-->
+<!--    </svg>-->
+
+<!--    <div class="card__content">-->
+<!--      <h1 class="card__title">{{data.title}}</h1>-->
+<!--      <p class="card-text cx-card-paragraph-text" [innerHTML]="data.content"></p>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--
+<div class="container-fluid d-flex justify-content-center" *ngIf="component.data$ | async as data">
+  <div class="row mt-5">
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-img-top">
+          <cx-media [container]="getImage(data.media)" class="card__image"></cx-media>
+        </div>
+        <div class="card-body pt-0 px-0">
+          <div class="d-flex flex-row justify-content-between mb-0 px-3">
+            <small class="text-muted mt-1">{{data.title}}</small>
+            <h6>&dollar;22,495&ast;</h6>
+          </div>
+          <hr class="mt-2 mx-3">
+          <div class="d-flex flex-row justify-content-between px-3 pb-4">
+            <div class="d-flex flex-column"><span class="text-muted">Fuel Efficiency</span><small class="text-muted">L/100KM&ast;</small></div>
+            <div class="d-flex flex-column"><h5 class="mb-0">8.5/7.1</h5><small class="text-muted text-right">(city/Hwy)</small></div>
+          </div>
+          <div class="d-flex flex-row justify-content-between p-3 mid">
+            <div class="d-flex flex-column"><small class="text-muted mb-1">ENGINE</small><div class="d-flex flex-row"><img src="https://imgur.com/iPtsG7I.png" width="35px" height="25px"><div class="d-flex flex-column ml-1"><small class="ghj">1.4L MultiAir</small><small class="ghj">16V I-4 Turbo</small></div></div></div>
+            <div class="d-flex flex-column"><small class="text-muted mb-2">HORSEPOWER</small><div class="d-flex flex-row"><img src="https://imgur.com/J11mEBq.png"><h6 class="ml-1">135 hp&ast;</h6></div></div>
+          </div>
+          <small class="text-muted key pl-3">Standard key Features</small>
+          <div class="mx-3 mt-3 mb-2"><button type="button" class="btn btn-danger btn-block"><small>BUILD & PRICE</small></button></div>
+          <small class="d-flex justify-content-center text-muted">*Legal Disclaimer</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+-->
+
+
+<!--
+<div class="column is-one-quarter" *ngIf="component.data$ | async as data">
+  <div class="mui-overlay-mixin-parent">
+    <figure>
+      <a
+        href="/{{data.url}}"
+      > <cx-media [container]="getImage(data.media)"></cx-media>
+      </a>
+      <h2 class="nom_banner_h">{{data.title}}</h2>
+    </figure>
+    <a
+      href="{{data.url}}"
+    >
+      <div class="mui-overlay-mixin">
+        <div class="mui-overlay-mixin-text">
+          <span>{{data.title}}</span>
+          <span [innerHTML]="data.content"></span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</div>
+-->
+
+<!--<section class="bikes-section" *ngIf="component.data$ | async as data">
+  <div class="container-fluid">
+    <div class="row bike-img">
+      <div>
+        <cx-generic-link id="banner-img" class="responsive-cnt">
+          <span [innerHTML]="data.content" class="image-text"></span>
+          <button class="btn btn-primary discover">Discover more</button>
+          <cx-media class="banner-image" [container]="getImage(data.media)">
+          </cx-media>
+        </cx-generic-link>
+      </div>
+    </div>
+  </div>
+</section>-->
+  <section class="bikes-section" *ngIf="component.data$ | async as data">
+    <div class="container-fluid">
+      <div class="row bike-img mui-overlay-mixin-parent">
+        <div class="image-container">
+          <cx-generic-link id="banner-img" class="responsive-cnt"
+          url="{{data.url}}"
+          >
+              <cx-media class="banner-image" [container]="getImage(data.media)">
+              </cx-media>
+            <h2 class="nom_banner_h">{{data.title}}</h2>
+          </cx-generic-link>
+          <a
+            href="{{data.url}}"
+          >
+            <div class="mui-overlay-mixin">
+              <div class="mui-overlay-mixin-text">
+                <span [innerHTML]="data.content"></span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+

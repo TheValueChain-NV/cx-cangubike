@@ -1,0 +1,51 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Categories
+
+# Macros / Replacement Parameter definitions
+$productCatalog = cangubikeProductCatalog
+$productCatalogName = Cangubike Product Catalog
+
+$catalogVersion = catalogversion(catalog(id[default=$productCatalog]), version[default='Staged'])[unique=true, default=$productCatalog:Staged]
+
+
+# Language
+$lang = fr
+
+
+# Create Categories
+UPDATE Category; code[unique = true]; $catalogVersion; name[lang = $lang]
+               ; catalog            ;                ; Catalogue
+# level 1
+               ; ebikes             ;                ; Vélos électriques
+               ; bikes              ;                ; Vélos
+               ; parts              ;                ; Pièces détachées
+               ; accessories        ;                ; Accessoires
+               ; clothing           ;                ; Vêtements
+# level 2 ebikes -->
+               ; e_mountainbikes     ;                ; VTT électriques
+               ; e_citybikes        ;                ; Vélos de ville électriques
+               ; e_cargobikes       ;                ; Vélos cargo électriques
+               ; e_gravelbikes      ;                ; Vélos de gravel électriques
+               ; e_roadbikes        ;                ; Vélos de route électriques
+# bikes -->
+               ; mountainbikes      ;                ; VTT
+               ; citybikes          ;                ; Vélos de ville
+               ; gravelbikes        ;                ; Vélos de gravel
+               ; roadbikes          ;                ; Vélos de route
+# parts -->
+               ; pedals             ;                ; Pédales
+               ; saddles            ;                ; Selles
+               ; brakes             ;                ; Freins
+               ; wheels             ;                ; Roues
+# accessories -->
+               ; baskets_and_bags   ;                ; Paniers & Sacoches
+               ; lights             ;                ; Éclairage
+               ; bells              ;                ; Sonnettes
+               ; pumps              ;                ; Pompes
+# clothing -->
+               ; shorts             ;                ; Cuissards & Pantalons
+               ; jerseys            ;                ; Maillots
+               ; shoes              ;                ; Chaussures
+               ; helmets            ;                ; Casques

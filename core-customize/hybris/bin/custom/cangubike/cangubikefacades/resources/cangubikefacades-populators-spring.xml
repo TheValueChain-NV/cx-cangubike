@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+		
+	<context:annotation-config/> 
+
+	<alias name="defaultProductBrakePopulator" alias="productBrakePopulator"/>
+	<bean id="defaultProductBrakePopulator" parent="baseProductPopulator"
+		  class="com.tvc.cangubike.facades.populators.ProductBrakePopulator">
+		<property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+
+	<alias name="defaultProductFramePopulator" alias="productFramePopulator"/>
+	<bean id="defaultProductFramePopulator" parent="baseProductPopulator"
+		  class="com.tvc.cangubike.facades.populators.ProductFramePopulator">
+		<property name="typeService" ref="typeService"/>
+	</bean>
+
+	<alias name="defaultProductSaddlePopulator" alias="productSaddledPopulator"/>
+	<bean id="defaultProductSaddlePopulator" parent="baseProductPopulator"
+		  class="com.tvc.cangubike.facades.populators.ProductSaddlePopulator">
+		<property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+	<alias name="defaultProductModelYearlyPopulator" alias="productModelYearlyPopulator"/>
+	<bean id="defaultProductModelYearlyPopulator" parent="baseProductPopulator"
+		  class="com.tvc.cangubike.facades.populators.ProductProductYearPopulator"/>
+
+	<alias name="cangubikeProductConfiguredPopulator" alias="productConfiguredPopulator"/>
+	<bean id="cangubikeProductConfiguredPopulator" parent="cwsProductVariantConfiguredPopulator">
+		<property name="populators">
+			<map key-type="de.hybris.platform.commercefacades.product.ProductOption" merge="true">
+				<entry key="BRAKE" value-ref="defaultProductBrakePopulator"/>
+				<entry key="FRAME" value-ref="defaultProductFramePopulator"/>
+				<entry key="SADDLE" value-ref="defaultProductSaddlePopulator"/>
+				<entry key="MODEL_YEAR" value-ref="defaultProductModelYearlyPopulator"/>
+			</map>
+
+		</property>
+	</bean>
+</beans>

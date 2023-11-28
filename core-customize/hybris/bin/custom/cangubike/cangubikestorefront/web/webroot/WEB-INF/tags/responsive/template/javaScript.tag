@@ -15,29 +15,32 @@
 	</c:when>
 	<c:otherwise>
 		<%-- jquery --%>
-		<script src="${commonResourcePathHtml}/js/jquery-3.5.1.min.js"></script>
-		
+		<script src="${commonResourcePathHtml}/js/jquery-3.7.0.min.js"></script>
+
 		<%-- plugins --%>
 		<script src="${commonResourcePathHtml}/js/enquire.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/Imager.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/purify.min.js"></script>
-		<script src="${commonResourcePathHtml}/js/jquery.blockUI-2.66.js"></script>
+		<script src="${commonResourcePathHtml}/js/jquery.blockUI-2.70.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/jquery.colorbox-min.js"></script>
 		<script src="${commonResourcePathHtml}/js/jquery.form.min.js"></script>
-		<script src="${commonResourcePathHtml}/js/jquery.hoverIntent.js"></script>
+		<script src="${commonResourcePathHtml}/js/jquery.hoverIntent-1.10.2.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/jquery.pstrength.custom-1.2.0.js"></script>
 		<script src="${commonResourcePathHtml}/js/jquery.syncheight.custom.js"></script>
 		<script src="${commonResourcePathHtml}/js/jquery.tabs.custom.js"></script>
-		<script src="${commonResourcePathHtml}/js/jquery-ui-1.13.0.min.js"></script>
+		<script src="${commonResourcePathHtml}/js/jquery-ui-1.13.2.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/jquery.zoom.custom.js"></script>
 		<script src="${commonResourcePathHtml}/js/owl.carousel.custom.js"></script>
 		<script src="${commonResourcePathHtml}/js/jquery.tmpl-1.0.0pre.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/jquery.currencies.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/jquery.waitforimages.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/jquery.slideviewer.custom.1.2.js"></script>
-		
+
+        <%-- Custom Imager.min.js --%>
+		<script src="${commonResourcePathHtml}/js/acc.imager.js"></script>
+
 		<%-- Custom ACC JS --%>
-		
+
 		<script src="${commonResourcePathHtml}/js/acc.address.js"></script>
 		<script src="${commonResourcePathHtml}/js/acc.autocomplete.js"></script>
 		<script src="${commonResourcePathHtml}/js/acc.carousel.js"></script>
@@ -84,17 +87,17 @@
 		<script src="${commonResourcePathHtml}/js/acc.csv-import.js"></script>
 
 		<script src="${commonResourcePathHtml}/js/_autoload.js"></script>
-		
+
 		<%-- Cms Action JavaScript files --%>
 		<c:forEach items="${cmsActionsJsFiles}" var="actionJsFile">
 		    <script src="${commonResourcePathHtml}/js/cms/${fn:escapeXml(actionJsFile)}"></script>
 		</c:forEach>
-		
+
 		<%-- AddOn JavaScript files --%>
 		<c:forEach items="${addOnJavaScriptPaths}" var="addOnJavaScript">
 		    <script src="${fn:escapeXml(addOnJavaScript)}"></script>
 		</c:forEach>
-		
+
 	</c:otherwise>
 </c:choose>
 

@@ -1,39 +1,73 @@
 import { NgModule } from '@angular/core';
-import { translationChunksConfig } from "@spartacus/assets";
-import { FeaturesConfig, I18nConfig, OccConfig, provideConfig, SiteContextConfig } from "@spartacus/core";
-import { defaultB2bCheckoutConfig, defaultB2bOccConfig } from "@spartacus/setup";
-import { defaultCmsContentProviders, layoutConfig, mediaConfig } from "@spartacus/storefront";
-import { environment } from 'src/environments/environment.prod';
+import { translationChunksConfig, translations } from "@spartacus/assets";
+import { FeaturesConfig, I18nConfig, OccConfig, SiteContextConfig, provideConfig } from "@spartacus/core";
+import { defaultB2bOccConfig } from "@spartacus/setup";
+import {
+  IconConfig,
+  IconResourceType,
+  defaultCmsContentProviders,
+  layoutConfig,
+  mediaConfig
+} from "@spartacus/storefront";
+import { cangubikeLayoutConfig } from "./layout.config";
 
 @NgModule({
   declarations: [],
   imports: [
   ],
-  providers: [provideConfig(layoutConfig), provideConfig(mediaConfig), ...defaultCmsContentProviders, provideConfig(<OccConfig>{
+  providers: [provideConfig(layoutConfig),provideConfig(cangubikeLayoutConfig), provideConfig(mediaConfig), ...defaultCmsContentProviders, provideConfig(<OccConfig>{
     backend: {
       occ: {
-        baseUrl: environment.occBaseUrl
+        //baseUrl: environment.occBaseUrl,
+        endpoints: {
+          product: 'products/${productCode}?fields=FULL'
+        }
       }
     },
   }), provideConfig(<SiteContextConfig>{
     context: {
       urlParameters: ['baseSite', 'language', 'currency'],
-      baseSite: ['cangubike-spa'],
-      language: ['en', 'fr'],
-      currency: ['USD','EUR'],
+      baseSite: ['cangubike'],
+      language: ['en','fr'],
+      currency: ['EUR','USD'],
     },
   }), provideConfig(<I18nConfig>{
     i18n: {
-      backend: {
-        loadPath: 'assets/i18n-assets/{{lng}}/{{ns}}.json',
-      },
+      resources: translations,
       chunks: translationChunksConfig,
       fallbackLang: 'en'
     },
   }), provideConfig(<FeaturesConfig>{
     features: {
-      level: '4.3'
-    }
-  }), provideConfig(defaultB2bOccConfig), provideConfig(defaultB2bCheckoutConfig)]
+      level: '6.3'
+    },
+  }),provideConfig({
+    icon: {
+      symbols: {
+        CART: 'bag',
+        HOME: 'home',
+        MENU: 'menu',
+        USER: 'user',
+        WISHLIST: 'wishlist',
+        FB: 'fab fa-facebook',
+        LINKEDIN: 'fab fa-linkedin',
+        INSTAGRAM: 'fab fa-instagram',
+        TWITTER: 'fa-twitter',
+        YOUTUBE: 'fab fa-youtube',
+        FRAME: 'frame',
+      },
+      resources: [
+        {
+          type: IconResourceType.SVG,
+          url: './assets/icons-sheet.svg',
+          types: ['CART', 'HOME', 'MENU', 'USER', 'WISHLIST','FRAME'],
+        },
+        {
+          type: IconResourceType.LINK,
+          url: 'https://use.fontawesome.com/releases/v6.3.0/css/all.css',
+        },
+      ],
+    },
+  } as IconConfig), provideConfig(defaultB2bOccConfig)]
 })
 export class SpartacusConfigurationModule { }

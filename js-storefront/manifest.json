@@ -1,16 +1,12 @@
 {
-    "applications": [
-        {
-            "name": "cangubike",
-            "path": "cangubike",
-            "ssr": {
-                "enabled": true,
-                "path": "dist/cangubike/server/main.js"
-            },
-            "csr": {
-                "webroot": "dist/cangubike/browser/"
-            }
-        }
-    ],
-    "nodeVersion": "14"
+  "applications": [
+    {
+      "name": "cangubike",
+      "path": "cangubike",
+      "csr": {
+        "webroot": "dist/cangubike"
+      }
+    }
+  ],
+  "nodeVersion": "16"
 }

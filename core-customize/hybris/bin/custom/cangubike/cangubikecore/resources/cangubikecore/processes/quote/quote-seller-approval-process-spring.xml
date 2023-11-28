@@ -13,14 +13,14 @@
 
     <alias name="defaultCheckSellerApproverResponseOnQuoteAction" alias="checkSellerApproverResponseOnQuoteAction"/>
     <bean id="defaultCheckSellerApproverResponseOnQuoteAction"
-          class="be.canguru.cangubike.core.actions.quote.CheckSellerApproverResponseOnQuoteAction"
+          class="com.tvc.cangubike.core.actions.quote.CheckSellerApproverResponseOnQuoteAction"
           parent="abstractAction">
         <property name="quoteService" ref="quoteService"/>
     </bean>
 
     <alias name="defaultQuoteApprovalRejectedAction" alias="quoteApprovalRejectedAction"/>
     <bean id="defaultQuoteApprovalRejectedAction"
-          class="be.canguru.cangubike.core.actions.quote.QuoteApprovalRejectedAction"
+          class="com.tvc.cangubike.core.actions.quote.QuoteApprovalRejectedAction"
           parent="abstractAction">
         <property name="commerceQuoteService" ref="commerceQuoteService"/>
         <property name="quoteService" ref="quoteService"/>

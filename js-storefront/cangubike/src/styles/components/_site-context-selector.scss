@@ -1,0 +1,19 @@
+// site context selector component styles
+cx-site-context-selector {
+  color: var(--cx-color-secondary);
+  margin-top: 0;
+  margin-bottom: 0;
+
+  label span {
+    display: none;
+  }
+  select {
+    color: var(--cx-color-white);
+    background-color: var(--cx-color-secondary);
+    font-size: 0.875rem;
+    font-weight: 300;
+  }
+  cx-icon {
+    color: var(--cx-color-white);
+  }
+}

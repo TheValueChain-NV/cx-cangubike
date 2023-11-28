@@ -1,13 +1,17 @@
+ACC.CONSTANT_CLOSE_ACCOUNT = {
+    close_button: ".js-close-account-popup-button"
+};
+
 ACC.close = {
     _autoload: [
-        ["bindCloseAccountModalButtons", $(".js-close-account-popup-button").length != 0],
-        ["bindCloseAccountButton", $(".js-close-account-popup-button").length != 0]
+        ["bindCloseAccountModalButtons", $(ACC.CONSTANT_CLOSE_ACCOUNT.close_button).length !== 0],
+        ["bindCloseAccountButton", $(ACC.CONSTANT_CLOSE_ACCOUNT.close_button).length !== 0]
     ],
 
     bindCloseAccountModalButtons: function () {
-        $('.js-close-account-popup-button').click(function (event) {
+        $(ACC.CONSTANT_CLOSE_ACCOUNT.close_button).click(function (event) {
             event.preventDefault();
-            var popupTitle = $('.js-close-account-popup-button').data("popupTitle");
+            var popupTitle = $(ACC.CONSTANT_CLOSE_ACCOUNT.close_button).data("popupTitle");
             var popupTitleHtml = ACC.common.encodeHtml(popupTitle);
             ACC.colorbox.open(popupTitleHtml, {
                 inline: true,
@@ -30,7 +34,7 @@ ACC.close = {
                 type: 'POST',
                 success: function (response) {
                     ACC.colorbox.close();
-                    var url = ACC.config.encodedContextPath + '/logout?closeAcc=true'
+                    var url = ACC.config.encodedContextPath + '/?logout=true&closeAcc=true'
                     window.location.replace(url);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

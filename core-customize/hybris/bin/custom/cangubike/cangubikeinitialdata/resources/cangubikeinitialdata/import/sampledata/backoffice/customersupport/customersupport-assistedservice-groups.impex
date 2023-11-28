@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------
-# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved.
 # -----------------------------------------------------------------------
 #
 # Grant assisted service role to customer support
@@ -12,3 +12,24 @@ INSERT_UPDATE UserGroup;UID[unique=true];groups(uid)[mode=append];locname[lang=e
 INSERT_UPDATE CsAgentGroup;UID[unique=true];groups(uid)[mode=append];locname[lang=en];description
 ;customersupportmanagergroup;customersupportmanagerrole,customersupportagentrole,asagentsalesmanagergroup,csagentmanagergroup;Customer Support Manager Group;The Customer Support Manager Group has access to the Customer Support Backoffice's Customer Support Manager Group and Customer Support Agent Group views AND/OR the Assisted Service Module.
 ;customersupportagentgroup;customersupportagentrole,asagentsalesgroup;Customer Support Agent Group;The Customer Support Agent Group has access to the Customer Support Backoffice's Customer Support Agent Group views and AND/OR the Assisted Service Module.
+
+INSERT_UPDATE UserGroup; UID[unique = true]                ; description
+                       ; customersupportadministratorgroup ; The Customer Support Administrator Group has access to the Customer Support Backoffice's Customer Support Administrator Group and Customer Support Agent Group views AND/OR the Assisted Service Module.
+
+INSERT_UPDATE PointOfService; name[unique = true]; type(code) 
+                            ; Nakano             ; STORE
+                            ; Ichikawa           ; STORE
+
+INSERT_UPDATE StoreEmployeeGroup; UID[unique = true]     ; locname[lang = en]            ; store(name); groups[ignorenull = false, default = ]
+                                ; nakanostoreemployees   ; Nakano Store Employee Group   ; Nakano     ;
+                                ; ichikawastoreemployees ; Ichikawa Store Employee Group ; Ichikawa   ;
+
+INSERT_UPDATE UserGroup; UID[unique = true]; locname[lang = en]            ; groups[ignorenull = false, default = ]
+                       ; POS_NAKANO        ; Nakano Store Customer Group   ;
+                       ; POS_ICHIKAWA      ; Ichikawa Store Customer Group ;
+
+INSERT_UPDATE PrincipalGroupRelation; source(uid)[unique = true]; target(uid)[unique = true]
+                                    ; nakanostoreemployees      ; asagentgroup
+                                    ; ichikawastoreemployees    ; asagentgroup
+                                    ; POS_NAKANO                ; customergroup
+                                    ; POS_ICHIKAWA              ; customergroup

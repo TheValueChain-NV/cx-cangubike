@@ -1,10 +1,14 @@
+ACC.CONSTANT_REFINEMENTS = {
+    facet_form: '.js-facet-form'
+};
+
 ACC.refinements = {
 
 	_autoload: [
-		["bindMoreLessToggles", $(".js-facet-form").length !== 0],
-		["bindMoreStoresToggles", $(".js-facet-form").length !== 0],
-		["init", $(".js-facet-form").length !== 0],
-		["bindSearch", $(".js-facet-form").length !== 0]
+		["bindMoreLessToggles", $(ACC.CONSTANT_REFINEMENTS.facet_form).length !== 0],
+		["bindMoreStoresToggles", $(ACC.CONSTANT_REFINEMENTS.facet_form).length !== 0],
+		["init", $(ACC.CONSTANT_REFINEMENTS.facet_form).length !== 0],
+		["bindSearch", $(ACC.CONSTANT_REFINEMENTS.facet_form).length !== 0]
 	],
 
 
@@ -45,7 +49,7 @@ ACC.refinements = {
 
 	getInitStoreData: function(q,latitude,longitude){
 		$(".alert").remove();
-		data = {
+		var data = {
 			"q":"" ,
 			"page":"0"
 		};
@@ -69,7 +73,7 @@ ACC.refinements = {
 
 
 	getStoreData: function(){
-		url= $(".js-facet-form").data("url");
+		var url= $(ACC.CONSTANT_REFINEMENTS.facet_form).data("url");
 		$.ajax({
 			url: url,
 			data: ACC.refinements.storeSearchData,

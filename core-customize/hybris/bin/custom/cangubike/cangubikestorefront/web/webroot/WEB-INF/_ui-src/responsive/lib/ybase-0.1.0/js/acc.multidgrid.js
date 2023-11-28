@@ -38,7 +38,7 @@ ACC.multidgrid = {
 	populateAndShowGrid: function(element, event, readOnly)
 	{
 		var itemIndex = $(element).data("index");
-		grid = $(document).find("#ajaxGrid" + itemIndex);
+		var grid = $(document).find("#ajaxGrid" + itemIndex);
 		var gridEntries = $(document).find('#grid' + itemIndex);
 		
 		$(element).toggleClass('open');

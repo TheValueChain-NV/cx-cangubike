@@ -15,11 +15,11 @@
 		
 	<context:annotation-config/> 
 
-	<bean id="yacceleratorTestDataSystemSetup" class="be.canguru.cangubike.test.setup.TestDataSystemSetup" parent="abstractCoreSystemSetup">
+	<bean id="yacceleratorTestDataSystemSetup" class="com.tvc.cangubike.test.setup.TestDataSystemSetup" parent="abstractCoreSystemSetup">
 		<property name="acceleratorTestOrderData" ref="acceleratorTestOrderData"/>
 	</bean>
 
-	<bean id="acceleratorTestOrderData" class="be.canguru.cangubike.test.orders.AcceleratorTestOrderData">
+	<bean id="acceleratorTestOrderData" class="com.tvc.cangubike.test.orders.AcceleratorTestOrderData">
 		<property name="impersonationService" ref="impersonationService"/>
 		<property name="cmsAdminSiteService" ref="cmsAdminSiteService"/>
 		<property name="userService" ref="userService"/>

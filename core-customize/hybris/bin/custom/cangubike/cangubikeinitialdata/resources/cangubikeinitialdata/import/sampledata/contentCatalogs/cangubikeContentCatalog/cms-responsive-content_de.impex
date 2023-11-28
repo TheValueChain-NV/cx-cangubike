@@ -1,0 +1,93 @@
+$contentCatalog = cangubikeContentCatalog
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]), CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$siteResource = jar:com.tvc.cangubike.initialdata.setup.InitialDataSystemSetup&/cangubikeinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$lang = de
+UPDATE CMSLinkComponent; $contentCV[unique = true]; uid[unique = true]       ; linkName[lang = $lang]
+                       ;                          ; StoreFinderLink          ; Eine filiale finden
+                       ;                          ; SignOutLink              ; Abmeldung
+                       ;                          ; HelpLink                 ; Hilfe
+                       ;                          ; FAQLink                  ; Häufig gestellte Fragen
+                       ;                          ; CartLink                 ; Warenkorb
+                       ;                          ; OrdersLink               ; Bestellungen
+                       ;                          ; OlfUserManagementLink    ; Benutzerverwaltung
+                       ;                          ; OlfInvoiceManagementLink ; Rechnungen
+                       ;                          ; UnitLevelOrderLink       ; Firmenbestellungen
+                       ;                          ; MyCompanyLink            ; Mein Unternehmen
+                       ;                          ; SupportTicketHistoryLink ; Kundenbetreuung
+                       ;                          ; OlfContactSiteLink       ; information@olf.ch
+                       ;                          ; OlfLocationLink          ; 1701 Fribourg
+
+INSERT_UPDATE Media; $contentCV[unique = true]; code[unique = true]           ; realfilename        ; @media[translator = de.hybris.platform.impex.jalo.media.MediaDataTranslator]; mime[default = 'image/jpeg']; folder(qualifier)[default = 'images']; altText
+                   ;                          ; olf-logo.png                  ; olf-logo.png        ; $siteResource/images/theme/olf-logo.png                                     ; image/png                   ;                                      ;
+                   ;                          ; BudgetsHomeLinkImageEn        ; budgets.svg         ; $siteResource/images/organization-home/budgets.svg                          ; svg+xml                     ;                                      ; Budgets
+                   ;                          ; CostCentersHomeLinkImageEn    ; cost-centers.svg    ; $siteResource/images/organization-home/cost-centers.svg                     ; svg+xml                     ;                                      ; Cost Centers
+                   ;                          ; UnitsHomeLinkImageEn          ; units.svg           ; $siteResource/images/organization-home/units.svg                            ; svg+xml                     ;                                      ; Units
+                   ;                          ; UsersHomeLinkImageEn          ; users.svg           ; $siteResource/images/organization-home/users.svg                            ; svg+xml                     ;                                      ; Users
+                   ;                          ; UserGroupsHomeLinkImageEn     ; user-groups.svg     ; $siteResource/images/organization-home/user-groups.svg                      ; svg+xml                     ;                                      ; User Groups
+                   ;                          ; PurchaseLimitsHomeLinkImageEn ; purchase-limits.svg ; $siteResource/images/organization-home/purchase-limits.svg                  ; svg+xml                     ;                                      ; Purchase Limits
+                   ;                          ; AccountSummaryHomeLinkImageEn ; account-summary.svg ; $siteResource/images/organization-home/account-summary.svg                  ; svg+xml                     ;                                      ; Account Summaries
+
+
+
+UPDATE SimpleBannerComponent; $contentCV[unique = true]; uid[unique = true]; media(code, $contentCV)[lang = $lang]
+                            ;                          ; SiteLogoComponent ; olf-logo.png
+
+UPDATE BannerComponent; $contentCV[unique = true]; uid[unique = true]     ; headline[lang = $lang]; content[lang = $lang]                                                                                                                                                                                                                                                                             ; media(code, $contentCV)[lang = $lang]
+                      ;                          ; BudgetsHomeLink        ; Budgets               ; Die Budgets werden den Kostenstellen zugewiesen und legen die Gesamtbeschaffungsgrenzen fest.                                                                                                                                                                                                     ; BudgetsHomeLinkImageEn
+                      ;                          ; CostCentersHomeLink    ; Cost Centers          ; Alle Bestellungen, die über das Einkaufskonto Ihrer Organisation aufgegeben werden, sind zu Verfolgungszwecken mit einer Kostenstelle verbunden. Jede Einheit kann mehrere Kostenstellen haben.                                                                                                   ; CostCentersHomeLinkImageEn    ;
+                      ;                          ; UnitsHomeLink          ; Units                 ; Einheiten stellen Abteilungen, Filialen, Regionen oder jede andere logische Gruppierung dar, die für Sie sinnvoll ist. Genehmiger werden Einheiten und einzelnen Benutzern zugewiesen. In Einheiten werden auch die Versandadressen gespeichert, die Käufer bei ihren Einkäufen verwenden können. ; UnitsHomeLinkImageEn          ;
+                      ;                          ; UsersHomeLink          ; Users                 ; Benutzer sind die Einkäufer, Genehmiger, Manager und Administratoren Ihres Unternehmens. Jedem Benutzer wird eine Rolle zugewiesen, um Einkäufe zu tätigen oder zu genehmigen.                                                                                                                    ; UsersHomeLinkImageEn          ;
+                      ;                          ; UserGroupsHomeLink     ; User Groups           ; Mit Hilfe von Benutzergruppen können Sie Benutzer zum Zwecke der Zuweisung von Kauflimits in Gruppen zusammenfassen.                                                                                                                                                                              ; UsersHomeLinkImageEn          ;
+                      ;                          ; PurchaseLimitsHomeLink ; Purchase Limits       ; Einkaufslimits helfen Ihnen bei der Ausgabenkontrolle, indem Sie festlegen, wie viel Käufer pro Bestellung oder pro Woche, Monat, Quartal oder Jahr ausgeben dürfen. Einkaufslimits können Benutzern und Benutzergruppen zugewiesen werden.                                                       ; PurchaseLimitsHomeLinkImageEn ;
+                      ;                          ; AccountSummaryHomeLink ; Account Summaries     ; Kontozusammenfassungen ermöglichen es Ihnen, allgemeine Informationen über eine Einheit einzusehen, einschließlich Salden und Fälligkeitsübersichten von Rechnungen. Hier können Sie auch eine Liste von Transaktionsdokumenten für eine Einheit durchsehen.                                      ; AccountSummaryHomeLinkImageEn
+
+
+UPDATE CMSParagraphComponent; $contentCV[unique = true]; uid[unique = true]                     ; content[lang = $lang]
+                            ;                          ; PageNotFoundParagraphComponent         ; "<h2>Oops!</h2><h3>Wir konnten die von Ihnen gesuchte Seite nicht finden.</h3><p>Stattdessen finden Sie hier einige nützliche Links:</p>"
+                            ;                          ; NoAccountParagraphComponent            ; "<p class='cx-section-title'>Sie haben noch kein Konto?</p>"
+                            ;                          ; DisabledRegistrationParagraphComponent ; "<p>Sie können ein Login von Ihrem Kundenbetreuer anfordern. Senden Sie eine Nachricht an <strong>information@olf.ch</strong>.</p>"
+                            ;                          ; EmptyCartParagraphComponent            ;
+                            ;                          ; NoticeTextParagraph                    ;  <div class="cx-notice"> Copyright © 2023  <a class="cx-notice-a" href="cangurusolutions.be" target="_blank"> www.cangurusolutions.be</a>  <a class="cx-notice-a" href ="/terms-and-conditions"> Bedingungen & Konditionen </a>  <a class="cx-notice-a" href="/help"> Hilfe </a> Created by: Canguru </div>
+                            ;                          ; ContactUsParagraphComponent            ; "Kontakt"
+                            ;                          ; SaleParagraphComponent                 ; "Verkauf"
+
+UPDATE ContentPage; $contentCV[unique = true]; uid[unique = true]            ; title[lang = $lang]
+                  ;                          ; sale                          ; Verkauf
+                  ;                          ; contactUs                     ; Kontakt
+                  ;                          ; help                          ; Hilfe
+                  ;                          ; forgotPassword                ; Wählen Sie Ihr Kennwort
+                  ;                          ; resetPassword                 ; Wählen Sie Ihr Kennwort
+                  ;                          ; register                      ; Ein Konto erstellen
+                  ;                          ; updatePassword                ; Passwort aktualisieren
+                  ;                          ; update-profile                ; Persönliche Details aktualisieren
+                  ;                          ; Checkout                      ; Kasse
+                  ;                          ; CheckoutPaymentType           ; Zahlungsart
+                  ;                          ; CheckoutDeliveryAddress       ; Lieferadresse
+                  ;                          ; CheckoutDeliveryMode          ; Liefermodus
+                  ;                          ; CheckoutPaymentDetails        ; Zur Kasse gehen Zahlungsdetails
+                  ;                          ; CheckoutReviewOrder           ; Überprüfung Bestellung
+                  ;                          ; storefinderPage               ; Eine filiale finden
+                  ;                          ; CancelOrderPage               ; Bestellung stornieren
+                  ;                          ; ReturnOrderPage               ; Rückholauftrag
+                  ;                          ; ConfirmCancelOrderPage        ; Auftragsbestätigung stornieren
+                  ;                          ; ConfirmReturnOrderPage        ; Rückgabe Auftragsbestätigung
+                  ;                          ; ReturnRequestDetailsPage      ; Details zum Rückgabeantrag
+                  ;                          ; replenishmentConfirmationPage ; Bestätigung des Nachschubauftrags
+                  ;                          ; quickOrderPage                ; Schnelle Bestellung
+                  ;                          ; order-approval-details        ; Genehmigung der Bestellung
+                  ;                          ; order-approval-dashboard      ; Dashboard zur Auftragsgenehmigung
+                  ;                          ; MyCompany                     ; Mein Unternehmen
+                  ;                          ; ManageBudgets                 ; Budgets
+                  ;                          ; ManageCostCenters             ; Kostenstellen
+                  ;                          ; ManageUnits                   ; Einheiten
+                  ;                          ; ManagePermissions             ; Kauflimits
+                  ;                          ; ManageUserGroups              ; Benutzergruppen
+                  ;                          ; ManageUsers                   ; Benutzer
+                  ;                          ; ManageAccountSummary          ; Konto-Zusammenfassungen
+                  ;                          ; UnitLevelOrderPage            ; Auftragshistorie auf Einheitsebene
+                  ;                          ; UnitLevelOrderDetailsPage     ; Details zur Bestellung auf Einheitsebene
+                  ;                          ; AccountSummaryDetails         ; Kontoübersicht Details
+                  ;                          ; support-tickets               ; Kundenbetreuung
+                  ;                          ; support-ticket-details        ; Kundenbetreuung
+
+

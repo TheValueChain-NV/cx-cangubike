@@ -1,14 +1,17 @@
 # -----------------------------------------------------------------------
 # Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 # -----------------------------------------------------------------------
-##******************************This file is generated - please do not edit it. It will be regenerated after every build.********************************#
+# ImpEx for Importing Email Content
+# German Localisation
 
+# Macros / Replacement Parameter definitions
 $contentCatalog=cangubikeContentCatalog
+
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 $picture=media(code, $contentCV);
-$wideContent=CMSImageComponent,BannerComponent
-$jarResource=jar:be.canguru.cangubike.initialdata.constants.CangubikeInitialDataConstants&/cangubikeinitialdata/import
-$siteResource=jar:be.canguru.cangubike.initialdata.constants.CangubikeInitialDataConstants&/cangubikeinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$wideContent=CMSImageComponent,BannerComponent,SimpleBannerComponent,CMSLinkComponent,CMSParagraphComponent
+$jarResource=jar:com.tvc.cangubike.initialdata.setup.InitialDataSystemSetup&/cangubikeinitialdata/import
+$siteResource=jar:com.tvc.cangubike.initialdata.setup.InitialDataSystemSetup&/cangubikeinitialdata/import/contentCatalogs/$contentCatalog
 
 # Language
 $lang=de
@@ -17,11 +20,6 @@ $lang=de
 # Language
 # Media
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];folder(qualifier)[default='images']
-;;/images/theme/banner-free-delivery.jpg;banner-free-delivery.jpg;$siteResource/images/theme/banner-free-delivery.jpg;;
-;;/images/theme/banner-sale-now-on.jpg;banner-sale-now-on.jpg;$siteResource/images/theme/banner-sale-now-on.jpg;;
 
 # CMS Image Components
 UPDATE CMSImageComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
-;;EmailBannerFreeDeliveryImage;/images/theme/banner-free-delivery.jpg;
-;;EmailBannerSaleNowOnImage;/images/theme/banner-sale-now-on.jpg;
-

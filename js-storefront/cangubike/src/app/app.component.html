@@ -1,1 +1,21 @@
-<cx-storefront></cx-storefront>
+<div class="container icons">
+  <div class="row">
+    <ng-template cxOutletRef="SiteLogin">
+      <cx-generic-link [url]="{ cxRoute: 'login' } | cxUrl"
+      ><cx-icon [cxIcon]="'USER'"></cx-icon>
+      </cx-generic-link>
+      <cx-page-slot class="header-links" position="HeaderLinks"></cx-page-slot>
+    </ng-template>
+  </div>
+<!--<div class="row">-->
+<!--  <ng-template cxOutletRef="MiniCart">-->
+<!--    <cx-generic-link [url]="{ cxRoute: 'cart'} | cxUrl">-->
+<!--      <cx-icon [cxIcon]="'CART'"></cx-icon>-->
+<!--    </cx-generic-link>-->
+<!--  </ng-template>-->
+<!--</div>-->
+</div>
+<ng-template cxOutletRef="SiteLogo">
+  <cx-generic-link [url]="'/'"><img src="assets/tvc-2.png" alt="logo" style="width:45px;height:45px;"/></cx-generic-link>
+</ng-template>
+<app-cangubike-storefront></app-cangubike-storefront>

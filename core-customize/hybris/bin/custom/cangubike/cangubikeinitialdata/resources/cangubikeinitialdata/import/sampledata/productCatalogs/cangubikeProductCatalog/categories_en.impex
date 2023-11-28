@@ -1,35 +1,51 @@
 # -----------------------------------------------------------------------
 # Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 # -----------------------------------------------------------------------
-# ImpEx for Importing Categories into Cangubike Store
-
+# ImpEx for Importing Categories
 
 # Macros / Replacement Parameter definitions
-$productCatalog=cangubikeProductCatalog
-$productCatalogName=Cangubike Product Catalog
-$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$productCatalog = cangubikeProductCatalog
+$productCatalogName = Cangubike Product Catalog
 
-$lang=en
+$catalogVersion = catalogversion(catalog(id[default=$productCatalog]), version[default='Staged'])[unique=true, default=$productCatalog:Staged]
 
-UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang];description[lang=$lang]
- ;1;;Open Catalogue;;
- ;106;;Components;;
- ;1354;;Hand Saws;;
- ;1355;;Tools;;
- ;1356;;Hammers;;
- ;1358;;Measuring & Layout Tools;;
- ;1359;;Tongs;;
- ;1360;;Power Drills;;
- ;1386;;Tag Guns;labeling gun;
- ;1505;;Cable Crimpers/Cutters/Strippers;;
- ;1593;;Screwdrivers;;
- ;1595;;Angle Grinders;;
- ;1596;;Sanders;;
- ;1597;;Punches Or Nail Sets;;
- ;1598;;Stripping Tools;;
- ;1631;;Circular Saws;;
- ;1641;;Nut Drivers;;
- ;1710;;Jigsaws;;
- ;1711;;Rotary Hammers;;
- ;1731;;Universal Cutters;;
- ;830;;Cables For Computers And Peripherals;;
+
+# Language
+$lang = en
+
+
+# Create Categories
+UPDATE Category; code[unique = true]; $catalogVersion; name[lang = $lang]
+               ; catalog            ;                ; Catalog
+# level 1
+               ; ebikes             ;                ; E-Bikes
+               ; bikes              ;                ; Bikes
+               ; parts              ;                ; Parts
+               ; accessories        ;                ; Accessories
+               ; clothing           ;                ; Clothing
+# level 2 ebikes -->
+               ; e_mountainbikes     ;                ; E-Mountain Bikes
+               ; e_citybikes        ;                ; E-City Bikes
+               ; e_cargobikes       ;                ; E-Cargo Bikes
+               ; e_gravelbikes      ;                ; E-Gravel Bikes
+               ; e_roadbikes        ;                ; E-Road Bikes
+# bikes -->
+               ; mountainbikes      ;                ; Mountain Bikes
+               ; citybikes          ;                ; City Bikes
+               ; gravelbikes        ;                ; Gravel Bikes
+               ; roadbikes          ;                ; Road Bikes
+# parts -->
+               ; pedals             ;                ; Pedals
+               ; saddles            ;                ; Saddles
+               ; brakes             ;                ; Brakes
+               ; wheels             ;                ; Wheels
+# accessories -->
+               ; baskets_and_bags   ;                ; Baskets & Bags
+               ; lights             ;                ; Lights
+               ; bells              ;                ; Bells
+               ; pumps              ;                ; Pumps
+# clothing -->
+               ; shorts             ;                ; Shorts
+               ; jerseys            ;                ; Jerseys
+               ; shoes              ;                ; Shoes
+               ; helmets            ;                ; Helmets
