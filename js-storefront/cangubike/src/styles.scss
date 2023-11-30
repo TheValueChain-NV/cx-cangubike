@@ -27,6 +27,7 @@ $skipComponentStyles: (header, cx-mini-cart);
   --ssf-font-size-mobile: #{calculateRem(14px)};
   --ssf-font-size-desktop: #{calculateRem(16px)};
   --cx-text-transform: none;
+  --cx-color-visual-focus:transparent;
 }
 .Section5 {
   height: 50px !important;

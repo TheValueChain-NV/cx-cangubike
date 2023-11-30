@@ -39,8 +39,10 @@
               "src/styles/spartacus/product-configurator.scss",
               "src/styles/spartacus/storefinder.scss",
               "src/styles/spartacus/product.scss",
-              "src/styles/spartacus/pickup-in-store.scss"
-
+              "src/styles/spartacus/pickup-in-store.scss",
+              "src/styles/spartacus/asm.scss",
+              "src/styles/spartacus/pdf-invoices.scss",
+              "src/styles/spartacus/requested-delivery-date.scss"
             ],
             "scripts": [],
             "stylePreprocessorOptions": {
@@ -125,12 +127,18 @@
               "src/styles/spartacus/product-configurator.scss",
               "src/styles/spartacus/storefinder.scss",
               "src/styles/spartacus/product.scss",
-              "src/styles/spartacus/pickup-in-store.scss"
+              "src/styles/spartacus/pickup-in-store.scss",
+              "src/styles/spartacus/asm.scss",
+              "src/styles/spartacus/pdf-invoices.scss",
+              "src/styles/spartacus/requested-delivery-date.scss"
             ],
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "node_modules/"
+                "node_modules/",
+                "src/styles",
+                "src/styles/base",
+                "src/styles/components"
               ]
             }
           }

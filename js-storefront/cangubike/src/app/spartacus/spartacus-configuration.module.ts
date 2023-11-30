@@ -1,24 +1,26 @@
 import { NgModule } from '@angular/core';
 import { translationChunksConfig, translations } from "@spartacus/assets";
-import { FeaturesConfig, I18nConfig, OccConfig, SiteContextConfig, provideConfig } from "@spartacus/core";
+import { FeaturesConfig, I18nConfig, OccConfig, provideConfig, SiteContextConfig } from "@spartacus/core";
 import { defaultB2bOccConfig } from "@spartacus/setup";
 import {
-  IconConfig,
+  defaultCmsContentProviders, IconConfig,
   IconResourceType,
-  defaultCmsContentProviders,
+
   layoutConfig,
   mediaConfig
 } from "@spartacus/storefront";
 import { cangubikeLayoutConfig } from "./layout.config";
+import {environment} from "../../environments/environment";
+import {AsmConfig} from "@spartacus/asm/root";
 
 @NgModule({
   declarations: [],
   imports: [
   ],
-  providers: [provideConfig(layoutConfig),provideConfig(cangubikeLayoutConfig), provideConfig(mediaConfig), ...defaultCmsContentProviders, provideConfig(<OccConfig>{
+  providers: [provideConfig(layoutConfig), provideConfig(cangubikeLayoutConfig), provideConfig(mediaConfig), ...defaultCmsContentProviders, provideConfig(<OccConfig>{
     backend: {
       occ: {
-        //baseUrl: environment.occBaseUrl,
+        baseUrl: environment.occBaseUrl,
         endpoints: {
           product: 'products/${productCode}?fields=FULL'
         }
@@ -28,8 +30,8 @@ import { cangubikeLayoutConfig } from "./layout.config";
     context: {
       urlParameters: ['baseSite', 'language', 'currency'],
       baseSite: ['cangubike'],
-      language: ['en','fr'],
-      currency: ['EUR','USD'],
+      language: ['en', 'fr'],
+      currency: ['EUR', 'USD'],
     },
   }), provideConfig(<I18nConfig>{
     i18n: {
@@ -39,9 +41,15 @@ import { cangubikeLayoutConfig } from "./layout.config";
     },
   }), provideConfig(<FeaturesConfig>{
     features: {
-      level: '6.3'
+      level: '6.6'
     },
-  }),provideConfig({
+  }), provideConfig(<AsmConfig>{
+    asm: {
+      userIdHttpHeader: {
+        enable: true,
+      }
+    }
+  }), provideConfig({
     icon: {
       symbols: {
         CART: 'bag',
@@ -60,7 +68,7 @@ import { cangubikeLayoutConfig } from "./layout.config";
         {
           type: IconResourceType.SVG,
           url: './assets/icons-sheet.svg',
-          types: ['CART', 'HOME', 'MENU', 'USER', 'WISHLIST','FRAME'],
+          types: ['CART', 'HOME', 'MENU', 'USER', 'WISHLIST', 'FRAME'],
         },
         {
           type: IconResourceType.LINK,
