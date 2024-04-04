@@ -359,7 +359,7 @@ app-cangubike-footer {
 
 //html, body { height: 100%; }
 //body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.summary {
+.Summary {
   display: flex;
   flex-wrap: wrap;
   max-width: 2048px;
@@ -368,4 +368,6 @@ app-cangubike-footer {
   justify-items: center;
 }
 
-
+.ProductDetailsPageTemplate {
+  margin-left: 120px;
+}

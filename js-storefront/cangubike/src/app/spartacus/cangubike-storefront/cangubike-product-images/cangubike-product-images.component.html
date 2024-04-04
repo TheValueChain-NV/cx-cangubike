@@ -99,8 +99,11 @@
                       </mat-expansion-panel-header>
                       <mat-expansion-panel *ngFor="let chunk of positionChunks; let chunkIndex = index">
                         <mat-expansion-panel-header>
-                          <mat-panel-title>
-                            Position: {{ positionChunks.indexOf(chunk) * chunkSize + 1 }} - {{ positionChunks.indexOf(chunk) * chunkSize + chunk.length }} - <span *ngIf="chunkIndex <= 1"> 2X2 </span> <span *ngIf="chunkIndex >1"> 4X4 </span>
+                          <mat-panel-title *ngIf="chunkIndex <= 1">
+                            Position: {{ positionChunks.indexOf(chunk) * chunkSize + 1 }} - {{ positionChunks.indexOf(chunk) * chunkSize + chunk.length }} - 2x2
+                          </mat-panel-title>
+                          <mat-panel-title *ngIf="chunkIndex >1">
+                            Position: 1 - 24 - 4x4
                           </mat-panel-title>
                         </mat-expansion-panel-header>
                         <ng-container *ngFor="let position of chunk; let itemIndex = index">
@@ -121,7 +124,7 @@
                     </mat-expansion-panel>
                   </mat-accordion>
                   <div>
-                    <button mat-button (click)="setToolSide()">Next step</button>
+                    <button mat-button (click)="onNextStep(stepper, 'stand')">Next step</button>
                   </div>
                 </form>
               </mat-step>
@@ -139,8 +142,11 @@
                       </mat-expansion-panel-header>
                       <mat-expansion-panel *ngFor="let chunk of positionChunks; let chunkIndex = index">
                         <mat-expansion-panel-header>
-                          <mat-panel-title>
-                            Position: {{ positionChunks.indexOf(chunk) * chunkSize + 1 }} - {{ positionChunks.indexOf(chunk) * chunkSize + chunk.length }} - <span *ngIf="chunkIndex <= 1"> 2X2 </span> <span *ngIf="chunkIndex >1"> 4X4 </span>
+                          <mat-panel-title *ngIf="chunkIndex <= 1">
+                            Position: {{ positionChunks.indexOf(chunk) * chunkSize + 1 }} - {{ positionChunks.indexOf(chunk) * chunkSize + chunk.length }} - 2x2
+                          </mat-panel-title>
+                          <mat-panel-title *ngIf="chunkIndex >1">
+                            Position: 1 - 24 - 4x4
                           </mat-panel-title>
                         </mat-expansion-panel-header>
                         <ng-container *ngFor="let position of chunk; let itemIndex = index">
@@ -160,8 +166,8 @@
                     </mat-expansion-panel>
                   </mat-accordion>
                   <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next Step</button>
+                    <button mat-button (click)="onPreviousStep(stepper, 'tool')">Previous step</button>
+                    <button mat-button (click)="onNextStep(stepper, 'tool')">Next step</button>
                   </div>
                 </form>
               </mat-step>
@@ -171,8 +177,8 @@
                 </ng-template>
                 <p>You are now done.</p>
                 <div>
-                  <button mat-button matStepperPrevious>Back</button>
-                  <button mat-button matStepperNext>Next Step</button>
+                  <button mat-button (click)="onPreviousStep(stepper, 'tool')">Previous step</button>
+                  <button mat-button matStepperNext>Next step</button>
                 </div>
               </mat-step>
               <mat-step>

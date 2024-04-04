@@ -236,7 +236,6 @@ export var modules: Module[] = [
   {id:513865, name:'K81560784', rs_ts: 'T', r2o_code:'WM', price: 200, imageUrl: 'assets/K81560781.png', description: 'Transfer module SPM for fluids and pneumatics\n Nominal width: 12 mm', selected: false},
   {id:513907, name:'K81451142', rs_ts: 'T', r2o_code:'WS', price: 137, imageUrl: 'assets/K81451142.png', description: 'Transfer module SPM for fluids and pneumatics\n Nominal width: 12 mm', selected: false},
   {id:513908, name:'K81451144', rs_ts: 'R', r2o_code:'XA', price: 228, imageUrl: 'assets/K81451144.png', description: 'Transfer module SPM for fluids and pneumatics\n Nominal width: 12 mm', selected: false},
-  {id:513909, name:'K81560853', rs_ts: 'T', r2o_code:'XB', price: 241, imageUrl: 'assets/K81560853.png', description: 'Transfer module SPM for fluids and pneumatics\n Nominal width: 12 mm', selected: false}
 ];
 
 export var configured_product: ConfiguredProduct[] = [{id: '93909940', name: 'MPS631', modules:new Map<string,string>,module_type:null, power_system:null,base_price:350,total_price:350}]

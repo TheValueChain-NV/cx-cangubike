@@ -4,6 +4,7 @@ import {MatAccordion} from "@angular/material/expansion";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {Position,FuildModule,Connection, ConfiguredProduct,configured_product, positions,modules,fluidMoules,connections,moduleTypes} from "./model"
+import {MatStepper} from "@angular/material/stepper";
 
 
 
@@ -218,10 +219,7 @@ export class CangubikeProductImagesComponent implements OnInit, AfterViewInit {
       productId,
       '#viewer-container',
       {
-        defaultOptions: {
-          209276 :"513864",
-          209277 :"513868",
-        },
+        defaultOptions: this.defaultOptions,
         show360Indicator: false,
         showProgress: true
       }
@@ -249,5 +247,26 @@ export class CangubikeProductImagesComponent implements OnInit, AfterViewInit {
   protected readonly moduleTypes = moduleTypes;
 
   protected readonly configured_product = configured_product;
+
+  onNextStep(stepper: MatStepper, step: string) {
+    if (step === 'stand') {
+      this.setToolSide();
+    }
+    if (step === 'tool') {
+      this.setStandModel();
+    }
+    stepper.next();
+  }
+
+  onPreviousStep(stepper: MatStepper, step: string) {
+    if (step === 'tool') {
+      this.setBasicModel();
+    }
+    if (step === 'stand') {
+      this.setToolSide();
+    }
+
+    stepper.previous();
+  }
 }
 

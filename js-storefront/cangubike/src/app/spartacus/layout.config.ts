@@ -57,7 +57,7 @@ export const cangubikeLayoutConfig: LayoutConfig = {
         'Summary',
           'UpSelling',
           'CrossSelling',
-          'Tabs',
+          //'Tabs',
         // 'PlaceholderContentSlot',
       ],
     },
