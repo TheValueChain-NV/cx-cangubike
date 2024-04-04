@@ -1,6 +1,6 @@
 // site context selector component styles
 cx-site-context-selector {
-  color: var(--cx-color-secondary);
+  color: #111827;
   margin-top: 0;
   margin-bottom: 0;
 
@@ -8,8 +8,8 @@ cx-site-context-selector {
     display: none;
   }
   select {
-    color: var(--cx-color-white);
-    background-color: var(--cx-color-secondary);
+    color: #111827;
+    background-color: #f9f9f9;
     font-size: 0.875rem;
     font-weight: 300;
   }

@@ -1,0 +1,267 @@
+<ng-container>
+      <div class="product-container row container-product-page-columns no-gutters right " style="width: 1400px;">
+        <div id="viewer-container" class="sticky col-md-12 col-lg-7" style="height: 500px; max-width: 600px;margin-left: 20px;"></div>
+        <div id="options" class="col-md-12 col-lg-5">
+          <div id="configurator-container" class="configurator-container">
+            <mat-stepper orientation="horizontal" [linear]="isLinear" #stepper>
+              <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="firstFormGroup">
+                  <ng-template matStepLabel>
+                    <p (click)="setBasicModel()"> Robot Side </p>
+
+                  </ng-template>
+                  <mat-accordion class="example-headers-align" multi>
+                    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Module type
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <form>
+                        <mat-form-field appearance="fill">
+                          <select matNativeControl [(ngModel)]="selectedModule" name="module" [ngModelOptions]="{standalone: true}" (change)="fillRobotModule()">
+                            <option value="" selected></option>
+                            <option *ngFor="let module of moduleTypes" [value]="module.value" >
+                              {{module.viewValue}}
+                            </option>
+                          </select>
+                        </mat-form-field>
+                      </form>
+                      <div *ngIf="selectedModule == 'fluid'">
+                        <form>
+                          <mat-form-field appearance="fill">
+                            <select matNativeControl [(ngModel)]="selectedFluid" name="fluid" [ngModelOptions]="{standalone: true}"  (change)="fillFluid()">
+                              <option value="" selected></option>
+                              <option *ngFor="let fluid of fluidMoules" [value]="fluid.value">
+                                {{fluid.viewValue}}
+                              </option>
+                            </select>
+                          </mat-form-field>
+                        </form>
+                        <div *ngIf="selectedFluid == 'pneumatic-fluid'">
+                          <span>Which connection do you need?</span>
+                          <div class="connectors">
+                            <mat-card class="connection-card" *ngFor="let connection of connections" [class.selected]="connection.selected" (click)="selectCard(connection)">
+                              <mat-card-header>
+                                <mat-card-title-group>
+                                  <img mat-card-sm-image src="{{connection.imageUrl}}">
+                                  <mat-card-title>{{connection.name}}</mat-card-title>
+                                  <mat-card-subtitle>{{connection.price}}</mat-card-subtitle>
+                                </mat-card-title-group>
+                              </mat-card-header>
+                              <mat-card-content>
+                                {{connection.description}}
+                              </mat-card-content>
+                              <div class="checkmark-container">
+                                <mat-icon class="checkmark" *ngIf="connection.selected">check_circle</mat-icon>
+                              </div>
+                            </mat-card>
+                          </div>
+                        </div>
+                      </div>
+                      <mat-action-row>
+                        <button mat-button color="primary" (click)="nextStep()">Next</button>
+                      </mat-action-row>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Modules
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <span>Available Modules for selected module type</span>
+                      <div class="connectors">
+                        <div *ngFor="let module of modules">
+                        <mat-card class="connection-card col-lg-6" *ngIf="module.name !== 'None'">
+                          <mat-card-header>
+                            <mat-card-title-group>
+                              <img mat-card-sm-image src="{{module.imageUrl}}">
+                              <mat-card-title>{{module.name}}</mat-card-title>
+                              <mat-card-subtitle>PRICE: {{module.price}}€</mat-card-subtitle>
+                              <mat-card-subtitle>RS/TS: {{module.rs_ts}}</mat-card-subtitle>
+                              <mat-card-subtitle>R2O CODE: {{module.r2o_code}}</mat-card-subtitle>
+                            </mat-card-title-group>
+                          </mat-card-header>
+                          <mat-card-content>
+                            {{module.description}}
+                          </mat-card-content>
+                        </mat-card>
+                        </div>
+                      </div>
+                      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                      <button mat-button color="primary" (click)="nextStep()">Next</button>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Add modules to positions
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <mat-expansion-panel *ngFor="let chunk of positionChunks; let chunkIndex = index">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            Position: {{ positionChunks.indexOf(chunk) * chunkSize + 1 }} - {{ positionChunks.indexOf(chunk) * chunkSize + chunk.length }} - <span *ngIf="chunkIndex <= 1"> 2X2 </span> <span *ngIf="chunkIndex >1"> 4X4 </span>
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ng-container *ngFor="let position of chunk; let itemIndex = index">
+                          <!-- Content of each panel goes here -->
+                          <mat-form-field appearance="fill" class="module-position">
+                            <span>{{position.name}}</span>
+                            <select matNativeControl [(ngModel)]="position.selectedModuleId" name="position{{itemIndex}}" (change)="fillPositions(position.name,position.id, ($any($event.target).value))" [ngModelOptions]="{standalone: true}">
+                            <option value="None" selected>None</option>
+                              <option *ngFor="let module1 of position.possibleModules" [value]="module1.name" >
+                                {{module1.name}}
+                              </option>
+                            </select>
+                          </mat-form-field>
+
+                        </ng-container>
+                      </mat-expansion-panel>
+                      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                  <div>
+                    <button mat-button (click)="setToolSide()">Next step</button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step [stepControl]="secondFormGroup" (change)="setToolSide()">
+                <form [formGroup]="secondFormGroup">
+                  <ng-template matStepLabel>
+                    <p (click)="setToolSide()">Tool Side</p>
+                  </ng-template>
+                  <mat-accordion>
+                    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Add modules to positions
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <mat-expansion-panel *ngFor="let chunk of positionChunks; let chunkIndex = index">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            Position: {{ positionChunks.indexOf(chunk) * chunkSize + 1 }} - {{ positionChunks.indexOf(chunk) * chunkSize + chunk.length }} - <span *ngIf="chunkIndex <= 1"> 2X2 </span> <span *ngIf="chunkIndex >1"> 4X4 </span>
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ng-container *ngFor="let position of chunk; let itemIndex = index">
+                          <!-- Content of each panel goes here -->
+                          <mat-form-field appearance="fill" class="module-position">
+                            <span>{{position.name}}</span>
+                            <select matNativeControl [(ngModel)]="position.selectedModuleId" name="position{{itemIndex}}" (change)="fillPositions(position.name,position.id, ($any($event.target).value))" [ngModelOptions]="{standalone: true}">
+                              <option value="None" selected>None</option>
+                              <option *ngFor="let module1 of position.possibleModules" [value]="module1.id" >
+                                {{module1.name}}
+                              </option>
+                            </select>
+                          </mat-form-field>
+
+                        </ng-container>
+                      </mat-expansion-panel>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                  <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next Step</button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step>
+                <ng-template matStepLabel>
+                  <p (click)="setStandModel()">Stand</p>
+                </ng-template>
+                <p>You are now done.</p>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next Step</button>
+                </div>
+              </mat-step>
+              <mat-step>
+                <ng-template matStepLabel>
+                  <p (click)="setStandModel()">Overview</p>
+                </ng-template>
+                <span>Control your configuration</span>
+
+                <div class="col-12 col-lg-12 base-table">
+                  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef>Name</th>
+                      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+                    </ng-container>
+
+                    <!-- Base Price Column -->
+                    <ng-container matColumnDef="base_price">
+                      <th mat-header-cell *matHeaderCellDef>Base Price</th>
+                      <td mat-cell *matCellDef="let element">{{ element.base_price }}</td>
+                    </ng-container>
+
+                    <!-- Total Price Column -->
+                    <ng-container matColumnDef="total_price">
+                      <th mat-header-cell *matHeaderCellDef>Total Price</th>
+                      <td mat-cell *matCellDef="let element">{{ element.total_price }}</td>
+                    </ng-container>
+
+                    <!-- Module Type Column -->
+                    <ng-container matColumnDef="module_type">
+                      <th mat-header-cell *matHeaderCellDef>Module Type</th>
+                      <td mat-cell *matCellDef="let element">{{ element.module_type }}</td>
+                    </ng-container>
+
+                    <!-- Power System Column -->
+                    <ng-container matColumnDef="power_system">
+                      <th mat-header-cell *matHeaderCellDef>Power System</th>
+                      <td mat-cell *matCellDef="let element">{{ element.power_system }}</td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                </div>
+                <span></span>
+                <div class="col-12 col-lg-12 postions-table">
+                  <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> Position </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="selectedModuleId">
+                      <th mat-header-cell *matHeaderCellDef> Module </th>
+                      <td mat-cell *matCellDef="let element">
+                        <ng-container>
+                          {{element.selectedModuleId}}
+                        </ng-container>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="modulePrice">
+                      <th mat-header-cell *matHeaderCellDef> Price </th>
+                      <td mat-cell *matCellDef="let element">
+                        <ng-container>
+                          {{element.modulePrice}}
+                        </ng-container>
+                    </ng-container>
+                    <ng-container matColumnDef="cost">
+                      <th mat-header-cell *matHeaderCellDef> Cost </th>
+                      <td mat-footer-cell *matFooterCellDef> {{configured_product[0].total_price}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+
+                  </table>
+                  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                                 showFirstLastButtons
+                                 aria-label="Select page of periodic elements">
+                  </mat-paginator>
+                </div>
+              </mat-step>
+            </mat-stepper>
+          </div>
+        </div>
+      </div>
+</ng-container>

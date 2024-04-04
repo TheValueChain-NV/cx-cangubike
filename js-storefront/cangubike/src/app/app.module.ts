@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { SpartacusModule } from './spartacus/spartacus.module';
 import {UrlModule} from "@spartacus/core";
 import {CangubikeStorefrontModule} from "./spartacus/cangubike-storefront/cangubike-storefront.module";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {CangubikeStorefrontModule} from "./spartacus/cangubike-storefront/cangub
     GenericLinkModule,
     UrlModule,
     PageSlotModule,
-    CangubikeStorefrontModule
+    CangubikeStorefrontModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

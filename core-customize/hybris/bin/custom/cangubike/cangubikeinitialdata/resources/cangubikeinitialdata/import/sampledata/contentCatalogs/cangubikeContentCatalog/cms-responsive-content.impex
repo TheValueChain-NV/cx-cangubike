@@ -37,6 +37,7 @@ INSERT_UPDATE CMSFlexComponent; $contentCV[unique = true]; uid[unique = true]   
                               ;                          ; AccountOrderDetailsTotalsComponent          ; Account Order Details Order Totals Component     ; AccountOrderDetailsTotalsComponent          ; AccountOrderDetailsTotalsComponent
                               ;                          ; AccountOrderDetailsReorderComponent         ; Account Order Details Reorder Component          ; AccountOrderDetailsReorderComponent         ; AccountOrderDetailsReorderComponent
                               ;                          ; AccountOrderDetailsApprovalDetailsComponent ; Account Order Details Approval Details Component ; AccountOrderDetailsApprovalDetailsComponent ; AccountOrderDetailsApprovalDetailsComponent
+                              ;                          ; AccountOrderDetailsPDFInvoicesComponent     ; Account Order Details PDF Invoices Component     ; AccountOrderDetailsPDFInvoicesComponent     ; AccountOrderDetailsPDFInvoicesComponent
                               ;                          ; AccountOrderHistoryComponent                ; Account History Component                        ; AccountOrderHistoryComponent                ; AccountOrderHistoryComponent
                               ;                          ; AccountPaymentDetailsComponent              ; Account Payment Details Component                ; AccountPaymentDetailsComponent              ; AccountPaymentDetailsComponent
                               ;                          ; CartComponent                               ; Cart Display Component                           ; CartComponent                               ; CartComponent
@@ -66,7 +67,7 @@ INSERT_UPDATE CMSFlexComponent; $contentCV[unique = true]; uid[unique = true]   
 # Update slots
 UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]              ; cmsComponents(uid, $contentCV)
                   ;                          ; BodyContent-address-book        ; AccountAddressBookComponent
-                  ;                          ; BodyContent-orderdetail         ; AccountOrderDetailsOverviewComponent,AccountOrderDetailsShippingComponent,AccountOrderDetailsItemsComponent,AccountOrderDetailsTotalsComponent,AccountOrderDetailsApprovalDetailsComponent,AccountOrderDetailsReorderComponent
+                  ;                          ; BodyContent-orderdetail         ; AccountOrderDetailsOverviewComponent,AccountOrderDetailsShippingComponent,AccountOrderDetailsItemsComponent,AccountOrderDetailsTotalsComponent,AccountOrderDetailsApprovalDetailsComponent,AccountOrderDetailsReorderComponent,AccountOrderDetailsPDFInvoicesComponent
                   ;                          ; BodyContent-orders              ; AccountOrderHistoryComponent
                   ;                          ; BodyContent-payment-details     ; AccountPaymentDetailsComponent
                   ;                          ; BodyContent-update-email        ; UpdateEmailComponent
@@ -400,7 +401,7 @@ INSERT_UPDATE CMSFlexComponent; $contentCV[unique = true]; uid[unique = true]   
 ###### Order details and confirmation ######
 
 UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]            ; cmsComponents(uid, $contentCV)
-                  ;                          ; BodyContent-orderdetail       ; AccountOrderDetailsOverviewComponent,AccountOrderDetailsShippingComponent,AccountOrderDetailsItemsComponent,ExportOrderEntriesComponent,AccountOrderDetailsTotalsComponent,AccountOrderDetailsApprovalDetailsComponent,AccountOrderDetailsReorderComponent
+                  ;                          ; BodyContent-orderdetail       ; AccountOrderDetailsOverviewComponent,AccountOrderDetailsShippingComponent,AccountOrderDetailsItemsComponent,ExportOrderEntriesComponent,AccountOrderDetailsTotalsComponent,AccountOrderDetailsApprovalDetailsComponent,AccountOrderDetailsReorderComponent,AccountOrderDetailsPDFInvoicesComponent
                   ;                          ; BodyContent-orderConfirmation ; OrderConfirmationThankMessageComponent,OrderConfirmationOverviewComponent,OrderConfirmationItemsComponent,ExportOrderEntriesComponent,OrderConfirmationTotalsComponent,OrderConfirmationContinueButtonComponent
 
 ###### Empty cart ######

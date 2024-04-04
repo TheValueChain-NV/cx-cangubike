@@ -4,7 +4,7 @@ export const cangubikeLayoutConfig: LayoutConfig = {
   layoutSlots: {
     TopHeaderSection: {
       lg: {
-        slots: ['SiteLinks', 'SiteContext'],
+        slots: ['SiteLinks'],
       },
       slots: [],
     },
@@ -50,6 +50,16 @@ export const cangubikeLayoutConfig: LayoutConfig = {
           'Section10'
         ]
 
+    },
+    ProductDetailsPageTemplate: {
+      pageFold: 'Summary',
+      slots: [
+        'Summary',
+          'UpSelling',
+          'CrossSelling',
+          'Tabs',
+        // 'PlaceholderContentSlot',
+      ],
     },
     BottomNavSection: {
       lg: {

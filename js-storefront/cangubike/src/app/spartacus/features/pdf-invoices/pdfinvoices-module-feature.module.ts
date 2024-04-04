@@ -20,6 +20,7 @@ import { PDFInvoicesRootModule, PDF_INVOICES_FEATURE } from "@spartacus/pdf-invo
     i18n: {
       resources: pdfInvoicesTranslations,
       chunks: pdfInvoicesTranslationChunksConfig,
+      fallbackLang: 'en',
     },
   })
   ]

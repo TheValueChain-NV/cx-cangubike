@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
+import { AsmConfig } from "@spartacus/asm/root";
 import { translationChunksConfig, translations } from "@spartacus/assets";
-import { FeaturesConfig, I18nConfig, OccConfig, provideConfig, SiteContextConfig } from "@spartacus/core";
+import {ConfigModule, FeaturesConfig, I18nConfig, OccConfig, provideConfig, SiteContextConfig} from "@spartacus/core";
 import { defaultB2bOccConfig } from "@spartacus/setup";
 import {
   defaultCmsContentProviders, IconConfig,
@@ -9,13 +10,17 @@ import {
   layoutConfig,
   mediaConfig
 } from "@spartacus/storefront";
+import { environment } from "../../environments/environment";
 import { cangubikeLayoutConfig } from "./layout.config";
-import {environment} from "../../environments/environment";
-import {AsmConfig} from "@spartacus/asm/root";
 
 @NgModule({
   declarations: [],
   imports: [
+    ConfigModule.withConfig({
+      routing: {
+        protected: false,
+      }
+    })
   ],
   providers: [provideConfig(layoutConfig), provideConfig(cangubikeLayoutConfig), provideConfig(mediaConfig), ...defaultCmsContentProviders, provideConfig(<OccConfig>{
     backend: {

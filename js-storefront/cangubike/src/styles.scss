@@ -28,6 +28,7 @@ $skipComponentStyles: (header, cx-mini-cart);
   --ssf-font-size-desktop: #{calculateRem(16px)};
   --cx-text-transform: none;
   --cx-color-visual-focus:transparent;
+  --cx-color-gray: #8e9398;
 }
 .Section5 {
   height: 50px !important;
@@ -266,7 +267,8 @@ header {
 }
 // TopHeaderSection styles
 .top-header-background {
-  background-color: var(--cx-color-secondary);
+ // background-color: var(--cx-color-secondary);
+  background-color: #f9f9f9;
 }
 .TopHeaderSection {
   align-items: center;
@@ -320,7 +322,7 @@ header .SiteLinks {
   justify-content: space-between;
 }
 app-cangubike-footer {
-  background-color: var(--cx-color-secondary);
+  background-color: var(--cx-color-gray);
   min-height: 300px;
   padding-top: 50px;
 
@@ -353,4 +355,17 @@ app-cangubike-footer {
     margin-right: 0 !important;
   }
 }
+
+
+//html, body { height: 100%; }
+//body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 2048px;
+  margin: auto;
+  justify-content: center;
+  justify-items: center;
+}
+
 

@@ -4,6 +4,7 @@ import { CangubikeCarouselComponent } from './cangubike-carousel.component';
 import {RouterLink} from "@angular/router";
 import {UrlModule} from "@spartacus/core";
 import {IconModule, MediaModule, PageComponentModule} from "@spartacus/storefront";
+import {AddToCartModule} from "@spartacus/cart/base/components/add-to-cart";
 
 
 
@@ -20,7 +21,8 @@ import {IconModule, MediaModule, PageComponentModule} from "@spartacus/storefron
         UrlModule,
         MediaModule,
         PageComponentModule,
-        IconModule
+        IconModule,
+        AddToCartModule
     ]
 })
 export class CangubikeCarouselModule { }

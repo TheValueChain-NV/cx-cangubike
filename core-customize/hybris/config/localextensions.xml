@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <hybrisconfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="resources/schemas/extensions.xsd">
 	<extensions>
+		<path dir="${HYBRIS_BIN_DIR}/../CXCEP" autoload="false"/>
 		<path dir="${HYBRIS_BIN_DIR}" />
 		<!-- modules/adaptive-search -->
 		<extension name= 'adaptivesearch'/>
@@ -366,12 +367,12 @@
         <extension name="sapbillinginvoiceocc"/>
         <extension name="sapbillinginvoiceservices"/>
 		<extension name="sapcpiadapter"/>
-        <extension name="sapcpicustomerexchange"/>
+      <!--  <extension name="sapcpicustomerexchange"/>
         <extension name="sapcpicustomerexchangeb2b"/>
         <extension name="sapcpiorderexchange"/>
         <extension name="sapcpiorderexchangeb2b"/>
         <extension name="sapcpiproductexchange"/>
-		
+		-->
 		
 		<!-- modules/entitlements -->
 		<!--Cangubike extensions -->

@@ -1,0 +1,14 @@
+%cx-link {
+  a {
+    display: inline;
+    padding: var(--cx-padding, 0);
+    margin: var(--cx-margin, 0);
+    display: var(--cx-display);
+    text-decoration: underline;
+    color: #111827 !important;
+
+    @include media-breakpoint-down(sm) {
+      display: block;
+    }
+  }
+}

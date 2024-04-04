@@ -30,6 +30,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
               "src/styles/spartacus/user.scss",
               "src/styles/spartacus/cart.scss",
@@ -42,9 +43,11 @@
               "src/styles/spartacus/pickup-in-store.scss",
               "src/styles/spartacus/asm.scss",
               "src/styles/spartacus/pdf-invoices.scss",
-              "src/styles/spartacus/requested-delivery-date.scss"
+              "src/styles/spartacus/requested-delivery-date.scss",
+              "src/assets/expivi.css"
             ],
-            "scripts": [],
+            "scripts": [
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "node_modules/",
@@ -59,8 +62,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "2.5mb"
+                  "maximumWarning": "5000kb",
+                  "maximumError": "20.5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -118,6 +121,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
               "src/styles/spartacus/user.scss",
               "src/styles/spartacus/cart.scss",
